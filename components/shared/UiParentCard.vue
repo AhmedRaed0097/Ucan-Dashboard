@@ -7,10 +7,27 @@ const props = defineProps({
 
 // ===============================|| Ui Parent Card||=============================== //
 <template>
+<div class="d-flex">
+    <h3 class="text-h2 mb-6 pl-7 pt-7">{{ title }}</h3>
+    <!-- <div> -->
+
+        <v-text-field
+        width="30%"
+        v-model="search"
+        prepend-inner-icon="mdi-magnify"
+        density="compact"
+        label="Search"
+        single-line
+        flat
+        hide-details
+      variant="solo-filled"
+      ></v-text-field>
+    <!-- </div> -->
+
+</div>
     <v-card elevation="10" class="withbg">
         <v-card-item class="pa-0">
             <div class="d-sm-flex align-center justify-space-between">
-                <h5 class="text-h5 mb-6 pl-7 pt-7">{{ title }}</h5>
                 <!-- <template v-slot:append> -->
                 <slot name="action"></slot>
                 <!-- </template> -->
