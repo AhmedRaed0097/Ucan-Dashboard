@@ -2,6 +2,8 @@
 .rightSidebar {
     box-shadow: none !important;
     border-right: 1px solid rgb(var(--v-theme-borderColor));
+    // min-height: 90vh !important;
+
     .logo {
         padding-right: 7px;
     }
@@ -17,7 +19,7 @@
 
 /*This is for the Vertical sidebar*/
 .scrollnavbar {
-    height: calc(100vh - 80px);
+    height: calc(100vh - 100px);
 
     .userbottom {
         position: fixed;
@@ -91,7 +93,9 @@
         }
     }
 }
-
+.v-navigation-drawer__content{
+    overflow: hidden !important;
+}
 @media only screen and (min-width: 1170px) {
     .mini-sidebar {
         .logo {
@@ -136,3 +140,4 @@
         }
     }
 }
+

@@ -8,30 +8,29 @@ const sDrawer = ref(true);
 
 <template>
     <!------Sidebar-------->
-    <v-navigation-drawer elevation="0"  app class="leftSidebar"  v-model="sDrawer">
+    <v-navigation-drawer elevation="0"  app class="rightSidebar"  v-model="sDrawer">
         <!---Logo part -->
-        <div class="pa-5">
-            <LayoutFullLogo />
-        </div>
         <!-- ---------------------------------------------- -->
         <!---Navigation -->
         <!-- ---------------------------------------------- -->
         <div>
+            <div class="">
+                <LayoutFullLogo />
+            </div>
         <perfect-scrollbar class="scrollnavbar">
             <v-list class="pa-6">
                 <!---Menu Loop -->
                 <template v-for="(item, i) in sidebarMenu">
                     <!---Item Sub Header -->
-                    <LayoutFullVerticalSidebarNavGroup :item="item" v-if="item.header" :key="item.title" />
+                   
+                    <LayoutFullVerticalSidebarCollapsedNavItem :item="item" v-if="item.groupTitle" class="leftPadding" />
 
                     <!---Single Item-->
                     <LayoutFullVerticalSidebarNavItem :item="item" v-else class="leftPadding" />
                     <!---End Single Item-->
                 </template>
             </v-list>
-            <div class="pa-4">
-                <LayoutFullVerticalSidebarExtraBox/>
-            </div>
+         
         </perfect-scrollbar>
     </div>
 
