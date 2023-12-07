@@ -9,6 +9,7 @@ const headers = ref([
   { key: "city", title: "المدينة" },
   { key: "country", title: "البلد" },
   { key: "email", title: "البريد الالتكروني" },
+  { title: "الاجراء", key: "actions", sortable: false },
 ]);
 const dataTable = ref([
   {

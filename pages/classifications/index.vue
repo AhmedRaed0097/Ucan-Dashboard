@@ -9,6 +9,7 @@ const headers = ref([
   { key: "city", title: "المدينة" },
   { key: "country", title: "البلد" },
   { key: "email", title: "البريد الالتكروني" },
+  { title: "الاجراء", key: "actions", sortable: false },
 ]);
 const dataTable = ref([
   {
@@ -195,7 +196,7 @@ const dataTable = ref([
     </v-col>
     <v-row class="mt-4 px-5">
       <v-col cols="2">
-        <v-btn color="primary" block> إنشاء تصنيف جديد </v-btn>
+        <DoctorsCreateDialog />
       </v-col>
       <v-col v-for="i in 5" :key="i" cols="2">
         <v-combobox

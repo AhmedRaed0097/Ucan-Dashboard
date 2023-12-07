@@ -1,86 +1,97 @@
+<script setup lang="ts">
+const gender = ref(["ذكر", "انثى"]);
+const qualifications = ref(["بكلاريوس", "ماجستير", "دكتوراه"]);
+const dialog = ref(false);
+</script>
 <template>
-  <v-dialog v-model="dialog" persistent width="1024">
+  <v-dialog v-model="dialog" persistent width="800">
     <template v-slot:activator="{ props }">
-      <v-btn color="primary" block v-bind="props"> إنشاء طبيب جديد </v-btn>
+      <v-btn height="39" color="primary" block v-bind="props">
+        إنشاء طبيب جديد
+      </v-btn>
     </template>
-    <v-card>
+    <v-card class="rounded-lg pt-4">
       <v-card-title>
-        <span class="text-h5">User Profile</span>
+        <span class="text-h5 mr-4">اضافة طبيب جديد</span>
       </v-card-title>
       <v-card-text>
         <v-container>
           <v-row>
-            <v-col cols="12" sm="6" md="4">
-              <v-text-field label="Legal first name*" required></v-text-field>
-            </v-col>
-            <v-col cols="12" sm="6" md="4">
+            <v-col cols="12" sm="6">
               <v-text-field
-                label="Legal middle name"
-                hint="example of helper text only on focus"
+                label="الاسم"
+                required
+                variant="outlined"
               ></v-text-field>
             </v-col>
-            <v-col cols="12" sm="6" md="4">
+            <v-col cols="12" sm="6">
               <v-text-field
-                label="Legal last name*"
-                hint="example of persistent helper text"
-                persistent-hint
+                label="البريد الالكتروني"
                 required
+                variant="outlined"
               ></v-text-field>
             </v-col>
-            <v-col cols="12">
-              <v-text-field label="Email*" required></v-text-field>
-            </v-col>
-            <v-col cols="12">
+            <v-col cols="12" sm="6">
               <v-text-field
-                label="Password*"
-                type="password"
+                label="رمز الدولة"
                 required
+                variant="outlined"
+              ></v-text-field>
+            </v-col>
+            <v-col cols="12" sm="6">
+              <v-text-field
+                label="الجوال"
+                required
+                variant="outlined"
               ></v-text-field>
             </v-col>
             <v-col cols="12" sm="6">
               <v-select
-                :items="['0-17', '18-29', '30-54', '54+']"
-                label="Age*"
-                required
+                :items="gender"
+                label="النوع"
+                variant="outlined"
               ></v-select>
             </v-col>
             <v-col cols="12" sm="6">
-              <v-autocomplete
-                :items="[
-                  'Skiing',
-                  'Ice hockey',
-                  'Soccer',
-                  'Basketball',
-                  'Hockey',
-                  'Reading',
-                  'Writing',
-                  'Coding',
-                  'Basejump',
-                ]"
-                label="Interests"
-                multiple
-              ></v-autocomplete>
+              <v-text-field
+                :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
+                :type="visible ? 'text' : 'password'"
+                density="compact"
+                label="ادخل كلمة المرور"
+                variant="outlined"
+                autocomplete="off"
+                @click:append-inner="visible = !visible"
+              ></v-text-field>
+            </v-col>
+            <v-col cols="12" sm="6">
+              <v-select
+                :items="qualifications"
+                label="المؤهل العلمي"
+                variant="outlined"
+              ></v-select>
+            </v-col>
+            <v-col cols="12" sm="6">
+              <v-file-input
+                accept="image/png, image/jpeg, image/bmp"
+                placeholder="Pick an avatar"
+                prepend-icon=""
+                prepend-inner-icon="mdi-camera"
+                label="الصورة"
+                variant="outlined"
+              ></v-file-input>
             </v-col>
           </v-row>
         </v-container>
-        <small>*indicates required field</small>
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="blue-darken-1" variant="text" @click="dialog = false">
-          Close
+        <v-btn color="primary" variant="outlined" @click="dialog = false">
+          حفظ
         </v-btn>
-        <v-btn color="blue-darken-1" variant="text" @click="dialog = false">
-          Save
+        <v-btn color="error" variant="outlined" @click="dialog = false">
+          الغاء
         </v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
 </template>
-<script>
-export default {
-  data: () => ({
-    dialog: false,
-  }),
-};
-</script>

@@ -10,6 +10,7 @@ const headers = ref([
   { key: "city", title: "المدينة" },
   { key: "country", title: "البلد" },
   { key: "email", title: "البريد الالتكروني" },
+  { title: "الاجراء", key: "actions", sortable: false },
 ]);
 const dataTable = ref([
   {
@@ -220,9 +221,6 @@ const dataTable = ref([
     <v-col cols="12" md="12">
       <v-card elevation="10" class="withbg">
         <v-card-item class="pa-0">
-          <!-- <template v-slot:append> -->
-          <!-- </template> -->
-
           <v-data-table :headers="headers" :items="dataTable" :search="search">
             <template v-slot:item.actions="{ item }">
               <v-icon

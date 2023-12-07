@@ -7,6 +7,9 @@ import VueApexCharts from "vue3-apexcharts";
 import VueTablerIcons from "vue-tabler-icons";
 import "@/scss/style.scss";
 import { PurpleTheme } from "@/theme/LightTheme";
+
+import { ar } from "vuetify/locale";
+
 export default defineNuxtPlugin((nuxtApp) => {
   const vuetify = createVuetify({
     components,
@@ -16,6 +19,10 @@ export default defineNuxtPlugin((nuxtApp) => {
       themes: {
         PurpleTheme,
       },
+    },
+    locale: {
+      locale: "ar", // Change to 'ar'
+      messages: { ar },
     },
   });
   nuxtApp.vueApp.use(vuetify);
