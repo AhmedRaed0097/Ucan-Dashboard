@@ -4,7 +4,6 @@ import {
   LayoutDashboardIcon,
   LoginIcon,
   MoodHappyIcon,
-  TypographyIcon,
   UserPlusIcon,
 } from "vue-tabler-icons";
 
@@ -140,12 +139,6 @@ const sidebarItem: menu[] = [
     icon: LayoutDashboardIcon,
     to: "/wallets",
   },
-
-  {
-    title: "Typography",
-    icon: TypographyIcon,
-    to: "/ui/typography",
-  },
   {
     title: "Shadow",
     icon: CopyIcon,
@@ -165,11 +158,6 @@ const sidebarItem: menu[] = [
     title: "Icons",
     icon: MoodHappyIcon,
     to: "/icons",
-  },
-  {
-    title: "Sample Page",
-    icon: ApertureIcon,
-    to: "/sample-page",
   },
 ];
 
