@@ -103,7 +103,7 @@ const desserts = ref([
   <v-row>
     <v-col cols="12" md="12" class="mt-12">
       <div class="d-flex justify-space-between align-center">
-        <h3 class="text-h2 pl-7 mt-2">الاطباء</h3>
+        <h3 class="text-h2 pl-7 mt-2">الإعدادات العامة</h3>
         <div class="w-25 mb-1">
           <v-text-field
             v-model="search"
@@ -119,28 +119,6 @@ const desserts = ref([
         </div>
       </div>
     </v-col>
-    <v-row class="mt-4 px-5">
-      <v-col cols="2">
-        <v-btn color="primary" block> إنشاء طبيب جديد </v-btn>
-      </v-col>
-      <v-col v-for="i in 5" :key="i" cols="2">
-        <v-combobox
-          label="فلترة"
-          :items="[
-            'California',
-            'Colorado',
-            'Florida',
-            'Georgia',
-            'Texas',
-            'Wyoming',
-          ]"
-          variant="outlined"
-          density="compact"
-          color="primary"
-          hide-details
-        ></v-combobox>
-      </v-col>
-    </v-row>
 
     <v-col cols="12" md="12">
       <v-card elevation="10" class="withbg">

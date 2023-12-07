@@ -6,23 +6,20 @@ const props = defineProps({ item: Object, level: Number });
 <template>
   <v-list-group>
     <template v-slot:activator="{ props }">
-      <v-list-item
-        v-bind="props"
-        :title="item.groupTitle"
-      >
-    
-      <template v-slot:prepend>
-        <Icon :item="item.icon" />
-      </template>
-    
-    </v-list-item>
+      <v-list-item v-bind="props" :title="item.groupTitle">
+        <template v-slot:prepend>
+          <Icon :item="item.icon" />
+        </template>
+      </v-list-item>
     </template>
     <v-list-item
-    v-for="(child,index) in item.children" :key="index"
+      v-for="(child, index) in item.children"
+      :key="index"
       :to="child.to"
       rounded
       class="mb-1"
       color="primary"
+      :value="child.to"
       :disabled="child.disabled"
       :target="item.type === 'external' ? '_blank' : ''"
     >

@@ -49,12 +49,12 @@ const sidebarItem: menu[] = [
       {
         title: "المستخدمين",
         icon: LayoutDashboardIcon,
-        to: "/customers",
+        to: "/permissions/users",
       },
       {
-        title: "المستخدمين",
+        title: "الموظفين",
         icon: LayoutDashboardIcon,
-        to: "/customers",
+        to: "/permissions/employees",
       },
     ],
   },
@@ -81,64 +81,64 @@ const sidebarItem: menu[] = [
       {
         title: "التصنيفات",
         icon: LayoutDashboardIcon,
-        to: "/customers",
+        to: "/classifications",
       },
       {
         title: "الفئات",
         icon: LayoutDashboardIcon,
-        to: "/customers",
+        to: "/categories",
       },
     ],
   },
   {
     title: "الاعدادات العامة",
     icon: LayoutDashboardIcon,
-    to: "/customers",
+    to: "/general-settings",
   },
   {
     title: "التقييمات",
     icon: LayoutDashboardIcon,
-    to: "/customers",
+    to: "/rates",
   },
   {
     title: "الجلسات",
     icon: LayoutDashboardIcon,
-    to: "/customers",
+    to: "/consulting-sessions",
   },
   {
     title: "العروض الترويجية",
     icon: LayoutDashboardIcon,
-    to: "/customers",
+    to: "/promotes",
   },
   {
     title: "اقسام المدونة",
     icon: LayoutDashboardIcon,
-    to: "/customers",
+    to: "/blog-categories",
   },
   {
     title: "المقالات",
     icon: LayoutDashboardIcon,
-    to: "/customers",
+    to: "/articles",
   },
   {
     title: "تذاكر الدعم",
     icon: LayoutDashboardIcon,
-    to: "/customers",
+    to: "/support-tickets",
   },
   {
     title: "المواعيد الحضورية",
     icon: LayoutDashboardIcon,
-    to: "/customers",
+    to: "/attendance-appointments",
   },
   {
     title: "المعاملات المالية",
     icon: LayoutDashboardIcon,
-    to: "/customers",
+    to: "/transaction",
   },
   {
     title: "المحافظ",
     icon: LayoutDashboardIcon,
-    to: "/customers",
+    to: "/wallets",
   },
 
   {
