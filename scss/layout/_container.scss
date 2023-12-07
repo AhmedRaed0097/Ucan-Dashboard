@@ -1,6 +1,5 @@
 html {
     overflow-y: auto;
-    font-family: 'Tajawal';
 }
 .v-main {
     margin-right: 20px;
@@ -26,7 +25,7 @@ html {
     padding: 24px;
     padding-bottom: 30px;
 
-    @media screen and (max-width:600px){
+    @media screen and (max-width: 600px) {
         padding: 10px;
     }
 }
@@ -35,23 +34,23 @@ html {
     margin: 0 auto;
 }
 $sizes: (
-    'display-1': 44px,
-    'display-2': 40px,
-    'display-3': 30px,
-    'h1': 36px,
-    'h2': 30px,
-    'h3': 21px,
-    'h4': 18px,
-    'h5': 16px,
-    'h6': 14px,
-    'text-8': 8px,
-    'text-10': 10px,
-    'text-13': 13px,
-    'text-15': 15px,
-    'text-18': 18px,
-    'text-20': 20px,
-    'text-24': 24px,
-    'body-text-1': 10px
+    "display-1": 44px,
+    "display-2": 40px,
+    "display-3": 30px,
+    "h1": 36px,
+    "h2": 30px,
+    "h3": 21px,
+    "h4": 18px,
+    "h5": 16px,
+    "h6": 14px,
+    "text-8": 8px,
+    "text-10": 10px,
+    "text-13": 13px,
+    "text-15": 15px,
+    "text-18": 18px,
+    "text-20": 20px,
+    "text-24": 24px,
+    "body-text-1": 10px
 );
 
 @each $pixel, $size in $sizes {
