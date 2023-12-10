@@ -1,5 +1,4 @@
 <script setup lang="ts"></script>
-
 <template>
   <v-locale-provider rtl lang="ar">
     <v-app>
