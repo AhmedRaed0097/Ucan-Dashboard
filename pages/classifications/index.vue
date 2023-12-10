@@ -195,10 +195,10 @@ const dataTable = ref([
       </div>
     </v-col>
     <v-row class="mt-4 px-5">
-      <v-col cols="2">
+      <v-col cols="12" sm="4" md="2">
         <DoctorsCreateDialog />
       </v-col>
-      <v-col v-for="i in 5" :key="i" cols="2">
+      <v-col v-for="i in 5" :key="i" cols="4" md="2">
         <v-combobox
           label="فلترة"
           :items="[

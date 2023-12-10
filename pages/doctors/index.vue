@@ -196,10 +196,10 @@ const dataTable = ref([
       </div>
     </v-col>
     <v-row class="mt-4 px-5">
-      <v-col cols="2">
+      <v-col cols="12" sm="4" md="2">
         <DoctorsCreateDialog />
       </v-col>
-      <v-col v-for="i in 5" :key="i" cols="2">
+      <v-col v-for="i in 5" :key="i" cols="4" md="2">
         <v-combobox
           label="فلترة"
           :items="[
@@ -222,18 +222,20 @@ const dataTable = ref([
       <v-card elevation="10" class="withbg">
         <v-card-item class="pa-0">
           <v-data-table :headers="headers" :items="dataTable" :search="search">
-            <template v-slot:item.actions="{ item }">
-              <v-icon
-                color="primary"
-                size="small"
-                class="me-2"
-                @click="editItem(item)"
-              >
-                mdi-pencil
-              </v-icon>
-              <v-icon color="primary" size="small" @click="deleteItem(item)">
-                mdi-delete
-              </v-icon>
+            <template v-slot:item.actions="{ item }" class="icons-wrapper">
+              <div class="d-flex">
+                <v-icon
+                  color="primary"
+                  size="small"
+                  class="me-2"
+                  @click="editItem(item)"
+                >
+                  mdi-pencil
+                </v-icon>
+                <v-icon color="primary" size="small" @click="deleteItem(item)">
+                  mdi-delete
+                </v-icon>
+              </div>
             </template>
           </v-data-table>
         </v-card-item>
