@@ -24,6 +24,26 @@ export default defineNuxtPlugin((nuxtApp) => {
       locale: "ar", // Change to 'ar'
       messages: { ar },
     },
+    defaults: {
+      VBtn: {
+        color: "primary",
+      },
+      VCard: {
+        rounded: "lg",
+      },
+      VTextField: {
+        color: "primary",
+        density: "compact",
+      },
+      VFileInput: {
+        color: "primary",
+        density: "compact",
+      },
+      VSelect: {
+        color: "primary",
+        density: "compact",
+      },
+    },
   });
   nuxtApp.vueApp.use(vuetify);
   nuxtApp.vueApp.use(PerfectScrollbar);

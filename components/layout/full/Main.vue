@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref, shallowRef } from "vue";
-import sidebarItems from "@/components/layout/full/vertical-sidebar/sidebarItem";
-import { Menu2Icon } from "vue-tabler-icons";
+import { ref, shallowRef } from 'vue';
+import sidebarItems from '@/components/layout/full/vertical-sidebar/sidebarItem';
+import { Menu2Icon } from 'vue-tabler-icons';
 const sidebarMenu = shallowRef(sidebarItems);
 const sDrawer = ref(true);
 </script>
@@ -20,12 +20,12 @@ const sDrawer = ref(true);
       <perfect-scrollbar class="scrollnavbar">
         <v-list class="pa-6">
           <!---Menu Loop -->
-          <template v-for="(item, i) in sidebarMenu">
+          <template v-for="(item, i) in sidebarMenu" :key="i">
             <!---Item Sub Header -->
 
             <LayoutFullVerticalSidebarCollapsedNavItem
-              :item="item"
-              v-if="item.groupTitle"
+            v-if="item.groupTitle"
+            :item="item"
               class="leftPadding"
             />
 

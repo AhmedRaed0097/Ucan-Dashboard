@@ -1,28 +1,28 @@
 <script setup lang="ts">
-import { computed } from "vue";
-import { useTheme } from "vuetify";
+import { computed } from 'vue';
+import { useTheme } from 'vuetify';
 const theme = useTheme();
 const primary = theme.current.value.colors.primary;
 const lightprimary = theme.current.value.colors.lightprimary;
 const chartOptions = computed(() => {
   return {
-    labels: ["series-1", "series-2", "series-3"],
+    labels: ['series-1', 'series-2', 'series-3'],
     chart: {
-      type: "donut",
-      fontFamily: `inherit`,
-      foreColor: "#a1aab2",
+      type: 'donut',
+      fontFamily: 'inherit',
+      foreColor: '#a1aab2',
       toolbar: {
         show: false,
       },
     },
-    colors: [primary, lightprimary, "#F9F9FD"],
+    colors: [primary, lightprimary, '#F9F9FD'],
     plotOptions: {
       pie: {
         startAngle: 0,
         endAngle: 360,
         donut: {
-          size: "75%",
-          background: "transparent",
+          size: '75%',
+          background: 'transparent',
         },
       },
     },
@@ -36,7 +36,7 @@ const chartOptions = computed(() => {
     legend: {
       show: false,
     },
-    tooltip: { theme: "light", fillSeriesColor: false },
+    tooltip: { theme: 'light', fillSeriesColor: false },
   };
 });
 const Chart = [38, 40, 25];

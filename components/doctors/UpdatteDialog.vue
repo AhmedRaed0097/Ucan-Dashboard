@@ -5,7 +5,7 @@ const dialog = ref(false);
   <v-dialog v-model="dialog" persistent width="800">
     <template v-slot:activator="{ props }">
       <v-btn height="39" color="primary" block v-bind="props">
-        إنشاء طبيب جديد
+        تعديل بيانات الطبيب
       </v-btn>
     </template>
     <DoctorsStepperForm />

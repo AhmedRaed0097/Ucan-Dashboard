@@ -6,8 +6,17 @@ export default defineNuxtConfig({
       link: [{ rel: "icon", type: "image/png", href: "/favicon.png" }],
     },
   },
+  runtimeConfig: {
+    public: {
+      baseUrl: process.env.BASE_URL,
+      appEnv: process.env.ENV,
+    },
+  },
   typescript: {
     shim: false,
+  },
+  alias: {
+    pinia: "/node_modules/@pinia/nuxt/node_modules/pinia/dist/pinia.mjs",
   },
   build: {
     transpile: ["vuetify"],

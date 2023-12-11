@@ -1,6 +1,6 @@
 <script setup>
-import Icon from "../Icon.vue";
-const props = defineProps({ item: Object, level: Number });
+import Icon from '../Icon.vue';
+defineProps({ item: Object, level: Number });
 </script>
 
 <template>

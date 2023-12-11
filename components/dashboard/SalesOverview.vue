@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+
 import { computed } from 'vue';
 import { useTheme } from 'vuetify';
 const theme = useTheme();
@@ -11,8 +11,8 @@ const chartOptions = computed(() => {
     return {
 
         series: [
-            { name: "Earnings this month:", data: [355, 390, 300, 350, 390, 180, 355, 390] },
-            { name: "Expense this month:", data: [280, 250, 325, 215, 250, 310, 280, 250] },
+            { name: 'Earnings this month:', data: [355, 390, 300, 350, 390, 180, 355, 390] },
+            { name: 'Expense this month:', data: [280, 250, 325, 215, 250, 310, 280, 250] },
         ],
         chartOptions: {
             grid: {
@@ -25,15 +25,15 @@ const chartOptions = computed(() => {
                 },
             },
             plotOptions: {
-                bar: { horizontal: false, columnWidth: "35%", borderRadius: [8] },
+                bar: { horizontal: false, columnWidth: '35%', borderRadius: [8] },
             },
             colors: [primary, secondary],
             chart: {
-                type: "bar",
+                type: 'bar',
                 height: 370,
                 offsetX: -15,
                 toolbar: { show: true },
-                foreColor: "#adb0bb",
+                foreColor: '#adb0bb',
                 fontFamily: 'inherit',
                 sparkline: { enabled: false },
             },
@@ -41,10 +41,10 @@ const chartOptions = computed(() => {
             markers: { size: 0 },
             legend: { show: false },
             xaxis: {
-                type: "category",
-                categories: ["16/08", "17/08", "18/08", "19/08", "20/08", "21/08", "22/08", "23/08"],
+                type: 'category',
+                categories: ['16/08', '17/08', '18/08', '19/08', '20/08', '21/08', '22/08', '23/08'],
                 labels: {
-                    style: { cssClass: "grey--text lighten-2--text fill-color" },
+                    style: { cssClass: 'grey--text lighten-2--text fill-color' },
                 },
             },
             yaxis: {
@@ -54,17 +54,17 @@ const chartOptions = computed(() => {
                 tickAmount: 4,
                 labels: {
                     style: {
-                        cssClass: "grey--text lighten-2--text fill-color",
+                        cssClass: 'grey--text lighten-2--text fill-color',
                     },
                 },
             },
             stroke: {
                 show: true,
                 width: 3,
-                lineCap: "butt",
-                colors: ["transparent"],
+                lineCap: 'butt',
+                colors: ['transparent'],
             },
-            tooltip: { theme: "light" },
+            tooltip: { theme: 'light' },
 
             responsive: [
             {

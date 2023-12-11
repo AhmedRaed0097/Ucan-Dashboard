@@ -1,42 +1,40 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import { computed } from "vue";
-import { useTheme } from "vuetify";
+import { computed } from 'vue';
+import { useTheme } from 'vuetify';
 const theme = useTheme();
-const primary = theme.current.value.colors.primary;
 const secondary = theme.current.value.colors.secondary;
 
 /* Chart */
 const areachartOptions = computed(() => {
   return {
-    labels: ["1", "2", "3", "4", "5", "6", "7"],
+    labels: ['1', '2', '3', '4', '5', '6', '7'],
     chart: {
-      type: "area",
+      type: 'area',
       height: 60,
-      fontFamily: `inherit`,
-      foreColor: "#a1aab2",
+      fontFamily: 'inherit',
+      foreColor: '#a1aab2',
       toolbar: {
         show: false,
       },
       sparkline: {
         enabled: true,
       },
-      group: "sparklines",
+      group: 'sparklines',
     },
     colors: [secondary],
     stroke: {
-      curve: "smooth",
+      curve: 'smooth',
       width: 2,
     },
     fill: {
-      type: "solid",
+      type: 'solid',
       opacity: 0.05,
     },
     markers: {
       size: 0,
     },
     tooltip: {
-      theme: "light",
+      theme: 'light',
       x: {
         show: true,
       },
@@ -47,7 +45,7 @@ const areachartOptions = computed(() => {
 const areaChart = {
   series: [
     {
-      name: "",
+      name: '',
       data: [25, 66, 20, 40, 12, 58, 20],
     },
   ],

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+
 const checkbox = ref(true);
 </script>
 
@@ -16,7 +16,7 @@ const checkbox = ref(true);
         <v-col cols="12" class="pt-0">
             <div class="d-flex flex-wrap align-center ml-n2">
                 <v-checkbox v-model="checkbox"  color="primary" hide-details>
-                    <template v-slot:label class="text-body-1">Remeber this Device</template>
+                    <template v-slot:label>Remeber this Device</template>
                 </v-checkbox>
                 <div class="ml-sm-auto">
                     <NuxtLink to="/"

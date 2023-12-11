@@ -1,9 +1,9 @@
 <script setup lang="ts">
 // Page title
-const title = ref("404-Page Not Found");
+const title = ref('404-Page Not Found');
 useHead({
   meta: [{ content: title }],
-  titleTemplate: (titleChunk) => {
+  titleTemplate: () => {
     return `Ucan - ${title.value}`;
   },
 });
