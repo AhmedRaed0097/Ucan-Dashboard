@@ -1,0 +1,236 @@
+<template>
+  <form>
+    <v-container>
+      <v-row>
+        <v-col cols="12" sm="6" xl="4">
+          <v-text-field
+            label="الاسم"
+            required
+            variant="outlined"
+          ></v-text-field>
+        </v-col>
+        <v-col cols="12" sm="6" xl="4">
+          <v-file-input
+            accept="image/png, image/jpeg, image/bmp"
+            placeholder="Pick an avatar"
+            prepend-icon=""
+            append-inner-icon="mdi-camera"
+            label="الصورة"
+            variant="outlined"
+          ></v-file-input>
+        </v-col>
+
+        <v-col cols="12" sm="6" xl="4">
+          <v-select
+            :items="qualifications"
+            label="نوع الانضمام"
+            variant="outlined"
+          ></v-select>
+        </v-col>
+      </v-row>
+      <br />
+      <v-divider />
+      <br />
+      <v-row>
+        <v-col cols="12">
+          <h3 class="text-primary">اعدادات الاستشارة</h3>
+        </v-col>
+
+        <v-col cols="12" sm="6" xl="4">
+          <v-select
+            :items="qualifications"
+            label="مدة الحجز"
+            variant="outlined"
+          ></v-select>
+        </v-col>
+        <v-col cols="12" sm="6" xl="4">
+          <v-select
+            :items="qualifications"
+            label="نوع الحجز"
+            variant="outlined"
+          ></v-select>
+        </v-col>
+        <v-col cols="12" sm="6" xl="4">
+          <v-select
+            :items="qualifications"
+            label="نوع الحجز"
+            variant="outlined"
+          ></v-select>
+        </v-col>
+        <v-col cols="12" sm="6" xl="4">
+          <v-select
+            :items="qualifications"
+            label="استشارة مجانية"
+            variant="outlined"
+          ></v-select>
+        </v-col>
+        <v-col cols="12" sm="6" xl="4">
+          <v-select
+            :items="qualifications"
+            label="أقصى مدة للحجز"
+            variant="outlined"
+          ></v-select>
+        </v-col>
+        <v-col cols="12" sm="6" xl="4">
+          <v-text-field
+            label="قيمة الجلسة"
+            required
+            variant="outlined"
+          ></v-text-field>
+        </v-col>
+        <v-col cols="12" sm="6" xl="4">
+          <v-text-field
+            label="نسبة يوكان"
+            required
+            variant="outlined"
+          ></v-text-field>
+        </v-col>
+      </v-row>
+      <br />
+      <v-divider />
+      <br />
+      <v-row>
+        <v-col cols="12">
+          <h3 class="text-primary">الملف الطبي</h3>
+        </v-col>
+        <v-col cols="12" sm="6" xl="4">
+          <v-select
+            :items="qualifications"
+            label="المؤهل العلمي"
+            variant="outlined"
+          ></v-select>
+        </v-col>
+        <v-col cols="12" sm="6" xl="4">
+          <v-text-field
+            label="سنوات الخبرة"
+            required
+            variant="outlined"
+          ></v-text-field>
+        </v-col>
+        <v-col cols="12" sm="6" xl="4">
+          <v-select
+            :items="qualifications"
+            label="الفئة"
+            variant="outlined"
+          ></v-select>
+        </v-col>
+        <v-col cols="12" sm="6" xl="4">
+          <v-select
+            :items="qualifications"
+            label="التصنيف"
+            variant="outlined"
+          ></v-select>
+        </v-col>
+        <v-col cols="12" sm="6" xl="4">
+          <v-select
+            :items="qualifications"
+            label="المسمى المهني"
+            variant="outlined"
+          ></v-select>
+        </v-col>
+        <v-col cols="12" sm="6" xl="4">
+          <v-textarea label="نبذة تعريفية" variant="outlined" />
+        </v-col>
+        <v-col cols="12" sm="6" xl="4">
+          <v-card variant="tonal">
+            <div class="d-flex justify-space-between align-center px-4 py-4">
+              <span>دراسة وتدريب </span>
+              <v-btn @click="addNewStudyTraining">عنصر جديد +</v-btn>
+            </div>
+
+            <div v-if="studyTraining.length" class="form-wrapper">
+              <div
+                v-for="(item, i) in studyTraining"
+                :key="i"
+                class="form-inner"
+              >
+                <v-container>
+                  <v-row>
+                    <v-col cols="12" sm="4">
+                      <v-text-field
+                        label="الجهة"
+                        required
+                        variant="outlined"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="5">
+                      <v-text-field
+                        label="التخصص"
+                        required
+                        variant="outlined"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="3">
+                      <v-text-field
+                        label="السنة"
+                        required
+                        variant="outlined"
+                      ></v-text-field>
+                    </v-col>
+                  </v-row>
+                </v-container>
+              </div>
+            </div>
+          </v-card>
+        </v-col>
+        <v-col cols="12" sm="6" xl="4">
+          <v-card variant="tonal">
+            <div class="d-flex justify-space-between align-center px-4 py-4">
+              <span>الرخصة الطبية </span>
+              <v-btn>عنصر جديد +</v-btn>
+            </div>
+          </v-card>
+        </v-col>
+        <v-col cols="12" sm="6" xl="4">
+          <v-card variant="tonal">
+            <div class="d-flex justify-space-between align-center px-4 py-4">
+              <span>التخصص</span>
+              <v-btn>عنصر جديد +</v-btn>
+            </div>
+          </v-card>
+        </v-col>
+        <v-col cols="12" sm="6" xl="4">
+          <v-card variant="tonal">
+            <div class="d-flex justify-space-between align-center px-4 py-4">
+              <span>الشهادات</span>
+              <v-btn>عنصر جديد +</v-btn>
+            </div>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-container>
+  </form>
+</template>
+<script setup>
+const qualifications = ref(['بكلاريوس', 'ماجستير', 'دكتوراه']);
+
+const studyTraining = reactive([]);
+
+const addNewStudyTraining = () => {
+  let isThereEmptyValue = false;
+  if (studyTraining.length) {
+    studyTraining.forEach((element) => {
+      console.log(element);
+      Object.values(element).forEach((value) => {
+        if (!value.length) {
+          isThereEmptyValue = true;
+        }
+        console.log(value);
+      });
+    });
+    if (isThereEmptyValue) {
+      alert('يجب عليك ملئ الحقول السابقة اولاً!');
+
+      return;
+    }
+  }
+  const object = {
+    donor: '',
+    major: '',
+    year: '',
+  };
+
+  studyTraining.push(object);
+};
+</script>
+<style></style>

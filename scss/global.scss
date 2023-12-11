@@ -1,7 +1,15 @@
+@import './helpers';
+
 .v-stepper,.v-stepper--alt-labels .v-stepper-header{
     box-shadow: none !important;
 }
 
 .v-stepper .v-window{
     padding-top: 10px;
+}
+
+.close-dialog-btn{
+    position: absolute;
+    left: 0;
+    margin-top: -20px;
 }

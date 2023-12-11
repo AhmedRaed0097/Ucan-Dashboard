@@ -1,7 +1,5 @@
 import { defineStore } from 'pinia';
 import { useRuntimeConfig } from '#app';
-import { getMessaging, getToken } from 'firebase/messaging';
-import { useSessionStore } from '~~/stores/SessionStore';
 
 export const useAuthStore = defineStore('auth', {
   state: () => ({

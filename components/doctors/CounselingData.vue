@@ -53,14 +53,18 @@
         variant="outlined"
       ></v-file-input>
     </v-col>
-
-    <v-col cols="12" class="d-flex justify-end">
+    <v-col cols="12" sm="6">
+      <v-btn variant="text" @click="emit('prev')">السابق</v-btn>
+    </v-col>
+    <v-col cols="12" sm="6" class="d-flex justify-end">
       <v-btn color="primary" variant="outlined" class="ml-4"> حفظ </v-btn>
-      <v-btn color="error" variant="outlined"> الغاء </v-btn>
+      <v-btn color="error" variant="outlined" @click="emit('close')"> الغاء </v-btn>
     </v-col>
   </v-row>
 </template>
 <script setup>
+  const emit = defineEmits(['prev','close']);
+
 const visible = ref(false);
 const gender = ref(['ذكر', 'انثى']);
 const qualifications = ref(['بكلاريوس', 'ماجستير', 'دكتوراه']);
