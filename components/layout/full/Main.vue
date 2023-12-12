@@ -2,8 +2,18 @@
 import { ref, shallowRef } from 'vue';
 import sidebarItems from '@/components/layout/full/vertical-sidebar/sidebarItem';
 import { Menu2Icon } from 'vue-tabler-icons';
+import { useTheme } from 'vuetify';
+
 const sidebarMenu = shallowRef(sidebarItems);
 const sDrawer = ref(true);
+const darkMode = ref(false);
+const theme = useTheme();
+
+
+const toggleTheme = () => {
+  darkMode.value = !darkMode.value
+  theme.global.name.value = darkMode.value ? 'dark' : 'light';
+};
 </script>
 
 <template>
@@ -60,6 +70,13 @@ const sDrawer = ref(true);
       <div>
         <!-- Upgrade button -->
         <v-btn class="mr-2 bg-primary" to="/auth/login">تسجيل الدخول</v-btn>
+        
+        <v-btn v-if="!darkMode" icon @click="toggleTheme">
+          <img src="~/assets/icons/moon.svg" alt="">
+        </v-btn>
+        <v-btn v-else icon @click="toggleTheme">
+          <img src="~/assets/icons/sun.svg" alt="">
+        </v-btn>
         <!-- User Profile -->
         <LayoutFullVerticalHeaderProfileDD />
       </div>

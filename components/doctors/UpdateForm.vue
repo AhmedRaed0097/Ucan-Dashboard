@@ -135,7 +135,9 @@
           <v-card variant="tonal">
             <div class="d-flex justify-space-between align-center px-4 py-4">
               <span>دراسة وتدريب </span>
-              <v-btn @click="addNewStudyTraining">عنصر جديد +</v-btn>
+              <v-btn @click="addNewStudyTraining"
+                >عنصر جديد <v-icon> mdi-plus </v-icon></v-btn
+              >
             </div>
 
             <div v-if="studyTraining.length" class="form-wrapper">
@@ -177,7 +179,7 @@
           <v-card variant="tonal">
             <div class="d-flex justify-space-between align-center px-4 py-4">
               <span>الرخصة الطبية </span>
-              <v-btn>عنصر جديد +</v-btn>
+              <v-btn>عنصر جديد <v-icon> mdi-plus </v-icon></v-btn>
             </div>
           </v-card>
         </v-col>
@@ -185,7 +187,7 @@
           <v-card variant="tonal">
             <div class="d-flex justify-space-between align-center px-4 py-4">
               <span>التخصص</span>
-              <v-btn>عنصر جديد +</v-btn>
+              <v-btn>عنصر جديد <v-icon> mdi-plus </v-icon></v-btn>
             </div>
           </v-card>
         </v-col>
@@ -193,7 +195,11 @@
           <v-card variant="tonal">
             <div class="d-flex justify-space-between align-center px-4 py-4">
               <span>الشهادات</span>
-              <v-btn>عنصر جديد +</v-btn>
+              <v-btn
+                >عنصر جديد
+
+                <v-icon> mdi-plus </v-icon>
+              </v-btn>
             </div>
           </v-card>
         </v-col>
@@ -202,7 +208,7 @@
   </form>
 </template>
 <script setup>
-const qualifications = ref(['بكلاريوس', 'ماجستير', 'دكتوراه']);
+const qualifications = ref(["بكلاريوس", "ماجستير", "دكتوراه"]);
 
 const studyTraining = reactive([]);
 
@@ -219,15 +225,15 @@ const addNewStudyTraining = () => {
       });
     });
     if (isThereEmptyValue) {
-      alert('يجب عليك ملئ الحقول السابقة اولاً!');
+      alert("يجب عليك ملئ الحقول السابقة اولاً!");
 
       return;
     }
   }
   const object = {
-    donor: '',
-    major: '',
-    year: '',
+    donor: "",
+    major: "",
+    year: "",
   };
 
   studyTraining.push(object);

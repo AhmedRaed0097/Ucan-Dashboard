@@ -5,8 +5,9 @@ import * as directives from 'vuetify/directives';
 import PerfectScrollbar from 'vue3-perfect-scrollbar';
 import VueApexCharts from 'vue3-apexcharts';
 import VueTablerIcons from 'vue-tabler-icons';
-import '@/scss/style.scss';
-import { PurpleTheme } from '@/theme/LightTheme';
+import '@/assets/scss/style.scss';
+import { LightTheme } from '@/theme/LightTheme';
+import { DarkTheme } from '@/theme/DarkTheme';
 
 import { ar } from 'vuetify/locale';
 
@@ -15,9 +16,9 @@ export default defineNuxtPlugin((nuxtApp) => {
     components,
     directives,
     theme: {
-      defaultTheme: 'PurpleTheme',
       themes: {
-        PurpleTheme,
+        light: LightTheme,
+        dark: DarkTheme,
       },
     },
     locale: {
