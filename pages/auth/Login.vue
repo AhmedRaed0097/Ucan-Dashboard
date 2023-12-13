@@ -19,21 +19,19 @@ definePageMeta({
               <div class="d-flex justify-center py-4">
                 <LayoutFullLogo />
               </div>
-              <div class="text-body-1 text-muted text-center mb-3">
-                Your Social Campaigns
-              </div>
+              <h5 class="text-h5 text-center">تسجيل الدخول</h5>
               <AuthLoginForm />
-              <h6
-                class="text-h6 text-muted font-weight-medium d-flex justify-center align-center mt-3"
+              <span
+                class="text-muted font-weight-medium d-flex justify-center align-center mt-3"
               >
-                New to Ucan?
+                جديد في يوكان؟
                 <NuxtLink
                   to="/auth/register"
-                  class="text-primary text-decoration-none text-body-1 opacity-1 font-weight-medium pl-2"
+                  class="text-primary text-decoration-none text-body-2 opacity-1 font-weight-medium mr-2 pl-2"
                 >
-                  Create an account</NuxtLink
+                  انشاء حساب جديد</NuxtLink
                 >
-              </h6>
+              </span>
             </v-card-item>
           </v-card>
         </v-col>

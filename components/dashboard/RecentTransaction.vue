@@ -6,7 +6,7 @@ import { recentTransaction } from '@/data/dashboard/dashboardData';
 <template>
     <v-card elevation="10" class="withbg">
         <v-card-item class="pb-0">
-            <v-card-title class="text-h5 pt-sm-2">Recent Transactions</v-card-title>
+            <v-card-title class="text-h5 pt-sm-2">التحويلات الاخيرة</v-card-title>
             <div class="recent-transaction mt-10 px-3">
                 <div v-for="list in recentTransaction" :key="list.title">
                     <v-row class="d-flex mb-4">

@@ -4,7 +4,7 @@ import {productPerformance} from '@/data/dashboard/dashboardData';
 <template>
     <v-card elevation="10" class="">
         <v-card-item class="pa-6">
-        <v-card-title class="text-h5 pt-sm-2 pb-7">Recent Transactions</v-card-title>
+        <v-card-title class="text-h5 pt-sm-2 pb-7">التحويلات الاخيرة</v-card-title>
         <v-table class="month-table">
             <thead>
                 <tr>
