@@ -53,14 +53,9 @@
         variant="outlined"
       ></v-file-input>
     </v-col> 
-    <v-col cols="12" class="d-flex justify-space-between">
-      <v-btn variant="text" @click="emit('prev')">السابق</v-btn>
-      <v-btn variant="text" @click="emit('next')">التالي</v-btn>
-    </v-col>
   </v-row>
 </template>
 <script setup>
-  const emit = defineEmits(['next','prev']);
 
 const visible = ref(false);
 const gender = ref(['ذكر', 'انثى']);

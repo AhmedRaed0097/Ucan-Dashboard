@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import { ref, shallowRef } from 'vue';
 import sidebarItems from '@/components/layout/full/vertical-sidebar/sidebarItem';
 import { Menu2Icon } from 'vue-tabler-icons';
@@ -8,10 +8,15 @@ const sidebarMenu = shallowRef(sidebarItems);
 const sDrawer = ref(true);
 const darkMode = ref(false);
 const theme = useTheme();
-
+const isDarkMode = localStorage.getItem('isDarkMode');
+if (isDarkMode === 'true') {
+  darkMode.value = isDarkMode;
+  theme.global.name.value = 'dark';
+}
 
 const toggleTheme = () => {
-  darkMode.value = !darkMode.value
+  darkMode.value = !darkMode.value;
+  localStorage.setItem('isDarkMode', darkMode.value);
   theme.global.name.value = darkMode.value ? 'dark' : 'light';
 };
 </script>
@@ -34,8 +39,8 @@ const toggleTheme = () => {
             <!---Item Sub Header -->
 
             <LayoutFullVerticalSidebarCollapsedNavItem
-            v-if="item.groupTitle"
-            :item="item"
+              v-if="item.groupTitle"
+              :item="item"
               class="leftPadding"
             />
 
@@ -70,12 +75,12 @@ const toggleTheme = () => {
       <div>
         <!-- Upgrade button -->
         <v-btn class="mr-2 bg-primary" to="/auth/login">تسجيل الدخول</v-btn>
-        
-        <v-btn v-if="!darkMode" icon @click="toggleTheme">
-          <img src="~/assets/icons/moon.svg" alt="">
+
+        <v-btn v-if="!darkMode" icon @click="toggleTheme" class="mx-4">
+          <img src="~/assets/icons/moon.svg" alt="dark mode" />
         </v-btn>
-        <v-btn v-else icon @click="toggleTheme">
-          <img src="~/assets/icons/sun.svg" alt="">
+        <v-btn v-else icon @click="toggleTheme" class="mx-4">
+          <img src="~/assets/icons/sun.svg" alt="light mode" />
         </v-btn>
         <!-- User Profile -->
         <LayoutFullVerticalHeaderProfileDD />

@@ -140,16 +140,6 @@ const sidebarItem: menu[] = [
     to: "/wallets",
   },
   {
-    title: "Login",
-    icon: LoginIcon,
-    to: "/auth/login",
-  },
-  {
-    title: "Register",
-    icon: UserPlusIcon,
-    to: "/auth/register",
-  },
-  {
     title: "Icons",
     icon: MoodHappyIcon,
     to: "/icons",

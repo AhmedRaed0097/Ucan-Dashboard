@@ -14,11 +14,33 @@
   left: 0;
   margin-top: -20px;
 }
+.wrapper-steppy {
+  padding: 20px !important;
 
-.v-btn__content,
-.v-list-item-title {
-  margin-top: 4px !important;
+.steppy-item-title {
+  max-width: 80px;
 }
-// main,header,nav, nav .v-list{
-//     background: #f2f2f2 !important;
-// }
+
+.steppy-pane {
+  box-shadow: none !important;
+
+  @media (max-width:600px) {
+    padding: 15px !important;
+  }
+  @media (max-width:450px) {
+    padding: 20px 0 0 0 !important;
+  }
+}
+
+.steppy {
+  .steppy-progress .steppy-progress-bar {
+    right: 0 !important;
+  }
+  .number{
+    font-size: 16px !important;
+  }
+}
+.controls{
+  gap: 10px !important;
+}
+}

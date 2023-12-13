@@ -50,14 +50,9 @@
         variant="outlined"
       ></v-file-input>
     </v-col>
-    <v-col cols="12" sm="6">
-      <v-btn variant="text" @click="emit('next')">التالي</v-btn>
-    </v-col>
   </v-row>
 </template>
 <script setup>
-  const emit = defineEmits(['next']);
-
 const visible = ref(false);
 const gender = ref(['ذكر', 'انثى']);
 const qualifications = ref(['بكلاريوس', 'ماجستير', 'دكتوراه']);
