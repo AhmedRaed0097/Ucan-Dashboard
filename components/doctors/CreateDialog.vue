@@ -44,7 +44,6 @@ watch(
         class="close-dialog-btn"
         variant="text"
         icon
-        dark
         @click="emit('close')"
       >
         <img width="20" src="~/assets/icons/close.svg" alt="" />
