@@ -1,64 +1,87 @@
 <template>
   <v-row>
     <v-col cols="12" sm="6">
-      <v-text-field label="الاسم" required variant="outlined"></v-text-field>
+      <v-select
+        :items="duration"
+        label="مدة الحجز"
+        variant="outlined"
+      ></v-select>
+    </v-col>
+    <v-col cols="12" sm="6">
+      <v-select
+        :items="bookType"
+        label="نوع الحجز"
+        variant="outlined"
+      ></v-select>
+    </v-col>
+    <v-col cols="12" sm="6">
+      <v-select
+        :items="freeConsultation"
+        label="استشارة مجانية"
+        variant="outlined"
+      ></v-select>
+    </v-col>
+    <v-col cols="12" sm="6">
+      <v-select
+        :items="qualifications"
+        label="اقصى مدة للحجز"
+        variant="outlined"
+      ></v-select>
     </v-col>
     <v-col cols="12" sm="6">
       <v-text-field
-        label="رمز الدولة"
+        label="قيمة الجلسة"
         required
         variant="outlined"
       ></v-text-field>
     </v-col>
     <v-col cols="12" sm="6">
-      <v-text-field label="الجوال" required variant="outlined"></v-text-field>
-    </v-col>
-    <v-col cols="12" sm="6">
-      <v-select :items="gender" label="النوع" variant="outlined"></v-select>
-    </v-col>
-    <v-col cols="12" sm="6">
       <v-text-field
-        :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
-        :type="visible ? 'text' : 'password'"
-        label="ادخل كلمة المرور"
+        label="نسبة يوكان"
+        required
         variant="outlined"
-        autocomplete="off"
-        @click:append-inner="visible = !visible"
       ></v-text-field>
     </v-col>
-    <v-col cols="12" sm="6">
-      <v-select
-        :items="qualifications"
-        label="المؤهل العلمي"
-        variant="outlined"
-      ></v-select>
-    </v-col>
-    <v-col cols="12" sm="6">
-      <v-file-input
-        accept="image/png, image/jpeg, image/bmp"
-        placeholder="Pick an avatar"
-        prepend-icon=""
-        prepend-inner-icon="mdi-camera"
-        label="الصورة"
-        variant="outlined"
-      ></v-file-input>
-    </v-col>
-    <v-col cols="12" sm="6">
-      <v-file-input
-        accept="image/png, image/jpeg, image/bmp"
-        placeholder="Pick an avatar"
-        prepend-icon=""
-        prepend-inner-icon="mdi-camera"
-        label="الصورة"
-        variant="outlined"
-      ></v-file-input>
-    </v-col>
-    
   </v-row>
 </template>
 <script setup>
-const visible = ref(false);
-const gender = ref(['ذكر', 'انثى']);
+
+const duration = ref([
+  {
+    label: '30 دقيقة',
+    value: 30,
+  },
+  {
+    label: '45 دقيقة',
+    value: 45,
+  },
+  {
+    label: 'ساعة',
+    value: 60,
+  },
+]);
+const bookType = ref([
+  {
+    label: 'مجدول',
+    value: 'schedule',
+  },
+  {
+    label: 'مجدول وفوري',
+    value: 'schedule_direct',
+  },
+]);
+const freeConsultation = ref([
+  {
+    label: 'مجدول',
+    value: 'schedule',
+  },
+  {
+    label: 'مجدول وفوري',
+    value: 'schedule_direct',
+  },
+]);
+
+
 const qualifications = ref(['بكلاريوس', 'ماجستير', 'دكتوراه']);
 </script>
 <style lang=""></style>

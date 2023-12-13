@@ -59,7 +59,7 @@ watch(
           backText="السابق"
           doneText="حفظ"
           primaryColor1="#81B199"
-          circleSize="35"
+          :circleSize="35"
           class="text-sm"
           :tabs="stepsText"
         >

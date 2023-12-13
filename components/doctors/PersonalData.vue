@@ -11,14 +11,17 @@
       ></v-text-field>
     </v-col>
     <v-col cols="12" sm="6">
-      <v-text-field
+      <v-select
+        :items="countryCodes"
         label="رمز الدولة"
-        required
         variant="outlined"
-      ></v-text-field>
+      ></v-select>
     </v-col>
     <v-col cols="12" sm="6">
-      <v-text-field label="الجوال" required variant="outlined"></v-text-field>
+      <v-text-field
+        label="الجوال"
+        variant="outlined"
+      ></v-text-field>
     </v-col>
     <v-col cols="12" sm="6">
       <v-select :items="gender" label="النوع" variant="outlined"></v-select>
@@ -54,8 +57,30 @@
 </template>
 <script setup>
 const visible = ref(false);
-const gender = ref(['ذكر', 'انثى']);
 const qualifications = ref(['بكلاريوس', 'ماجستير', 'دكتوراه']);
-
+const countryCodes = ref([
+  {
+    label: 'السعودية',
+    value: '+966',
+  },
+  {
+    label: 'مصر',
+    value: '+20',
+  },
+  {
+    label: 'الاردن',
+    value: '+962',
+  },
+]);
+const gender = ref([
+  {
+    label: 'ذكر',
+    value: 'male',
+  },
+  {
+    label: 'الانثى',
+    value: 'female',
+  },
+]);
 </script>
 <style lang=""></style>
