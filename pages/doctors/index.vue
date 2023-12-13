@@ -202,6 +202,9 @@ const dataTable = ref([
     <v-row class="mt-4 px-5">
       <v-col cols="12" sm="4" md="2">
         <v-btn @click="showDialog = true" height="39" color="primary" block>
+          <template v-slot:prepend>
+            <v-icon> mdi-plus </v-icon>
+          </template>
           إنشاء طبيب جديد
         </v-btn>
       </v-col>

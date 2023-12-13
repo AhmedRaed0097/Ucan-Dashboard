@@ -1,6 +1,5 @@
 <script setup lang="ts">
 const search = ref('');
-const showDialog = ref(false);
 
 const headers = ref([
   { key: 'name', title: 'الاسم' },
@@ -174,7 +173,6 @@ const dataTable = ref([
 ]);
 </script>
 <template>
-  <DoctorsCreateDialog :show="showDialog" @close="showDialog = false" />
   <v-row>
     <v-col cols="12" md="12" class="mt-10">
       <div class="d-flex justify-space-between align-center">
@@ -195,11 +193,6 @@ const dataTable = ref([
       </div>
     </v-col>
     <v-row class="mt-4 px-5">
-      <v-col cols="12" sm="4" md="2">
-        <v-btn @click="showDialog = true" height="39" color="primary" block>
-          إنشاء طبيب جديد
-        </v-btn>
-      </v-col>
       <v-col v-for="i in 5" :key="i" cols="6" sm="4" md="2">
         <v-combobox
           label="فلترة"
@@ -249,6 +242,17 @@ const dataTable = ref([
                   <span class="mdi mdi-square-edit-outline"></span>
 
                   تعديل
+                </v-btn>
+                <v-btn
+                  icon
+                  :to="`/doctors/${item.id}`"
+                  variant="text"
+                  size="small"
+                  color="error"
+                >
+                  <span class="mdi mdi-close-circle-outline"></span>
+
+                  حظر
                 </v-btn>
               </div>
             </template>

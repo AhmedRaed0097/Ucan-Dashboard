@@ -197,6 +197,9 @@ const dataTable = ref([
     <v-row class="mt-4 px-5">
       <v-col cols="12" sm="4" md="2">
         <v-btn @click="showDialog = true" height="39" color="primary" block>
+          <template v-slot:prepend>
+            <v-icon> mdi-plus </v-icon>
+          </template>
           إنشاء طبيب جديد
         </v-btn>
       </v-col>
@@ -233,7 +236,6 @@ const dataTable = ref([
                   :to="`/doctors/${item.id}`"
                   variant="text"
                   size="small"
-                  class="ml-3 ml-sm-0"
                 >
                   <v-icon size="x-small" color="primary" class="mr-1">
                     mdi-eye
@@ -249,6 +251,16 @@ const dataTable = ref([
                   <span class="mdi mdi-square-edit-outline"></span>
 
                   تعديل
+                </v-btn>
+                <v-btn
+                  icon
+                  :to="`/doctors/${item.id}`"
+                  variant="text"
+                  size="small"
+                >
+                  <span class="mdi mdi-close-circle-outline"></span>
+
+                  حذف
                 </v-btn>
               </div>
             </template>

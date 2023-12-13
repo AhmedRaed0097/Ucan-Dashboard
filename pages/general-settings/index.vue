@@ -1,6 +1,4 @@
 <script setup lang="ts">
-
-
 const search = ref('');
 
 const headers = ref([
@@ -203,30 +201,16 @@ const dataTable = ref([
 
           <v-data-table :headers="headers" :items="dataTable" :search="search">
             <template v-slot:[`item.actions`]="{ item }">
-              <div class="d-flex justify-space-between">
-                <v-btn
-                  icon
-                  :to="`/doctors/${item.id}`"
-                  variant="text"
-                  size="small"
-                  class="ml-3 ml-sm-0"
-                >
-                  <v-icon size="x-small" color="primary" class="mr-1">
-                    mdi-eye
-                  </v-icon>
-                  عرض
-                </v-btn>
-                <v-btn
-                  icon
-                  :to="`/doctors/${item.id}`"
-                  variant="text"
-                  size="small"
-                >
-                  <span class="mdi mdi-square-edit-outline"></span>
+              <v-btn
+                icon
+                :to="`/doctors/${item.id}`"
+                variant="text"
+                size="small"
+              >
+                <span class="mdi mdi-square-edit-outline"></span>
 
-                  تعديل
-                </v-btn>
-              </div>
+                تعديل
+              </v-btn>
             </template>
           </v-data-table>
         </v-card-item>
