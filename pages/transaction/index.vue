@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const search = ref('');
+
 const headers = ref([
   { key: 'name', title: 'الاسم' },
   { key: 'age', title: 'العمر' },
@@ -192,7 +193,7 @@ const dataTable = ref([
       </div>
     </v-col>
     <v-row class="mt-4 px-5">
-      <v-col v-for="i in 6" :key="i" cols="2">
+      <v-col v-for="i in 5" :key="i" cols="6" sm="4" md="2">
         <v-combobox
           label="فلترة"
           :items="[
@@ -219,17 +220,30 @@ const dataTable = ref([
 
           <v-data-table :headers="headers" :items="dataTable" :search="search">
             <template v-slot:[`item.actions`]="{ item }">
-              <v-icon
-                color="primary"
-                size="small"
-                class="me-2"
-                @click="editItem(item)"
-              >
-                mdi-pencil
-              </v-icon>
-              <v-icon color="primary" size="small" @click="deleteItem(item)">
-                mdi-delete
-              </v-icon>
+              <div class="d-flex justify-space-between">
+                <v-btn
+                  icon
+                  :to="`/doctors/${item.id}`"
+                  variant="text"
+                  size="small"
+                  class="ml-3 ml-sm-0"
+                >
+                  <v-icon size="x-small" color="primary" class="mr-1">
+                    mdi-eye
+                  </v-icon>
+                  عرض
+                </v-btn>
+                <v-btn
+                  icon
+                  :to="`/doctors/${item.id}`"
+                  variant="text"
+                  size="small"
+                >
+                  <span class="mdi mdi-square-edit-outline"></span>
+
+                  تعديل
+                </v-btn>
+              </div>
             </template>
           </v-data-table>
         </v-card-item>
