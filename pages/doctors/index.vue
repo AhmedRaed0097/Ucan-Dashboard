@@ -205,7 +205,7 @@ const dataTable = ref([
           إنشاء طبيب جديد
         </v-btn>
       </v-col>
-      <v-col v-for="i in 5" :key="i" cols="6" md="2">
+      <v-col v-for="i in 5" :key="i" cols="4" md="2">
         <v-combobox
           label="فلترة"
           :items="[
@@ -229,31 +229,22 @@ const dataTable = ref([
         <v-card-item class="pa-0">
           <v-data-table :headers="headers" :items="dataTable" :search="search">
             <template v-slot:[`item.actions`]="{ item }">
-              <div class="d-flex justify-space-between">
-                <v-btn
-                  icon
-                  :to="`/doctors/${item.id}`"
-                  variant="text"
-                  size="small"
-                >
-                  عرض
-
-                  <v-icon size="x-small" color="primary" class="mr-1">
-                    mdi-eye
-                  </v-icon>
-                </v-btn>
-                <v-btn
-                  icon
-                  :to="`/doctors/${item.id}`"
-                  variant="text"
-                  size="small"
-                >
-                  <v-icon size="x-small" color="primary" class="mb-1">
-                    mdi-pencil
-                  </v-icon>
-                  تعديل
-                </v-btn>
-              </div>
+              <v-btn
+                icon
+                :to="`/doctors/${item.id}`"
+                variant="text"
+                size="small"
+              >
+                <v-icon color="primary"> mdi-pencil </v-icon>
+              </v-btn>
+              <v-btn
+                icon
+                :to="`/doctors/${item.id}`"
+                variant="text"
+                size="small"
+              >
+                <v-icon color="primary"> mdi-delete </v-icon>
+              </v-btn>
             </template>
           </v-data-table>
         </v-card-item>

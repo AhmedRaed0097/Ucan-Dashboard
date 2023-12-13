@@ -48,35 +48,35 @@
 
 const duration = ref([
   {
-    label: '30 دقيقة',
+    title: '30 دقيقة',
     value: 30,
   },
   {
-    label: '45 دقيقة',
+    title: '45 دقيقة',
     value: 45,
   },
   {
-    label: 'ساعة',
+    title: 'ساعة',
     value: 60,
   },
 ]);
 const bookType = ref([
   {
-    label: 'مجدول',
+    title: 'مجدول',
     value: 'schedule',
   },
   {
-    label: 'مجدول وفوري',
+    title: 'مجدول وفوري',
     value: 'schedule_direct',
   },
 ]);
 const freeConsultation = ref([
   {
-    label: 'مجدول',
+    title: 'مجدول',
     value: 'schedule',
   },
   {
-    label: 'مجدول وفوري',
+    title: 'مجدول وفوري',
     value: 'schedule_direct',
   },
 ]);

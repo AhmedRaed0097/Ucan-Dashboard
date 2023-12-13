@@ -47,8 +47,6 @@ export default defineNuxtPlugin((nuxtApp) => {
       VSelect: {
         color: 'primary',
         density: 'compact',
-        itemTitle: 'label',
-        itemValue: 'value',
       },
     },
   });

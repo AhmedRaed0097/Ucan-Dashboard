@@ -52,25 +52,25 @@
 const visible = ref(false);
 const countryCodes = ref([
   {
-    label: 'السعودية',
+    title: 'السعودية',
     value: '+966',
   },
   {
-    label: 'مصر',
+    title: 'مصر',
     value: '+20',
   },
   {
-    label: 'الاردن',
+    title: 'الاردن',
     value: '+962',
   },
 ]);
 const gender = ref([
   {
-    label: 'ذكر',
+    title: 'ذكر',
     value: 'male',
   },
   {
-    label: 'الانثى',
+    title: 'الانثى',
     value: 'female',
   },
 ]);
