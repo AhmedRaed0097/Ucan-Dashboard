@@ -75,4 +75,3 @@ const gender = ref([
   },
 ]);
 </script>
-<style lang=""></style>
