@@ -37,13 +37,6 @@
       ></v-text-field>
     </v-col>
     <v-col cols="12" sm="6">
-      <v-select
-        :items="qualifications"
-        label="المؤهل العلمي"
-        variant="outlined"
-      ></v-select>
-    </v-col>
-    <v-col cols="12" sm="6">
       <v-file-input
         accept="image/png, image/jpeg, image/bmp"
         placeholder="Pick an avatar"
@@ -57,7 +50,6 @@
 </template>
 <script setup>
 const visible = ref(false);
-const qualifications = ref(['بكلاريوس', 'ماجستير', 'دكتوراه']);
 const countryCodes = ref([
   {
     label: 'السعودية',
