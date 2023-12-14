@@ -1,6 +1,4 @@
-<script setup lang="ts">
-
-
+<script setup>
 const search = ref('');
 
 const headers = ref([
@@ -175,45 +173,46 @@ const dataTable = ref([
 ]);
 </script>
 <template>
-  <v-row>
-    <v-col cols="12" md="12" class="mt-10">
+  <h3 class="text-h4 pl-7 mt-2 mb-8 mb-sm-0">المواعيد الحضورية</h3>
+
+  <v-row justify="center" justify-sm="end" class="ml-sm-2">
+    <v-col cols="12" sm="4" md="3">
       <div class="d-flex justify-space-between align-center">
-        <h3 class="text-h4 pl-7 mt-2">المواعيد الحضورية</h3>
-        <div class="w-25">
-          <v-text-field
-            v-model="search"
-            prepend-inner-icon="mdi-magnify"
-            density="compact"
-            label="بحث"
-            single-line
-            flat
-            hide-details
-            variant="solo-filled"
-            clearable
-          ></v-text-field>
-        </div>
+        <v-text-field
+          v-model="search"
+          prepend-inner-icon="mdi-magnify"
+          density="compact"
+          label="بحث"
+          single-line
+          flat
+          hide-details
+          variant="solo-filled"
+          clearable
+        ></v-text-field>
       </div>
     </v-col>
-    <v-row class="mt-4 px-5">
-      <v-col v-for="i in 5" :key="i" cols="6" sm="4" md="2">
-        <v-combobox
-          label="فلترة"
-          :items="[
-            'California',
-            'Colorado',
-            'Florida',
-            'Georgia',
-            'Texas',
-            'Wyoming',
-          ]"
-          variant="outlined"
-          density="compact"
-          color="primary"
-          hide-details
-        ></v-combobox>
-      </v-col>
-    </v-row>
+  </v-row>
 
+  <v-row class="mt-4 pl-sm-5">
+    <v-col v-for="i in 6" :key="i" cols="6" sm="4" md="2">
+      <v-combobox
+        label="فلترة"
+        :items="[
+          'California',
+          'Colorado',
+          'Florida',
+          'Georgia',
+          'Texas',
+          'Wyoming',
+        ]"
+        variant="outlined"
+        density="compact"
+        color="primary"
+        hide-details
+      ></v-combobox>
+    </v-col>
+  </v-row>
+  <v-row>
     <v-col cols="12" md="12">
       <v-card elevation="10" class="withbg">
         <v-card-item class="pa-0">
@@ -225,7 +224,7 @@ const dataTable = ref([
                   :to="`/doctors/${item.id}`"
                   variant="text"
                   size="small"
-                  class="ml-4 ml-sm-3 ml-md-0"
+                  class="ml-3 ml-sm-0"
                 >
                   <v-icon size="x-small" color="primary" class="mr-1">
                     mdi-eye

@@ -1,5 +1,10 @@
-<script setup lang="ts">
+<script setup>
+import { useDoctorStore } from '~~/stores/DoctorStore';
+
+const doctorStore = useDoctorStore();
+
 const search = ref('');
+const showDialog = ref(false);
 
 const headers = ref([
   { key: 'name', title: 'الاسم' },
@@ -173,44 +178,42 @@ const dataTable = ref([
 ]);
 </script>
 <template>
-  <v-row>
-    <v-col cols="12" md="12" class="mt-10">
+  <DoctorsCreateDialog :show="showDialog" @close="showDialog = false" />
+  <h3 class="text-h4 pl-7 mt-2 mb-8 mb-sm-0">الإعدادات العامة</h3>
+
+  <v-row justify="center" justify-sm="end" class="ml-sm-2">
+    <v-col cols="12" sm="4" md="3">
       <div class="d-flex justify-space-between align-center">
-        <h3 class="text-h4 pl-7 mt-2">الإعدادات العامة</h3>
-        <div class="w-25">
-          <v-text-field
-            v-model="search"
-            prepend-inner-icon="mdi-magnify"
-            density="compact"
-            label="بحث"
-            single-line
-            flat
-            hide-details
-            variant="solo-filled"
-            clearable
-          ></v-text-field>
-        </div>
+        <v-text-field
+          v-model="search"
+          prepend-inner-icon="mdi-magnify"
+          density="compact"
+          label="بحث"
+          single-line
+          flat
+          hide-details
+          variant="solo-filled"
+          clearable
+        ></v-text-field>
       </div>
     </v-col>
-
+  </v-row>
+  <v-row>
     <v-col cols="12" md="12">
       <v-card elevation="10" class="withbg">
         <v-card-item class="pa-0">
-          <!-- <template v-slot:append> -->
-          <!-- </template> -->
-
           <v-data-table :headers="headers" :items="dataTable" :search="search">
             <template v-slot:[`item.actions`]="{ item }">
-              <v-btn
-                icon
-                :to="`/doctors/${item.id}`"
-                variant="text"
-                size="small"
-              >
-                <span class="mdi mdi-square-edit-outline"></span>
+                <v-btn
+                  icon
+                  :to="`/doctors/${item.id}`"
+                  variant="text"
+                  size="small"
+                >
+                  <span class="mdi mdi-square-edit-outline"></span>
 
-                تعديل
-              </v-btn>
+                  تعديل
+                </v-btn>
             </template>
           </v-data-table>
         </v-card-item>

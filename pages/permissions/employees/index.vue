@@ -1,4 +1,8 @@
-<script setup lang="ts">
+<script setup>
+import { useDoctorStore } from '~~/stores/DoctorStore';
+
+const doctorStore = useDoctorStore();
+
 const search = ref('');
 const showDialog = ref(false);
 
@@ -175,74 +179,60 @@ const dataTable = ref([
 </script>
 <template>
   <DoctorsCreateDialog :show="showDialog" @close="showDialog = false" />
-  <v-row>
-    <v-col cols="12" md="12" class="mt-10">
+  <h3 class="text-h4 pl-7 mt-2 mb-8 mb-sm-0">صلاحيات الموظفين</h3>
+
+  <v-row justify="center" justify-sm="end" class="ml-sm-2">
+    <v-col cols="12" sm="4" md="3">
       <div class="d-flex justify-space-between align-center">
-        <h3 class="text-h4 pl-7 mt-2">صلاحيات الموظفين</h3>
-        <div class="w-25">
-          <v-text-field
-            v-model="search"
-            prepend-inner-icon="mdi-magnify"
-            density="compact"
-            label="بحث"
-            single-line
-            flat
-            hide-details
-            variant="solo-filled"
-            clearable
-          ></v-text-field>
-        </div>
+        <v-text-field
+          v-model="search"
+          prepend-inner-icon="mdi-magnify"
+          density="compact"
+          label="بحث"
+          single-line
+          flat
+          hide-details
+          variant="solo-filled"
+          clearable
+        ></v-text-field>
       </div>
     </v-col>
-    <v-row class="mt-4 px-5">
-      <v-col cols="12" sm="4" md="2">
-        <v-btn @click="showDialog = true" height="39" color="primary" block>
-          <template v-slot:prepend>
-            <v-icon> mdi-plus </v-icon>
-          </template>
-          إنشاء طبيب جديد
-        </v-btn>
-      </v-col>
-      <v-col v-for="i in 5" :key="i" cols="6" sm="4" md="2">
-        <v-combobox
-          label="فلترة"
-          :items="[
-            'California',
-            'Colorado',
-            'Florida',
-            'Georgia',
-            'Texas',
-            'Wyoming',
-          ]"
-          variant="outlined"
-          density="compact"
-          color="primary"
-          hide-details
-        ></v-combobox>
-      </v-col>
-    </v-row>
+  </v-row>
 
+  <v-row class="mt-4 pl-sm-5">
+    <v-col cols="12" sm="4" md="2">
+      <v-btn @click="showDialog = true" height="39" color="primary" block>
+        <template v-slot:prepend>
+          <v-icon> mdi-plus </v-icon>
+        </template>
+        إنشاء طبيب جديد
+      </v-btn>
+    </v-col>
+    <v-col v-for="i in 5" :key="i" cols="6" sm="4" md="2">
+      <v-combobox
+        label="فلترة"
+        :items="[
+          'California',
+          'Colorado',
+          'Florida',
+          'Georgia',
+          'Texas',
+          'Wyoming',
+        ]"
+        variant="outlined"
+        density="compact"
+        color="primary"
+        hide-details
+      ></v-combobox>
+    </v-col>
+  </v-row>
+  <v-row>
     <v-col cols="12" md="12">
       <v-card elevation="10" class="withbg">
         <v-card-item class="pa-0">
-          <!-- <template v-slot:append> -->
-          <!-- </template> -->
-
           <v-data-table :headers="headers" :items="dataTable" :search="search">
             <template v-slot:[`item.actions`]="{ item }">
               <div class="d-flex justify-space-between">
-                <v-btn
-                  icon
-                  :to="`/doctors/${item.id}`"
-                  variant="text"
-                  size="small"
-                  class="ml-3 ml-sm-0"
-                >
-                  <v-icon size="x-small" color="primary" class="mr-1">
-                    mdi-eye
-                  </v-icon>
-                  عرض
-                </v-btn>
                 <v-btn
                   icon
                   :to="`/doctors/${item.id}`"
@@ -252,6 +242,16 @@ const dataTable = ref([
                   <span class="mdi mdi-square-edit-outline"></span>
 
                   تعديل
+                </v-btn>
+                <v-btn
+                  icon
+                  :to="`/doctors/${item.id}`"
+                  variant="text"
+                  size="small"
+                >
+                  <span class="mdi mdi-close-circle-outline"></span>
+
+                  حذف
                 </v-btn>
               </div>
             </template>
