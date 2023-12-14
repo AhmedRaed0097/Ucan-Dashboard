@@ -16,7 +16,9 @@
 }
 .wrapper-steppy {
   padding: 20px !important;
-
+  @media (max-width: 600px) {
+    padding: 0 !important;
+  }
   .steppy-item-title {
     max-width: 80px;
   }
@@ -43,8 +45,12 @@
   .steppy-pane {
     max-height: 460px !important;
     padding-top: 12px !important;
+    border-radius: 0 !important;
     overflow-y: auto;
     overflow-x: hidden;
+    @media (max-width: 450px) {
+      padding: 12px 10px !important;
+    }
   }
   .controls {
     gap: 10px !important;
