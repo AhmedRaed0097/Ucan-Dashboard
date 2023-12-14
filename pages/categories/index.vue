@@ -232,8 +232,7 @@ const dataTable = ref([
             <template v-slot:[`item.actions`]="{ item }">
               <div class="d-flex justify-space-between">
                 <v-btn
-                  icon
-                  :to="`/doctors/${item.id}`"
+                  :to="`/doctors/${item.id}/edit`"
                   variant="text"
                   size="small"
                   class="ml-3 ml-sm-0"
@@ -244,8 +243,7 @@ const dataTable = ref([
                   عرض
                 </v-btn>
                 <v-btn
-                  icon
-                  :to="`/doctors/${item.id}`"
+                  :to="`/doctors/${item.id}/edit`"
                   variant="text"
                   size="small"
                 >
@@ -254,8 +252,7 @@ const dataTable = ref([
                   تعديل
                 </v-btn>
                 <v-btn
-                  icon
-                  :to="`/doctors/${item.id}`"
+                  :to="`/doctors/${item.id}/edit`"
                   variant="text"
                   size="small"
                 >

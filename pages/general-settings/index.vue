@@ -203,8 +203,7 @@ const dataTable = ref([
           <v-data-table :headers="headers" :items="dataTable" :search="search">
             <template v-slot:[`item.actions`]="{ item }">
                 <v-btn
-                  icon
-                  :to="`/doctors/${item.id}`"
+                  :to="`/doctors/${item.id}/edit`"
                   variant="text"
                   size="small"
                 >

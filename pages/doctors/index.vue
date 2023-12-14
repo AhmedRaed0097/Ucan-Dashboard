@@ -184,16 +184,16 @@ const dataTable = ref([
   <v-row justify="center" justify-sm="end" class="ml-sm-2">
     <v-col cols="12" sm="4" md="3">
       <v-text-field
-          v-model="search"
-          prepend-inner-icon="mdi-magnify"
-          density="compact"
-          label="بحث"
-          single-line
-          flat
-          hide-details
-          variant="solo-filled"
-          clearable
-        ></v-text-field>
+        v-model="search"
+        prepend-inner-icon="mdi-magnify"
+        density="compact"
+        label="بحث"
+        single-line
+        flat
+        hide-details
+        variant="solo-filled"
+        clearable
+      ></v-text-field>
     </v-col>
   </v-row>
 
@@ -230,25 +230,14 @@ const dataTable = ref([
         <v-card-item class="pa-0">
           <v-data-table :headers="headers" :items="dataTable" :search="search">
             <template v-slot:[`item.actions`]="{ item }">
-              <div class="d-flex justify-space-between">
-                <v-btn
-                  icon
-                  :to="`/doctors/${item.id}`"
-                  variant="text"
-                  size="small"
-                  class="ml-3 ml-sm-0"
-                >
+              <div class="d-flex justify-space-between justify-md-start">
+                <v-btn :to="`/doctors/${item.id}/show`" variant="text" size="small">
                   <v-icon size="x-small" color="primary" class="mr-1">
                     mdi-eye
                   </v-icon>
                   عرض
                 </v-btn>
-                <v-btn
-                  icon
-                  :to="`/doctors/${item.id}`"
-                  variant="text"
-                  size="small"
-                >
+                <v-btn :to="`/doctors/${item.id}/edit`" variant="text" size="small">
                   <span class="mdi mdi-square-edit-outline"></span>
 
                   تعديل

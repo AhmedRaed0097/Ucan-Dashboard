@@ -135,7 +135,7 @@
           <v-card variant="tonal">
             <div class="d-flex justify-space-between align-center px-4 py-4">
               <span>دراسة وتدريب </span>
-              <v-btn>
+              <v-btn @click="addNewStudyTraining">
                 <template v-slot:append>
                   <v-icon> mdi-plus </v-icon>
                 </template>
@@ -183,13 +183,46 @@
           <v-card variant="tonal">
             <div class="d-flex justify-space-between align-center px-4 py-4">
               <span>الرخصة الطبية </span>
-              <v-btn>
+              <v-btn @click="addMedicalLicense">
                 <template v-slot:append>
                   <v-icon> mdi-plus </v-icon>
                 </template>
 
                 عنصر جديد
               </v-btn>
+            </div>
+            <div v-if="medicalLicense.length" class="form-wrapper">
+              <div
+                v-for="(item, i) in medicalLicense"
+                :key="i"
+                class="form-inner"
+              >
+                <v-container>
+                  <v-row>
+                    <v-col cols="12" sm="4">
+                      <v-text-field
+                        label="الجهة"
+                        required
+                        variant="outlined"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="5">
+                      <v-text-field
+                        label="التخصص"
+                        required
+                        variant="outlined"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="3">
+                      <v-text-field
+                        label="السنة"
+                        required
+                        variant="outlined"
+                      ></v-text-field>
+                    </v-col>
+                  </v-row>
+                </v-container>
+              </div>
             </div>
           </v-card>
         </v-col>
@@ -197,7 +230,7 @@
           <v-card variant="tonal">
             <div class="d-flex justify-space-between align-center px-4 py-4">
               <span>التخصص</span>
-              <v-btn>
+              <v-btn @click="addNewSpecialty">
                 <template v-slot:append>
                   <v-icon> mdi-plus </v-icon>
                 </template>
@@ -205,19 +238,81 @@
                 عنصر جديد
               </v-btn>
             </div>
+            <div v-if="specialties.length" class="form-wrapper">
+              <div v-for="(item, i) in specialties" :key="i" class="form-inner">
+                <v-container>
+                  <v-row>
+                    <v-col cols="12" sm="4">
+                      <v-text-field
+                        label="الجهة"
+                        required
+                        variant="outlined"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="5">
+                      <v-text-field
+                        label="التخصص"
+                        required
+                        variant="outlined"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="3">
+                      <v-text-field
+                        label="السنة"
+                        required
+                        variant="outlined"
+                      ></v-text-field>
+                    </v-col>
+                  </v-row>
+                </v-container>
+              </div>
+            </div>
           </v-card>
         </v-col>
         <v-col cols="12" sm="6" xl="4">
           <v-card variant="tonal">
             <div class="d-flex justify-space-between align-center px-4 py-4">
               <span>الشهادات</span>
-              <v-btn>
+              <v-btn @click="addNewCertificate">
                 <template v-slot:append>
                   <v-icon> mdi-plus </v-icon>
                 </template>
 
                 عنصر جديد
               </v-btn>
+            </div>
+            <div v-if="certificates.length" class="form-wrapper">
+              <div
+                v-for="(item, i) in certificates"
+                :key="i"
+                class="form-inner"
+              >
+                <v-container>
+                  <v-row>
+                    <v-col cols="12" sm="4">
+                      <v-text-field
+                        label="الجهة"
+                        required
+                        variant="outlined"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="5">
+                      <v-text-field
+                        label="التخصص"
+                        required
+                        variant="outlined"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="3">
+                      <v-text-field
+                        label="السنة"
+                        required
+                        variant="outlined"
+                      ></v-text-field>
+                    </v-col>
+                  </v-row>
+                </v-container>
+              </div>
             </div>
           </v-card>
         </v-col>
@@ -229,6 +324,9 @@
 const qualifications = ref(['بكلاريوس', 'ماجستير', 'دكتوراه']);
 
 const studyTraining = reactive([]);
+const medicalLicense = reactive([]);
+const specialties = reactive([]);
+const certificates = reactive([]);
 
 const addNewStudyTraining = () => {
   let isThereEmptyValue = false;
@@ -255,6 +353,87 @@ const addNewStudyTraining = () => {
   };
 
   studyTraining.push(object);
+};
+
+const addMedicalLicense = () => {
+  let isThereEmptyValue = false;
+  if (medicalLicense.length) {
+    medicalLicense.forEach((element) => {
+      console.log(element);
+      Object.values(element).forEach((value) => {
+        if (!value.length) {
+          isThereEmptyValue = true;
+        }
+        console.log(value);
+      });
+    });
+    if (isThereEmptyValue) {
+      alert('يجب عليك ملئ الحقول السابقة اولاً!');
+
+      return;
+    }
+  }
+  const object = {
+    donor: '',
+    major: '',
+    year: '',
+  };
+
+  medicalLicense.push(object);
+};
+
+const addNewSpecialty = () => {
+  let isThereEmptyValue = false;
+  if (specialties.length) {
+    specialties.forEach((element) => {
+      console.log(element);
+      Object.values(element).forEach((value) => {
+        if (!value.length) {
+          isThereEmptyValue = true;
+        }
+        console.log(value);
+      });
+    });
+    if (isThereEmptyValue) {
+      alert('يجب عليك ملئ الحقول السابقة اولاً!');
+
+      return;
+    }
+  }
+  const object = {
+    donor: '',
+    major: '',
+    year: '',
+  };
+
+  specialties.push(object);
+};
+
+const addNewCertificate = () => {
+  let isThereEmptyValue = false;
+  if (certificates.length) {
+    certificates.forEach((element) => {
+      console.log(element);
+      Object.values(element).forEach((value) => {
+        if (!value.length) {
+          isThereEmptyValue = true;
+        }
+        console.log(value);
+      });
+    });
+    if (isThereEmptyValue) {
+      alert('يجب عليك ملئ الحقول السابقة اولاً!');
+
+      return;
+    }
+  }
+  const object = {
+    donor: '',
+    major: '',
+    year: '',
+  };
+
+  certificates.push(object);
 };
 </script>
 <style></style>
