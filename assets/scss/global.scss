@@ -40,6 +40,12 @@
       font-size: 16px !important;
     }
   }
+  .steppy-pane {
+    max-height: 460px !important;
+    padding-top: 12px !important;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
   .controls {
     gap: 10px !important;
   }
