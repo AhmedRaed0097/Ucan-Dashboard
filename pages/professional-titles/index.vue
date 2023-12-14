@@ -183,8 +183,7 @@ const dataTable = ref([
 
   <v-row justify="center" justify-sm="end" class="ml-sm-2">
     <v-col cols="12" sm="4" md="3">
-      <div class="d-flex justify-space-between align-center">
-        <v-text-field
+      <v-text-field
           v-model="search"
           prepend-inner-icon="mdi-magnify"
           density="compact"
@@ -195,7 +194,6 @@ const dataTable = ref([
           variant="solo-filled"
           clearable
         ></v-text-field>
-      </div>
     </v-col>
   </v-row>
 

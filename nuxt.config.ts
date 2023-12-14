@@ -1,6 +1,8 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   ssr: false,
+  spaLoadingTemplate: false,
+
   app: {
     head: {
       link: [{ rel: 'icon', type: 'image/png', href: '/favicon.svg' }
