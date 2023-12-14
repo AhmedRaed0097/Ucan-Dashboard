@@ -20,12 +20,12 @@ if (!self.define) {
   let nextDefineUri;
 
   const singleRequire = (uri, parentUri) => {
-    uri = new URL(uri + ".js", parentUri).href;
+    uri = new URL(uri + '.js', parentUri).href;
     return registry[uri] || (
       
         new Promise(resolve => {
-          if ("document" in self) {
-            const script = document.createElement("script");
+          if ('document' in self) {
+            const script = document.createElement('script');
             script.src = uri;
             script.onload = resolve;
             document.head.appendChild(script);
@@ -47,7 +47,7 @@ if (!self.define) {
   };
 
   self.define = (depsNames, factory) => {
-    const uri = nextDefineUri || ("document" in self ? document.currentScript.src : "") || location.href;
+    const uri = nextDefineUri || ('document' in self ? document.currentScript.src : '') || location.href;
     if (registry[uri]) {
       // Module is already loading or loaded.
       return;
@@ -81,11 +81,11 @@ define(['./workbox-6e567876'], (function (workbox) { 'use strict';
    * See https://goo.gl/S9QRab
    */
   workbox.precacheAndRoute([{
-    "revision": null,
-    "url": "/"
+    'revision': null,
+    'url': '/'
   }], {});
   workbox.cleanupOutdatedCaches();
-  workbox.registerRoute(new workbox.NavigationRoute(workbox.createHandlerBoundToURL("/"), {
+  workbox.registerRoute(new workbox.NavigationRoute(workbox.createHandlerBoundToURL('/'), {
     allowlist: [/\//]
   }));
 

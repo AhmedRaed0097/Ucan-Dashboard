@@ -21,10 +21,11 @@
       <v-text-field
         label="الجوال"
         variant="outlined"
+        autocomplete="new-password"
       ></v-text-field>
     </v-col>
     <v-col cols="12" sm="6">
-      <v-select :items="gender" label="النوع" variant="outlined"></v-select>
+      <v-select :items="gender" label="النوع" variant="outlined" autocomplete="new-password"></v-select>
     </v-col>
     <v-col cols="12" sm="6">
       <v-text-field
@@ -41,7 +42,7 @@
         accept="image/png, image/jpeg, image/bmp"
         placeholder="Pick an avatar"
         prepend-icon=""
-        prepend-inner-icon="mdi-camera"
+        append-inner-icon="mdi-camera"
         label="الصورة"
         variant="outlined"
       ></v-file-input>

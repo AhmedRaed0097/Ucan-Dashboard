@@ -3,7 +3,8 @@ export default defineNuxtConfig({
   ssr: false,
   app: {
     head: {
-      link: [{ rel: 'icon', type: 'image/png', href: '/favicon.png' }],
+      link: [{ rel: 'icon', type: 'image/png', href: '/favicon.svg' }
+    ],
     },
   },
   runtimeConfig: {
@@ -24,27 +25,29 @@ export default defineNuxtConfig({
   modules: ['@pinia/nuxt','@vite-pwa/nuxt'],
   pwa: {
     manifest: {
-      name: 'Nuxt3 PWA',
-      short_name: 'Nuxt3 PWA',
-      description: 'Testing Nuxt3 PWA',
+      name: 'Ucan Dashboard',
+      short_name: 'Ucan',
+      description: 'Ucan Dashboard',
+      theme_color:'#81B199',
+      dir:'rtl',      
       icons: [
         {
-          src: 'icons/icon_64x64.png',
+          src: '/icons/icon_64x64.png',
           sizes: '64x64',
           type: 'image/png',
         },
         {
-          src: 'icons/icon_144x144.png',
+          src: '/icons/icon_144x144.png',
           sizes: '144x144',
           type: 'image/png',
         },
         {
-          src: 'icons/icon_192x192.png',
+          src: '/icons/icon_192x192.png',
           sizes: '192x192',
           type: 'image/png',
         },
         {
-          src: 'icons/icon_512x512.png',
+          src: '/icons/icon_512x512.png',
           sizes: '512x512',
           type: 'image/png',
         },
@@ -56,6 +59,9 @@ export default defineNuxtConfig({
     devOptions: {
       enabled: true,
       type: 'module',
+    },
+    icon: {
+      fileName: 'icon.png',
     },
   },
   vite: {
@@ -77,5 +83,8 @@ export default defineNuxtConfig({
       // ... or scan all modules within given directory
       'composables/**'
     ]
-  }
+  },
+  devServer: {
+    port: 5000,
+  },
 });
