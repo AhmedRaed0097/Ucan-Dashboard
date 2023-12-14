@@ -76,7 +76,7 @@ const toggleTheme = () => {
         <!-- Upgrade button -->
         <v-btn class="mr-2 bg-primary" to="/auth/login">تسجيل الدخول</v-btn>
 
-        <v-btn v-if="!darkMode" icon @click="toggleTheme" class="mx-4">
+        <v-btn v-if="darkMode" icon @click="toggleTheme" class="mx-4">
           <img src="~/assets/icons/moon.svg" alt="dark mode" />
         </v-btn>
         <v-btn v-else icon @click="toggleTheme" class="mx-4">
