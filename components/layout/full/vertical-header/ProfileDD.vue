@@ -30,9 +30,9 @@ import { UserIcon, MailIcon, ListCheckIcon } from 'vue-tabler-icons';
           >
         </v-list-item>
       </v-list>
-      <div class="pt-4 pr-1 pb-4">
+      <div class="mr-1 pb-2">
         <v-btn to="/auth/login" color="primary" variant="text"
-          >تسجيل الخروج
+         block class="justify-start" >تسجيل الخروج
           <template v-slot:prepend>
             <v-icon> mdi-logout </v-icon>
           </template>
