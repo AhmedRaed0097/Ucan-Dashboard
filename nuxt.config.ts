@@ -60,9 +60,6 @@ export default defineNuxtConfig({
       enabled: true,
       type: 'module',
     },
-    icon: {
-      fileName: 'icon.png',
-    },
   },
   vite: {
     define: {
