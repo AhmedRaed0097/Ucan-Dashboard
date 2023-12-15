@@ -173,7 +173,7 @@ const dataTable = ref([
 ]);
 </script>
 <template>
-  <h3 class="text-h4 pl-7 mt-2 mb-8 mb-sm-0">المحافظ</h3>
+  <h3 class="tw-text-xl sm:tw-text-2xl md:tw-text-3xl 2xl:tw-text-4xl pl-7 mt-2 mb-8 mb-sm-0">المحافظ</h3>
 
   <v-row justify="center" justify-sm="end" class="ml-sm-2">
     <v-col cols="12" sm="4" md="3">

@@ -65,7 +65,7 @@ const areaChart = {
       <v-row>
         <v-col cols="12">
           <div class="mt-2">
-            <h3 class="text-h4">$6,820</h3>
+            <h3 class="tw-text-xl sm:tw-text-2xl md:tw-text-3xl lg:tw-text-4xl">$6,820</h3>
             <div class="mt-1">
               <v-avatar class="bg-lighterror text-accent" size="25">
                 <ArrowDownRightIcon size="20" />

@@ -50,7 +50,7 @@ const Chart = [38, 40, 25];
       <v-row>
         <v-col cols="7" sm="7">
           <div class="mt-6">
-            <h3 class="text-h4">$36,358</h3>
+            <h3 class="tw-text-xl sm:tw-text-2xl md:tw-text-3xl lg:tw-text-4xl">$36,358</h3>
             <div class="mt-1">
               <v-avatar class="bg-lightsuccess text-success" size="25">
                 <ArrowUpLeftIcon size="20" />

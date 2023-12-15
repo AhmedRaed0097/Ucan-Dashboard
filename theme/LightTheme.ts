@@ -8,7 +8,7 @@ const LightTheme = {
   },
   colors: {
     primary: '#81B199',
-    secondary: '#49BEFF',
+    secondary: '#969696',
     info: '#539BFF',
     success: '#13DEB9',
     accent: '#FFAB91',

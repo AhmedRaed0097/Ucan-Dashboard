@@ -1,7 +1,7 @@
 <template>
   <v-row>
     <v-col cols="12">
-      <h3 class="text-h4 pl-7 mt-2">عرض بيانات الطبيب</h3>
+      <h3 class="tw-text-xl sm:tw-text-2xl md:tw-text-3xl 2xl:tw-text-4xl pl-7 mt-2">عرض بيانات الطبيب</h3>
     </v-col>
     <v-col cols="3">
       <v-row>
@@ -17,7 +17,7 @@
                 alt="avatar"
                 class="rounded-circle"
               />
-              <h4 class="text-h4">Ahmed</h4>
+              <h4 class="tw-text-xl sm:tw-text-2xl md:tw-text-3xl lg:tw-text-4xl">Ahmed</h4>
             </div>
           </v-card>
         </v-col>

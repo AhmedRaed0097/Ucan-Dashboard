@@ -8,7 +8,7 @@ const DarkTheme = {
   },
   colors: {
     primary: '#81B199', // Darken primary color
-    secondary: '#286297', // Darken secondary color
+    secondary: '#969696', // Darken secondary color
     info: '#205885', // Darken info color
     success: '#08836C', // Darken success color
     accent: '#B86651', // Darken accent color

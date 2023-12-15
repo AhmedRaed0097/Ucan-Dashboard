@@ -173,7 +173,7 @@ const dataTable = ref([
 ]);
 </script>
 <template>
-  <h3 class="text-h4 pl-7 mt-2 mb-8 mb-sm-0">العملاء</h3>
+  <h3 class="tw-text-xl sm:tw-text-2xl md:tw-text-3xl 2xl:tw-text-4xl pl-7 mt-2 mb-8 mb-sm-0">العملاء</h3>
 
   <v-row justify="center" justify-sm="end" class="ml-sm-2">
     <v-col cols="12" sm="4" md="3">
@@ -218,7 +218,7 @@ const dataTable = ref([
             <template v-slot:[`item.actions`]="{ item }">
               <div class="d-flex justify-space-between">
                 <v-btn
-                  :to="`/doctors/${item.id}/edit`"
+                  :to="`/customers/${item.id}/show`"
                   variant="text"
                   size="small"
                   class="ml-3 ml-sm-0"
@@ -229,7 +229,7 @@ const dataTable = ref([
                   عرض
                 </v-btn>
                 <v-btn
-                  :to="`/doctors/${item.id}/edit`"
+                  :to="`/customers/${item.id}/edit`"
                   variant="text"
                   size="small"
                 >
@@ -238,7 +238,7 @@ const dataTable = ref([
                   تعديل
                 </v-btn>
                 <v-btn
-                  :to="`/doctors/${item.id}/edit`"
+                  :to="`/customers/${item.id}/edit`"
                   variant="text"
                   size="small"
                   color="error"

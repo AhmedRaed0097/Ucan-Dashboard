@@ -2,7 +2,14 @@
 export default defineNuxtConfig({
   ssr: false,
   spaLoadingTemplate: false,
+  css: ['~/assets/css/main.css'],
 
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {},
+    },
+  },
   app: {
     head: {
       link: [{ rel: 'icon', type: 'image/png', href: '/favicon.svg' }
