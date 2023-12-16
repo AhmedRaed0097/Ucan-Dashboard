@@ -3,7 +3,6 @@ const DarkTheme = {
   name: 'DarkTheme',
   dark: true,
   variables: {
-    'border-color': '#2A3547',
     'carousel-control-size': 10,
   },
   colors: {

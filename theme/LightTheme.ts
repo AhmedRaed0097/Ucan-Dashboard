@@ -3,7 +3,6 @@ const LightTheme = {
   name: 'LightTheme',
   dark: false,
   variables: {
-    'border-color': '#eeeeee',
     'carousel-control-size': 10,
   },
   colors: {

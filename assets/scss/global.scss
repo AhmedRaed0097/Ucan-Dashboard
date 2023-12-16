@@ -56,3 +56,21 @@
     gap: 10px !important;
   }
 }
+ul {
+  list-style: inside !important;
+}
+
+.border-table {
+  th,
+  td {
+    border: 1px solid #dfdfdf !important;
+    
+  }
+  thead {
+    background: #fafafa;
+    th {
+      height: 50px !important;
+      font-weight: bold !important;
+    }
+  }
+}

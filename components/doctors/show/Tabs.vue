@@ -1,16 +1,16 @@
 <template>
-  <v-card class="overflow-y-auto pb-16" height="90vh">
-    <v-tabs v-model="tab">
+  <v-card height="550">
+    <v-tabs v-model="tab" show-arrows>
       <v-tab value="one">اعدادات الاستشارة</v-tab>
       <v-tab value="two">الجدول</v-tab>
       <v-tab value="three">الدراسة والتدريب</v-tab>
-      <v-tab value="four">الرخصة الظبية</v-tab>
+      <v-tab value="four">الرخصة الطبية</v-tab>
       <v-tab value="five">الشهادات</v-tab>
       <v-tab value="six">التقييمات</v-tab>
       <v-tab value="seven">معلومات البنك</v-tab>
     </v-tabs>
 
-    <v-card-text>
+    <v-card-text class="tw-h-5/6 overflow-y-auto">
       <v-window v-model="tab">
         <v-window-item value="one">
           <DoctorsShowConsultantData />

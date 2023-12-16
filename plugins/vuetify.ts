@@ -48,6 +48,9 @@ export default defineNuxtPlugin((nuxtApp) => {
         color: 'primary',
         density: 'compact',
       },
+      VDialog: {
+        transition: 'scale-transition',
+      },
     },
   });
   nuxtApp.vueApp.use(vuetify);
