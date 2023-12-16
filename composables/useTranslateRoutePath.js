@@ -52,6 +52,14 @@ export default function useTranslateRoutePath() {
           return 'المحافظ';
         case 'auth-Login':
           return 'تسجيل الدخول';
+        case 'doctors-id-show':
+          return 'عرض بيانات الطبيب';
+        case 'doctors-id-edit':
+          return 'تعديل بيانات الطبيب';
+        case 'customers-id-show':
+          return 'عرض بيانات العميل';
+        case 'customers-id-edit':
+          return 'تعديل بيانات العميل';
         default:
           return words;
       }

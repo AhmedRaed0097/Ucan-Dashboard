@@ -7,7 +7,7 @@
     </v-col>
 
     <v-col cols="12" md="9">
-      <div class="tw-border tw-border-grey-800 tw-p-3 tw-shadow-md rounded-lg">
+      <div class="tw-border tw-border-grey-800 tw-p-3 tw-shadow-md rounded-lg tw-overflow-x-auto">
         <v-row
           v-for="(item, index) in info"
           :key="index"
@@ -21,18 +21,22 @@
             <h4 class="text-subtitle-1">{{ item.label }}</h4>
           </v-col>
           <v-col cols="6">
-            <div v-if="index === info.length - 1" class="d-flex tw-gap-4">
+            <div v-if="index === info.length - 1" class="d-flex flex-column flex-sm-row align-center tw-gap-4">
               <v-btn
+              width="70"
                 :to="`/customers/${item.id}/edit`"
                 variant="outlined"
                 size="small"
               >
+              <template #prepend>
                 <span class="mdi mdi-square-edit-outline"></span>
+
+              </template>
 
                 تعديل
               </v-btn>
 
-             <CustomersBlockDialog/>
+             <CustomersBlockDialog :customerId="item.id"/>
             </div>
 
             <span v-else class="text-body-2">{{ item.value }}</span>

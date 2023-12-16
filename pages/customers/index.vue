@@ -3,49 +3,45 @@ const search = ref('');
 
 const headers = ref([
   { key: 'name', title: 'الاسم' },
-  { key: 'age', title: 'العمر' },
-  { key: 'city', title: 'المدينة' },
-  { key: 'country', title: 'البلد' },
   { key: 'email', title: 'البريد الالتكروني' },
-  { title: 'الاجراء', key: 'actions', sortable: false },
+  { key: 'age', title: 'الجوال' },
+  { key: 'status', title: 'الحالة' },
+  { title: 'الاجراء', key: 'actions', sortable: false, width: '150' },
 ]);
 const dataTable = ref([
   {
     id: 1,
     name: 'علي أحمد',
-    age: 28,
-    city: 'الرياض',
-    country: 'المملكة العربية السعودية',
+    age: 502645629,
+    status: true,
     email: 'ali.ahmad@email.com',
   },
   {
     id: 2,
     name: 'فاطمة محمد',
-    age: 35,
-    city: 'القاهرة',
-    country: 'مصر',
+    age: 501245654,
+    status: true,
     email: 'fatma.mohamed@email.com',
   },
   {
     id: 3,
     name: 'محمد خالد',
-    age: 22,
-    city: 'دبي',
-    country: 'الإمارات العربية المتحدة',
+    age: 500985600,
+    status: true,
     email: 'mohamed.khaled@email.com',
   },
   {
     id: 4,
     name: 'ريم عبدالرحمن',
-    age: 25,
-    city: 'جدة',
-    country: 'المملكة العربية السعودية',
+    age: 506575678,
+    status: false,
     email: 'reem.abdulrahman@email.com',
   },
   {
     id: 5,
     name: 'يوسف حسين',
-    age: 31,
+    age: 501145644,
+    status: true,
     city: 'الخرطوم',
     country: 'السودان',
     email: 'youssef.hussein@email.com',
@@ -53,160 +49,101 @@ const dataTable = ref([
   {
     id: 6,
     name: 'ليلى مصطفى',
-    age: 29,
-    city: 'الإسكندرية',
-    country: 'مصر',
+    age: 504325611,
+    status: true,
     email: 'leila.mustafa@email.com',
   },
   {
     id: 7,
     name: 'حسن علي',
-    age: 33,
-    city: 'المدينة المنورة',
-    country: 'المملكة العربية السعودية',
+    age: 500005645,
+    status: false,
     email: 'hasan.ali@email.com',
   },
   {
     id: 8,
     name: 'نورهان عبدالله',
-    age: 27,
-    city: 'الدمام',
-    country: 'المملكة العربية السعودية',
+    age: 502245632,
+    status: true,
     email: 'norhan.abdullah@email.com',
   },
   {
     id: 9,
     name: 'أحمد مصطفى',
-    age: 26,
-    city: 'القاهرة',
-    country: 'مصر',
+    age: 503335678,
+    status: true,
     email: 'ahmed.mustafa@email.com',
   },
   {
     id: 10,
     name: 'فاطمة علي',
-    age: 24,
-    city: 'الرياض',
-    country: 'المملكة العربية السعودية',
+    age: 503242221,
+    status: true,
     email: 'fatma.ali@email.com',
   },
   {
     id: 11,
     name: 'سامي حسين',
-    age: 30,
-    city: 'الخرطوم',
-    country: 'السودان',
+    age: 503245332,
+    status: false,
     email: 'sami.hussein@email.com',
   },
   {
     id: 12,
     name: 'سلمى محمود',
-    age: 32,
-    city: 'دمشق',
-    country: 'سوريا',
+    age: 501235678,
+    status: true,
     email: 'salma.mahmoud@email.com',
   },
   {
     id: 13,
     name: 'ياسر أحمد',
-    age: 29,
-    city: 'جدة',
-    country: 'المملكة العربية السعودية',
+    age: 509045678,
+    status: true,
     email: 'yaser.ahmad@email.com',
   },
   {
     id: 14,
     name: 'نور علي',
-    age: 28,
-    city: 'المدينة المنورة',
-    country: 'المملكة العربية السعودية',
+    age: 503245998,
+    status: true,
     email: 'nour.ali@email.com',
-  },
-  {
-    id: 15,
-    name: 'لينا محمد',
-    age: 26,
-    city: 'الإسكندرية',
-    country: 'مصر',
-    email: 'leena.mohamed@email.com',
-  },
-  {
-    id: 16,
-    name: 'عبدالله يوسف',
-    age: 34,
-    city: 'الرياض',
-    country: 'المملكة العربية السعودية',
-    email: 'abdullah.youssef@email.com',
-  },
-  {
-    id: 17,
-    name: 'ريما حسين',
-    age: 31,
-    city: 'الدمام',
-    country: 'المملكة العربية السعودية',
-    email: 'reema.hussein@email.com',
-  },
-  {
-    id: 18,
-    name: 'عمر محمود',
-    age: 27,
-    city: 'بغداد',
-    country: 'العراق',
-    email: 'omar.mahmoud@email.com',
-  },
-  {
-    id: 19,
-    name: 'لمى أحمد',
-    age: 30,
-    city: 'القاهرة',
-    country: 'مصر',
-    email: 'lamia.ahmad@email.com',
-  },
-  {
-    id: 20,
-    name: 'محمد نور',
-    age: 28,
-    city: 'الرياض',
-    country: 'المملكة العربية السعودية',
-    email: 'mohamed.nour@email.com',
   },
 ]);
 </script>
 <template>
-  <h3 class="tw-text-xl sm:tw-text-2xl md:tw-text-3xl 2xl:tw-text-4xl pl-7 mt-2 mb-8 mb-sm-0">العملاء</h3>
+  <h3
+    class="tw-text-xl sm:tw-text-2xl md:tw-text-3xl 2xl:tw-text-4xl pl-7 mt-2 mb-8 mb-sm-0"
+  >
+    العملاء
+  </h3>
 
   <v-row justify="center" justify-sm="end" class="ml-sm-2">
     <v-col cols="12" sm="4" md="3">
       <v-text-field
-          v-model="search"
-          prepend-inner-icon="mdi-magnify"
-          density="compact"
-          label="بحث"
-          single-line
-          flat
-          hide-details
-          variant="solo-filled"
-          clearable
-        ></v-text-field>
+        v-model="search"
+        prepend-inner-icon="mdi-magnify"
+        density="compact"
+        label="بحث"
+        single-line
+        flat
+        hide-details
+        variant="solo-filled"
+        clearable
+      ></v-text-field>
     </v-col>
   </v-row>
 
   <v-row class="mt-4 pl-sm-5">
-    <v-col v-for="i in 6" :key="i" cols="6" sm="4" md="2">
+    <v-col cols="6" sm="4" md="2">
       <v-combobox
-        label="فلترة"
-        :items="[
-          'California',
-          'Colorado',
-          'Florida',
-          'Georgia',
-          'Texas',
-          'Wyoming',
-        ]"
+        label="حالة العميل"
+        :items="['مفعل', 'محظور']"
         variant="outlined"
         density="compact"
         color="primary"
         hide-details
+        class="tw-text-md"
       ></v-combobox>
     </v-col>
   </v-row>
@@ -215,6 +152,16 @@ const dataTable = ref([
       <v-card elevation="10" class="withbg">
         <v-card-item class="pa-0">
           <v-data-table :headers="headers" :items="dataTable" :search="search">
+            <template v-slot:[`item.status`]="{ item }">
+              <v-chip
+                :color="item.status ? 'success' : 'error'"
+                :text="item.status ? 'مفعل' : 'محظور'"
+                class="text-uppercase"
+                label
+                size="small"
+              ></v-chip>
+            </template>
+
             <template v-slot:[`item.actions`]="{ item }">
               <div class="d-flex justify-space-between">
                 <v-btn
@@ -223,9 +170,11 @@ const dataTable = ref([
                   size="small"
                   class="ml-3 ml-sm-0"
                 >
-                  <v-icon size="x-small" color="primary" class="mr-1">
-                    mdi-eye
-                  </v-icon>
+                  <template #prepend>
+                    <v-icon size="x-small" color="primary" class="mr-1">
+                      mdi-eye
+                    </v-icon>
+                  </template>
                   عرض
                 </v-btn>
                 <v-btn
@@ -233,20 +182,13 @@ const dataTable = ref([
                   variant="text"
                   size="small"
                 >
-                  <span class="mdi mdi-square-edit-outline"></span>
+                  <template #prepend>
+                    <span class="mdi mdi-square-edit-outline"></span>
+                  </template>
 
                   تعديل
                 </v-btn>
-                <v-btn
-                  :to="`/customers/${item.id}/edit`"
-                  variant="text"
-                  size="small"
-                  color="error"
-                >
-                  <span class="mdi mdi-close-circle-outline"></span>
-
-                  حظر
-                </v-btn>
+                <CustomersBlockDialog :customerId="item.id" />
               </div>
             </template>
           </v-data-table>
