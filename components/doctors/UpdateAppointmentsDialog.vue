@@ -13,7 +13,7 @@
         <v-card-text class="tw-h-96 tw-overflow-y-auto">
           <v-row>
             <v-col cols="6" v-for="(day, i) in weekDays" :key="i">
-              <v-expansion-panels  class="tw-border rounded-md">
+              <v-expansion-panels class="tw-border rounded-md">
                 <v-expansion-panel elevation="0">
                   <v-expansion-panel-title v-slot="{}">
                     {{ day.text }}
@@ -171,7 +171,7 @@ const addNewAppointment = (dayId) => {
     to: '',
   };
   if (!v$.value.$error) {
-    if (form.appointments.length && form.appointments[dayId].length) {
+    if (form.appointments[dayId] && form.appointments[dayId].length) {
       form.appointments[dayId].forEach((times) => {
         Object.values(times).forEach((value) => {
           if (!value.length) {
