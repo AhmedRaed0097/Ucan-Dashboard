@@ -72,7 +72,6 @@ export const useAuthStore = defineStore('auth', {
         const serviceWorkerRegistration = await navigator.serviceWorker
           .register('/firebase-messaging-sw.js', { scope: '/' })
           .catch((err) => {
-            return console.log('[Service Worker] Registration Error:', err);
           });
         await navigator.serviceWorker.ready; // Here's the waiting
 
@@ -83,9 +82,7 @@ export const useAuthStore = defineStore('auth', {
             applicationServerKey: useRuntimeConfig().public.fcmPublicVapIdKey,
           })
           .catch((err) => {
-            return console.log('[Web Push] Registration Error:', err);
           });
-        console.log('[Web Push] Registered');
         await getToken(messaging, {
           vapidKey: useRuntimeConfig().public.fcmPublicVapIdKey,
           serviceWorkerRegistration: serviceWorkerRegistration,

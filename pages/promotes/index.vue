@@ -197,7 +197,7 @@ const dataTable = ref([
     </v-col>
   </v-row>
 
-  <v-row class="mt-4 pl-sm-5">
+  <v-row class="mt-4">
     <v-col cols="12" sm="4" md="2">
       <v-btn @click="showDialog = true" height="39" color="primary" block>
         <template v-slot:prepend>

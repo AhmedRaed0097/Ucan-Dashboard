@@ -7,6 +7,7 @@ export const useDoctorStore = defineStore('doctor', {
     doctorData: {},
     loading: false,
     serverErrors: {},
+    responseData: null,
   }),
   actions: {
     async fetch(payload) {

@@ -12,11 +12,21 @@
         </v-card-title>
         <v-card-text class="tw-h-96 tw-overflow-y-auto">
           <v-row>
-            <v-col cols="6" v-for="(day, i) in weekDays" :key="i">
+            <v-col cols="12" md="6" v-for="(day, i) in weekDays" :key="i">
               <v-expansion-panels class="tw-border rounded-md">
                 <v-expansion-panel elevation="0">
                   <v-expansion-panel-title v-slot="{}">
                     {{ day.text }}
+                    <v-badge
+                      :content="appointmentsCount(day.id)"
+                      color="primary"
+                      class="mr-1"
+                    >
+                      <v-icon v-if="appointmentsCount(day.id) > 0"
+                        >mdi-calendar</v-icon
+                      >
+                      <v-icon v-else>mdi-calendar-blank</v-icon>
+                    </v-badge>
                   </v-expansion-panel-title>
                   <v-expansion-panel-text>
                     <v-row>
@@ -46,47 +56,66 @@
                             :key="objectIndex"
                             class="form-inner"
                           >
-                            <!-- 
-fweekDays =[{id:'day1' , text: ''} , {id:'day2' , text: ''},...}]
-
-form.appointments = {day1:[{from:'',to:''},{from:'',to:''}], day2:[]}
-
-
--->
                             <v-container>
                               <v-row>
                                 <v-col cols="12" sm="6">
-                                  <v-text-field
+                                  <SharedTimePicker
                                     v-model="
                                       form.appointments[day.id][objectIndex]
                                         .from
                                     "
-                                    label="من"
-                                    variant="outlined"
-                                    :error-messages="
+                                    placeholder="من"
+                                    :error="
+                                      v$.appointments &&
+                                      v$.appointments[day.id].length
+                                    "
+                                    @change="v$.appointments[day.id].$touch"
+                                  />
+                                  <span
+                                    v-if="v$.appointments[day.id]"
+                                    class="tw-text-xs text-error"
+                                  >
+                                    {{
                                       v$.appointments[day.id]
                                         ? v$.appointments[day.id][
                                             objectIndex
-                                          ].from.$errors.map((e) => e.$message)
-                                        : ''
+                                          ].from.$errors.map(
+                                            (e) => e.$message
+                                          )[0]
+                                        : ""
+                                    }}
+                                  </span>
+
+                                  <span
+                                    v-else-if="
+                                      !form.appointments[day.id][objectIndex]
+                                        .from
                                     "
-                                  ></v-text-field>
+                                    class="tw-text-xs text-error"
+                                  >
+                                    هذا الحقل مطلوب
+                                  </span>
                                 </v-col>
                                 <v-col cols="12" sm="6">
-                                  <v-text-field
+                                  <SharedTimePicker
                                     v-model="
                                       form.appointments[day.id][objectIndex].to
                                     "
-                                    label="الى"
-                                    variant="outlined"
-                                    :error-messages="
+                                    placeholder="إلى"
+                                    @change="v$.appointments[day.id].$touch"
+                                  />
+                                  <span
+                                    v-if="v$.appointments[day.id]"
+                                    class="tw-text-xs text-error"
+                                  >
+                                    {{
                                       v$.appointments[day.id]
                                         ? v$.appointments[day.id][
                                             objectIndex
-                                          ].to.$errors.map((e) => e.$message)
-                                        : ''
-                                    "
-                                  ></v-text-field>
+                                          ].to.$errors.map((e) => e.$message)[0]
+                                        : ""
+                                    }}
+                                  </span>
                                 </v-col>
                               </v-row>
                             </v-container>
@@ -161,6 +190,19 @@ const form = reactive({
 const rules = reactive({
   appointments: {},
 });
+const appointmentsCount = (dayId) => {
+  const appointmentsCount = form.appointments[dayId]
+    ? form.appointments[dayId].length
+    : undefined;
+
+  if (!appointmentsCount) {
+    return 0;
+  } else if (appointmentsCount < 9) {
+    return appointmentsCount;
+  } else if (appointmentsCount > 9) {
+    return '+9';
+  }
+};
 
 const { v$ } = useCustomVulidate(rules, form, serverErrors);
 
@@ -172,14 +214,6 @@ const addNewAppointment = (dayId) => {
   };
   if (!v$.value.$error) {
     if (form.appointments[dayId] && form.appointments[dayId].length) {
-      form.appointments[dayId].forEach((times) => {
-        Object.values(times).forEach((value) => {
-          if (!value.length) {
-            isThereEmptyValue = true;
-          }
-        });
-      });
-
       form.appointments[dayId].push(object);
     } else {
       form.appointments[dayId] = [object];
@@ -197,11 +231,3 @@ const addNewAppointment = (dayId) => {
   }
 };
 </script>
-
-<!-- 
-
-appo = []
-
-appo = [ 0:[a] ]
-
- -->

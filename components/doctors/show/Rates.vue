@@ -2,14 +2,14 @@
   <v-row v-for="(rate, index) in ratesData" :key="rate.id"
   class="tw-border-b mb-2"
   >
-    <v-col cols="9">
+    <v-col cols="12" sm="8">
       <div>
         <h5 class="tw-text-xl text-primary">{{ rate.customerName }}</h5>
         <span class="create-at text-secondary">{{ rate.createdAt }}</span>
         <h5 class="tw-text-base">{{ rate.note }}</h5>
       </div>
     </v-col>
-    <v-col cols="3" alignSelf="center">
+    <v-col cols="12" sm="4" alignSelf="center">
       <v-rating
         :modelValue="rate.rate"
         color="warning"

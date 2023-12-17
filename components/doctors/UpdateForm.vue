@@ -332,12 +332,10 @@ const addNewStudyTraining = () => {
   let isThereEmptyValue = false;
   if (studyTraining.length) {
     studyTraining.forEach((element) => {
-      console.log(element);
       Object.values(element).forEach((value) => {
         if (!value.length) {
           isThereEmptyValue = true;
         }
-        console.log(value);
       });
     });
     if (isThereEmptyValue) {
@@ -359,12 +357,10 @@ const addMedicalLicense = () => {
   let isThereEmptyValue = false;
   if (medicalLicense.length) {
     medicalLicense.forEach((element) => {
-      console.log(element);
       Object.values(element).forEach((value) => {
         if (!value.length) {
           isThereEmptyValue = true;
         }
-        console.log(value);
       });
     });
     if (isThereEmptyValue) {
@@ -386,12 +382,10 @@ const addNewSpecialty = () => {
   let isThereEmptyValue = false;
   if (specialties.length) {
     specialties.forEach((element) => {
-      console.log(element);
       Object.values(element).forEach((value) => {
         if (!value.length) {
           isThereEmptyValue = true;
         }
-        console.log(value);
       });
     });
     if (isThereEmptyValue) {
@@ -413,12 +407,10 @@ const addNewCertificate = () => {
   let isThereEmptyValue = false;
   if (certificates.length) {
     certificates.forEach((element) => {
-      console.log(element);
       Object.values(element).forEach((value) => {
         if (!value.length) {
           isThereEmptyValue = true;
         }
-        console.log(value);
       });
     });
     if (isThereEmptyValue) {

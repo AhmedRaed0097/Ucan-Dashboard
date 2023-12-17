@@ -5,12 +5,10 @@ export default function useMultiField() {
         let isThereEmptyValue = false;
         if (studyTraining.length) {
           studyTraining.forEach((element) => {
-            console.log(element);
             Object.values(element).forEach((value) => {
               if (!value.length) {
                 isThereEmptyValue = true;
               }
-              console.log(value);
             });
           });
           if (isThereEmptyValue) {

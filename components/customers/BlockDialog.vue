@@ -1,12 +1,22 @@
 <template>
   <div class="text-center">
-    <v-btn width="70" @click="dialog = true" variant="outlined" size="small" color="error">
+    <v-btn
+      width="70"
+      @click="dialog = true"
+      variant="outlined"
+      size="small"
+      color="error"
+    >
       <template #prepend>
         <span class="mdi mdi-close-circle-outline"></span>
       </template>
       حظر
     </v-btn>
-    <v-dialog v-model="dialog" persistent class="max-[500px]:tw-w-full  max-[640px]:tw-w-8/12 sm:tw-w-2/3 md:tw-w-1/2 lg:tw-w-5/12 xl:tw-w-1/3 2xl:tw-w-1/4">
+    <v-dialog
+      v-model="dialog"
+      persistent
+      class="max-[500px]:tw-w-full max-[640px]:tw-w-8/12 sm:tw-w-2/3 md:tw-w-1/2 lg:tw-w-5/12 xl:tw-w-1/3 2xl:tw-w-1/4"
+    >
       <v-card>
         <v-card-text>
           <div class="d-flex flex-column align-center tw-gap-4">
@@ -32,13 +42,12 @@
 <script setup>
 const props = defineProps({
   customerId: {
-    type: [String,Number],
+    type: [String, Number],
   },
 });
 const dialog = ref(false);
 
 const Save = () => {
-  console.log('props ', props.customerId);
   dialog.value = false;
 };
 </script>

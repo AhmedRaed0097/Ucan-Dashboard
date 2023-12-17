@@ -1,4 +1,5 @@
 <template>
+  <SharedResponseAlert :response="response" />
   <v-row>
     <v-col cols="12">
       <h3
@@ -39,6 +40,9 @@
   </v-row>
 </template>
 <script setup>
+import { useDoctorStore } from '~~/stores/DoctorStore';
+
+const DoctorStore = useDoctorStore()
 const info = ref([
   {
     id: 1,
@@ -71,5 +75,10 @@ const info = ref([
     value: 'لم يرسل للمراجعة',
   },
 ]);
+
+
+const response = computed(() => {
+  return DoctorStore.responseData;
+});
 </script>
 <style></style>

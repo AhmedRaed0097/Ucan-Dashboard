@@ -1,5 +1,23 @@
 @import "./helpers";
 
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(224, 224, 224);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(175, 175, 175);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
 .v-stepper,
 .v-stepper--alt-labels .v-stepper-header {
   box-shadow: none !important;
@@ -64,21 +82,63 @@ ul:not(.v-pagination__list) {
   th,
   td {
     border: 1px solid #dfdfdf !important;
-    
   }
   thead {
     background: #fafafa;
-    
+
     th {
       height: 50px !important;
       font-weight: bold !important;
     }
   }
 }
-thead, tr{
+thead,
+tr {
   border: 1px solid #dfdfdf !important;
 }
-thead,tr:nth-child(even){
+thead,
+tr:nth-child(even) {
   background: #fafafa;
-  
+}
+.v-expansion-panels {
+  z-index: auto !important;
+}
+
+
+.vue__time-picker{
+  width: 100% !important;
+  margin-top: 5px !important;
+}
+.vue__time-picker input.vue__time-picker-input {
+  outline: none !important;
+  width: 100% !important;
+  height: 40px !important;
+  border-radius: 4px !important;
+}
+.vue__time-picker .controls {
+  left: 0 !important;
+}
+.vue__time-picker .dropdown ul li:not([disabled]).active {
+  background: #81b199 !important;
+}
+
+
+.vue__time-picker .dropdown{
+  width: 12em !important;
+
+  .select-list{
+    width: 100% !important;
+  }
+
+}
+
+
+.minutes .hint ,.apms .hint , .hours .hint{
+  position: absolute !important;
+  background: #ffffff !important;
+  width: 46px !important;
+}
+
+.minutes li:nth-child(2) , .hours li:nth-child(2) , .apms li:nth-child(2){
+  margin-top: 30px !important;
 }

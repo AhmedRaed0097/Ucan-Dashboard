@@ -134,7 +134,7 @@ const dataTable = ref([
     </v-col>
   </v-row>
 
-  <v-row class="mt-4 pl-sm-5">
+  <v-row class="mt-4">
     <v-col cols="6" sm="4" md="2">
       <v-combobox
         label="حالة العميل"
