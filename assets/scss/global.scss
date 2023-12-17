@@ -77,35 +77,35 @@
 ul:not(.v-pagination__list) {
   list-style: inside !important;
 }
+.v-theme--light {
+  .border-table {
+    th,
+    td {
+      border: 1px solid #dfdfdf !important;
+    }
+    thead {
+      background: #fafafa;
 
-.border-table {
-  th,
-  td {
-    border: 1px solid #dfdfdf !important;
-  }
-  thead {
-    background: #fafafa;
-
-    th {
-      height: 50px !important;
-      font-weight: bold !important;
+      th {
+        height: 50px !important;
+        font-weight: bold !important;
+      }
     }
   }
-}
-thead,
-tr {
-  border: 1px solid #dfdfdf !important;
-}
-thead,
-tr:nth-child(even) {
-  background: #fafafa;
-}
-.v-expansion-panels {
-  z-index: auto !important;
+  thead,
+  tr {
+    border: 1px solid #dfdfdf !important;
+  }
+  thead,
+  tr:nth-child(even) {
+    background: #fafafa;
+  }
+  .v-expansion-panels {
+    z-index: auto !important;
+  }
 }
 
-
-.vue__time-picker{
+.vue__time-picker {
   width: 100% !important;
   margin-top: 5px !important;
 }
@@ -122,23 +122,24 @@ tr:nth-child(even) {
   background: #81b199 !important;
 }
 
-
-.vue__time-picker .dropdown{
+.vue__time-picker .dropdown {
   width: 12em !important;
 
-  .select-list{
+  .select-list {
     width: 100% !important;
   }
-
 }
 
-
-.minutes .hint ,.apms .hint , .hours .hint{
+.minutes .hint,
+.apms .hint,
+.hours .hint {
   position: absolute !important;
   background: #ffffff !important;
   width: 58px !important;
 }
 
-.minutes li:nth-child(2) , .hours li:nth-child(2) , .apms li:nth-child(2){
+.minutes li:nth-child(2),
+.hours li:nth-child(2),
+.apms li:nth-child(2) {
   margin-top: 30px !important;
 }
