@@ -66,8 +66,9 @@
                                     "
                                     placeholder="من"
                                     :error="
-                                      v$.appointments[day.id] &&
-                                      v$.appointments[day.id].length
+                                      Object.keys(v$.appointments[day.id])
+                                        .length > 0 && !form.appointments[day.id][objectIndex]
+                                        .from 
                                     "
                                     @change="
                                       v$.appointments[day.id]
@@ -104,6 +105,11 @@
                                   <SharedTimePicker
                                     v-model="
                                       form.appointments[day.id][objectIndex].to
+                                    "
+                                     :error="
+                                      Object.keys(v$.appointments[day.id])
+                                        .length > 0 && !form.appointments[day.id][objectIndex]
+                                        .to 
                                     "
                                     placeholder="إلى"
                                     @change="
@@ -196,8 +202,8 @@ const serverErrors = reactive({});
 const form = reactive({
   appointments: {
     day3: [
-      { from: 'a', to: 'b' },
-      { from: 'c', to: 'd' },
+      { hh: '12', mm: '00', a: 'pm' },
+      { hh: '11', mm: '00', a: 'pm' },
     ],
   },
 });
@@ -218,7 +224,27 @@ const appointmentsCount = (dayId) => {
     return '+9';
   }
 };
+if (form.appointments && Object.keys(form.appointments).length > 0) {
+  Object.keys(form.appointments).forEach((dayId) => {
+    if (form.appointments[dayId].length > 0) {
+      form.appointments[dayId].forEach((appointment, index) => {
+        if (!rules.appointments[dayId]) {
+          rules.appointments[dayId] = {};
+        }
+        rules.appointments[dayId][index] = {
+          from: {
+            required$,
+          },
+          to: {
+            required$,
+          },
+        };
+      });
+    }
+  });
+}
 
+console.log('rules ', rules);
 const { v$ } = useCustomVulidate(rules, form, serverErrors);
 
 const addNewAppointment = (dayId) => {
@@ -227,6 +253,8 @@ const addNewAppointment = (dayId) => {
     from: '',
     to: '',
   };
+  console.log('v$', v$);
+  console.log('v$.value.$error', v$.value.$error);
   if (!v$.value.$error) {
     if (form.appointments[dayId] && form.appointments[dayId].length) {
       form.appointments[dayId].push(object);

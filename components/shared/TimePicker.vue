@@ -13,7 +13,7 @@
       :placeholder="props.placeholder"
       :hours="[]"
       close-on-complete
-      :class="{ 'error-field': invalidField }"
+      :class="{ 'error-field': props.error }"
     ></vue-timepicker>
   </div>
 </template>
@@ -24,6 +24,10 @@ import 'vue3-timepicker/dist/VueTimepicker.css';
 const emit = defineEmits(['update:modelValue', 'change']);
 
 const props = defineProps({
+  error: {
+    type: Boolean,
+    default: null,
+  },
   placeholder: {
     type: String,
     default: 'من',
@@ -31,7 +35,7 @@ const props = defineProps({
 });
 
 const invalidField = ref(false);
-const selectedTime = ref({ hh: '12', mm: '00', a: 'am' });
+const selectedTime = ref(null);
 
 watch(
   () => selectedTime.value,
@@ -55,6 +59,15 @@ watch(
   { deep: true }
 );
 
+watch(
+  () => props.error,
+  (newValue) => {
+    console.log('newValue' ,newValue);
+    invalidField.value = newValue
+
+   },
+  { deep: true }
+);
 const format = (date) => {
   return `${date.hh}:${date.mm} ${date.a}`;
 };
