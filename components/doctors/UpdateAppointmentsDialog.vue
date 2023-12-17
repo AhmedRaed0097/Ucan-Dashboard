@@ -127,6 +127,13 @@
                                 </v-col>
                               </v-row>
                             </v-container>
+                            <hr
+                              v-if="
+                                objectIndex !==
+                                form.appointments[day.id].length - 1
+                              "
+                              class="mt-6"
+                            />
                           </div>
                         </div>
                       </v-col>

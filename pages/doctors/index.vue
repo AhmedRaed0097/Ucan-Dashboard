@@ -285,7 +285,7 @@ const dataTable = ref([
               <v-chip
                 :color="item.status ? 'success' : 'error'"
                 :text="item.status ? 'مفعل' : 'محظور'"
-                class="text-uppercase"
+                class="tw-w-16 justify-center"
                 label
                 size="small"
               ></v-chip>
