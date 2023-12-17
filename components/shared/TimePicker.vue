@@ -13,11 +13,8 @@
       :placeholder="props.placeholder"
       :hours="[]"
       close-on-complete
-      :class="{ 'error-field': showErrorMessage }"
+      :class="{ 'error-field': invalidField }"
     ></vue-timepicker>
-    <!-- <span v-if="showErrorMessage" class="tw-text-xs text-error">
-     
-    </span> -->
   </div>
 </template>
 
@@ -31,13 +28,9 @@ const props = defineProps({
     type: String,
     default: 'من',
   },
-  errorMessage: {
-    type: String,
-    default: 'هذا الحقل مطلوب',
-  },
 });
 
-const showErrorMessage = ref(false);
+const invalidField = ref(false);
 const selectedTime = ref({ hh: '12', mm: '00', a: 'am' });
 
 watch(
@@ -51,10 +44,10 @@ watch(
     });
 
     if (emptyValuesCount === Object.values(selectedTime.value).length) {
-      showErrorMessage.value = true;
+      invalidField.value = true;
       emit('update:modelValue', null);
     } else {
-      showErrorMessage.value = false;
+      invalidField.value = false;
       emit('update:modelValue', format(newValue));
     }
     emit('change');

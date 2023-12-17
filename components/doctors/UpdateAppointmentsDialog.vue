@@ -66,10 +66,14 @@
                                     "
                                     placeholder="من"
                                     :error="
-                                      v$.appointments &&
+                                      v$.appointments[day.id] &&
                                       v$.appointments[day.id].length
                                     "
-                                    @change="v$.appointments[day.id].$touch"
+                                    @change="
+                                      v$.appointments[day.id]
+                                        ? v$.appointments[day.id].$touch
+                                        : ''
+                                    "
                                   />
                                   <span
                                     v-if="v$.appointments[day.id]"
@@ -102,7 +106,11 @@
                                       form.appointments[day.id][objectIndex].to
                                     "
                                     placeholder="إلى"
-                                    @change="v$.appointments[day.id].$touch"
+                                    @change="
+                                      v$.appointments[day.id]
+                                        ? v$.appointments[day.id].$touch
+                                        : ''
+                                    "
                                   />
                                   <span
                                     v-if="v$.appointments[day.id]"
