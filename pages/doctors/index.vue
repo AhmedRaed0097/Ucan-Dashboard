@@ -16,7 +16,7 @@ const dataTable = ref([
     id: 1,
     name: 'علي أحمد',
     phone: 502645629,
-    status: true,
+    status: 'active',
     sessions: 6,
     qualification: 'دكتوراه',
     email: 'ali.ahmad@email.com',
@@ -25,7 +25,7 @@ const dataTable = ref([
     id: 2,
     name: 'فاطمة محمد',
     phone: 501245654,
-    status: true,
+    status: 'pending',
     sessions: 4,
     qualification: 'ماجستير',
     email: 'fatma.mohamed@email.com',
@@ -34,7 +34,7 @@ const dataTable = ref([
     id: 3,
     name: 'محمد خالد',
     phone: 500985600,
-    status: true,
+    status: 'active',
     sessions: 5,
     qualification: 'ماجستير',
     email: 'mohamed.khaled@email.com',
@@ -43,7 +43,7 @@ const dataTable = ref([
     id: 4,
     name: 'ريم عبدالرحمن',
     phone: 506575678,
-    status: false,
+    status: 'inactive',
     sessions: 6,
     qualification: 'دكتوراه',
     email: 'reem.abdulrahman@email.com',
@@ -52,7 +52,7 @@ const dataTable = ref([
     id: 5,
     name: 'يوسف حسين',
     phone: 501145644,
-    status: true,
+    status: 'active',
     sessions: 2,
     qualification: 'دكتوراه',
     email: 'youssef.hussein@email.com',
@@ -61,7 +61,7 @@ const dataTable = ref([
     id: 6,
     name: 'ليلى مصطفى',
     phone: 504325611,
-    status: true,
+    status: 'active',
     sessions: 3,
     qualification: 'ماجستير',
     email: 'leila.mustafa@email.com',
@@ -70,7 +70,7 @@ const dataTable = ref([
     id: 7,
     name: 'حسن علي',
     phone: 500005645,
-    status: false,
+    status: 'inactive',
     sessions: 1,
     qualification: 'دكتوراه',
     email: 'hasan.ali@email.com',
@@ -79,7 +79,7 @@ const dataTable = ref([
     id: 8,
     name: 'نورهان عبدالله',
     phone: 502245632,
-    status: true,
+    status: 'active',
     sessions: 7,
     qualification: 'ماجستير',
     email: 'norhan.abdullah@email.com',
@@ -88,7 +88,7 @@ const dataTable = ref([
     id: 9,
     name: 'أحمد مصطفى',
     phone: 503335678,
-    status: true,
+    status: 'active',
     sessions: 0,
     qualification: 'دكتوراه',
     email: 'ahmed.mustafa@email.com',
@@ -97,7 +97,7 @@ const dataTable = ref([
     id: 10,
     name: 'فاطمة علي',
     phone: 503242221,
-    status: true,
+    status: 'pending',
     sessions: 12,
     qualification: 'ماجستير',
     email: 'fatma.ali@email.com',
@@ -106,7 +106,7 @@ const dataTable = ref([
     id: 11,
     name: 'سامي حسين',
     phone: 503245332,
-    status: false,
+    status: 'inactive',
     sessions: 9,
     qualification: 'دكتوراه',
     email: 'sami.hussein@email.com',
@@ -115,7 +115,7 @@ const dataTable = ref([
     id: 12,
     name: 'سلمى محمود',
     phone: 501235678,
-    status: true,
+    status: 'pending',
     sessions: 3,
     qualification: 'ماجستير',
     email: 'salma.mahmoud@email.com',
@@ -124,7 +124,7 @@ const dataTable = ref([
     id: 13,
     name: 'ياسر أحمد',
     phone: 509045678,
-    status: true,
+    status: 'active',
     sessions: 0,
     qualification: 'ماجستير',
     email: 'yaser.ahmad@email.com',
@@ -133,7 +133,7 @@ const dataTable = ref([
     id: 14,
     name: 'نور علي',
     phone: 503245998,
-    status: true,
+    status: 'active',
     sessions: 2,
     qualification: 'ماجستير',
     email: 'nour.ali@email.com',
@@ -160,7 +160,7 @@ const dataTable = ref([
           />
 
           <div class="info">
-            <h4 class="tw-text-2xl md:tw-text-3xl ">احمد رائد</h4>
+            <h4 class="tw-text-2xl md:tw-text-3xl">احمد رائد</h4>
             <span class="text-secondary">الاعلى استشارات </span>
           </div>
         </div>
@@ -178,13 +178,12 @@ const dataTable = ref([
           />
 
           <div class="info">
-            <h4 class="tw-text-2xl md:tw-text-3xl ">عبدالله محمد</h4>
+            <h4 class="tw-text-2xl md:tw-text-3xl">عبدالله محمد</h4>
             <span class="text-secondary">الاعلى تقييم </span>
           </div>
         </div>
       </v-card>
     </v-col>
-  
   </v-row>
   <v-row justify="space-between" class="mt-4 ml-sm-2">
     <v-col cols="12" sm="5" md="3">
@@ -318,12 +317,26 @@ const dataTable = ref([
     <v-col cols="12" md="12">
       <v-card elevation="10" class="withbg">
         <v-card-item class="pa-0">
-          <v-data-table :headers="headers" :items="dataTable" :search="search" items-per-page="5">
+          <v-data-table
+            :headers="headers"
+            :items="dataTable"
+            :search="search"
+            items-per-page="5"
+          >
             <template v-slot:[`item.status`]="{ item }">
               <v-chip
-                :color="item.status ? 'success' : 'error'"
-                :text="item.status ? 'مفعل' : 'محظور'"
+                v-if="item.status === 'active' || item.status === 'inactive'"
+                :color="item.status === 'active' ? 'success' : 'error'"
+                :text="item.status === 'active' ? 'مفعل' : 'محظور'"
                 class="tw-w-16 justify-center"
+                label
+                size="small"
+              ></v-chip>
+              <v-chip
+                v-else
+                color="info"
+                text="لم يرسل للمراجعة"
+                class="tw-w-26 justify-center"
                 label
                 size="small"
               ></v-chip>
