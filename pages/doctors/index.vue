@@ -147,8 +147,46 @@ const dataTable = ref([
   >
     الاطباء
   </h3>
+  <v-row justify="space-around" class="my-sm-2">
+    <v-col cols="12" sm="5" md="4">
+      <v-card height="150" class="pl-2 pl-md-0">
+        <div class="d-flex justify-space-around align-center h-100">
+          <img
+            width="80"
+            src="/images/users/avatar-1.jpg"
+            height="35"
+            alt="user"
+            class="rounded-circle"
+          />
 
-  <v-row justify="space-between"  class="mt-4 ml-sm-2">
+          <div class="info">
+            <h4 class="tw-text-2xl md:tw-text-3xl ">احمد رائد</h4>
+            <span class="text-secondary">الاعلى استشارات </span>
+          </div>
+        </div>
+      </v-card>
+    </v-col>
+    <v-col cols="12" sm="5" md="4">
+      <v-card height="150" class="pl-2 pl-md-0">
+        <div class="d-flex justify-space-around align-center h-100">
+          <img
+            width="80"
+            src="/images/users/avatar-1.jpg"
+            height="35"
+            alt="user"
+            class="rounded-circle"
+          />
+
+          <div class="info">
+            <h4 class="tw-text-2xl md:tw-text-3xl ">عبدالله محمد</h4>
+            <span class="text-secondary">الاعلى تقييم </span>
+          </div>
+        </div>
+      </v-card>
+    </v-col>
+  
+  </v-row>
+  <v-row justify="space-between" class="mt-4 ml-sm-2">
     <v-col cols="12" sm="5" md="3">
       <v-btn @click="showDialog = true" height="39" color="primary" block>
         <template v-slot:prepend>
@@ -280,7 +318,7 @@ const dataTable = ref([
     <v-col cols="12" md="12">
       <v-card elevation="10" class="withbg">
         <v-card-item class="pa-0">
-          <v-data-table :headers="headers" :items="dataTable" :search="search">
+          <v-data-table :headers="headers" :items="dataTable" :search="search" items-per-page="5">
             <template v-slot:[`item.status`]="{ item }">
               <v-chip
                 :color="item.status ? 'success' : 'error'"
