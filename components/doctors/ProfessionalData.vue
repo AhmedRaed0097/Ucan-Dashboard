@@ -95,7 +95,7 @@ const itemsCount = ref(0);
 
 const qualifications = ref(['بكلاريوس', 'ماجستير', 'دكتوراه']);
 const classes = ref(['طبيب', 'مختص', 'اختبار']);
-const categories = ref(['باظني', 'نفسي']);
+const categories = ref(['باطني', 'نفسي']);
 
 const rules = reactive({
   qualification: {
