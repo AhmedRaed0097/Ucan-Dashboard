@@ -34,8 +34,8 @@
           ></v-select>
         </v-col>
         <v-col cols="12">
-          <v-btn variant="flat" class="ml-2">حفظ ورجوع</v-btn>
-          <v-btn color="secondary" variant="flat">الغاء</v-btn>
+          <v-btn to="/customers" variant="flat" class="ml-2">حفظ ورجوع</v-btn>
+          <v-btn to="/customers" color="secondary" variant="flat">الغاء</v-btn>
         </v-col>
 
       </v-row>
