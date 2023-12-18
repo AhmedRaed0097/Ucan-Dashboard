@@ -42,7 +42,7 @@
 <script setup>
 import { useDoctorStore } from '~~/stores/DoctorStore';
 
-const DoctorStore = useDoctorStore()
+const doctorStore = useDoctorStore()
 const info = ref([
   {
     id: 1,
@@ -78,7 +78,7 @@ const info = ref([
 
 
 const response = computed(() => {
-  return DoctorStore.responseData;
+  return doctorStore.responseData;
 });
 </script>
 <style></style>

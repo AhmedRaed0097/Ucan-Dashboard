@@ -134,7 +134,7 @@ ul:not(.v-pagination__list) {
 .apms .hint,
 .hours .hint {
   position: absolute !important;
-  background: #81B199 !important;
+  background: #81b199 !important;
   width: 58px !important;
   color: #fff !important;
 }
@@ -143,4 +143,15 @@ ul:not(.v-pagination__list) {
 .hours li:nth-child(2),
 .apms li:nth-child(2) {
   margin-top: 30px !important;
+}
+.v-messages__message {
+  text-align: right !important;
+}
+
+.v-snackbar {
+  z-index: 9999 !important;
+}
+.v-snackbar__wrapper {
+  bottom: initial !important;
+  top: 0 !important;
 }

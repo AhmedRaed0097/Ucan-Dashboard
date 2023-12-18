@@ -5,6 +5,34 @@ import { useAuthStore } from '~~/stores/AuthStore';
 export const useDoctorStore = defineStore('doctor', {
   state: () => ({
     doctorData: {},
+    form: {
+      personalData: {
+        name: '',
+        email: '',
+        countryCode: null,
+        phone: '',
+        gender: null,
+        password: '',
+        joinType: null,
+        photo: null,
+      },
+      professionalData: {
+        qualification: null,
+        yearExperience: '',
+        class: null,
+        category: null,
+        professionalTitle: null,
+        biography: '',
+      },
+      consultantData: {
+        duration: null,
+        bookType: null,
+        freeConsultation: null,
+        sessionCost: '',
+        ucanPercentage: '',
+        maxDuration: null,
+      },
+    },
     loading: false,
     serverErrors: {},
     responseData: null,
@@ -28,6 +56,37 @@ export const useDoctorStore = defineStore('doctor', {
       } else {
         this.serverErrors = error.value.data;
       }
+    },
+
+    resetForm() {
+      this.form = {
+        personalData: {
+          name: '',
+          email: '',
+          countryCode: null,
+          phone: '',
+          gender: null,
+          password: '',
+          joinType: null,
+          photo: null,
+        },
+        professionalData: {
+          qualification: null,
+          yearExperience: '',
+          class: null,
+          category: null,
+          professionalTitle: null,
+          biography: '',
+        },
+        consultantData: {
+          duration: null,
+          bookType: null,
+          freeConsultation: null,
+          sessionCost: '',
+          ucanPercentage: '',
+          maxDuration: null,
+        },
+      };
     },
   },
 });

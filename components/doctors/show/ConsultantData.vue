@@ -6,6 +6,7 @@
   </div>
 </template>
 <script setup>
+
 const headers = ref([
   { key: 'fieldName', title: 'اسم الحقل', sortable: false },
   { key: 'fieldValue', title: 'قيمة الحقل', sortable: false },
@@ -45,5 +46,5 @@ const info = ref([
     fieldValue: 'لا يوجد بيانات لعرضه',
   },
 ]);
+
 </script>
-<style lang="scss"></style>

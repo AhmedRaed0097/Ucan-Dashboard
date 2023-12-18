@@ -1,7 +1,6 @@
 import useValidate from '@vuelidate/core';
 
 export default function useCustomVulidate (rules, form, errors, scope) {
-  console.log('XX ',rules);
   const v$ = useValidate(rules, form, {
     $stopPropagation: true,
     $lazy: false,

@@ -80,21 +80,9 @@
                                       v$.appointments[day.id]
                                         ? v$.appointments[day.id][
                                             objectIndex
-                                          ].from.$errors.map(
-                                            (e) => e.$message
-                                          )[0]
+                                          ].from.$errors.map((e) => e.$message)[0]
                                         : ""
                                     }}
-                                  </span>
-
-                                  <span
-                                    v-else-if="
-                                      !form.appointments[day.id][objectIndex]
-                                        .from
-                                    "
-                                    class="tw-text-xs text-error"
-                                  >
-                                    هذا الحقل مطلوب
                                   </span>
                                 </v-col>
                                 <v-col cols="12" sm="6">
@@ -108,12 +96,7 @@
                                       !form.appointments[day.id][objectIndex].to
                                     "
                                     placeholder="إلى"
-                                    @change="
-                                      v$.appointments[day.id]
-                                        ? v$.appointments[day.id][objectIndex]
-                                            .$touch
-                                        : ''
-                                    "
+                                   
                                   />
                                   <span
                                     v-if="v$.appointments[day.id]"

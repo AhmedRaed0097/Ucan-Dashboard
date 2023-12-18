@@ -187,7 +187,7 @@ const dataTable = ref([
   </v-row>
   <v-row justify="space-between" class="mt-4 ml-sm-2">
     <v-col cols="12" sm="5" md="3">
-      <v-btn @click="showDialog = true" height="39" color="primary" block>
+      <v-btn elevation="10"  @click="showDialog = true" height="39" color="primary" block>
         <template v-slot:prepend>
           <v-icon> mdi-plus </v-icon>
         </template>
