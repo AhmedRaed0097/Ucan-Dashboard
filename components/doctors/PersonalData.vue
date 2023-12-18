@@ -1,10 +1,16 @@
 <template>
   <v-row>
     <v-col cols="12" sm="6">
-      <v-text-field label="الاسم" required variant="outlined"></v-text-field>
+      <v-text-field
+        v-model="doctorStore.form.name"
+        label="الاسم"
+        required
+        variant="outlined"
+      ></v-text-field>
     </v-col>
     <v-col cols="12" sm="6">
       <v-text-field
+        v-model="doctorStore.form.email"
         label="البريد الالكتروني"
         required
         variant="outlined"
@@ -12,6 +18,7 @@
     </v-col>
     <v-col cols="12" sm="6">
       <v-select
+        v-model="doctorStore.form.countryCode"
         :items="countryCodes"
         label="رمز الدولة"
         variant="outlined"
@@ -19,16 +26,24 @@
     </v-col>
     <v-col cols="12" sm="6">
       <v-text-field
+        v-model="doctorStore.form.phone"
         label="الجوال"
         variant="outlined"
         autocomplete="new-password"
       ></v-text-field>
     </v-col>
     <v-col cols="12" sm="6">
-      <v-select :items="gender" label="النوع" variant="outlined" autocomplete="new-password"></v-select>
+      <v-select
+        v-model="doctorStore.form.gender"
+        :items="gender"
+        label="النوع"
+        variant="outlined"
+        autocomplete="new-password"
+      ></v-select>
     </v-col>
     <v-col cols="12" sm="6">
       <v-text-field
+        v-model="doctorStore.form.password"
         :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
         :type="visible ? 'text' : 'password'"
         label="ادخل كلمة المرور"
@@ -39,6 +54,7 @@
     </v-col>
     <v-col cols="12" sm="6">
       <v-file-input
+        v-model="doctorStore.form.photo"
         accept="image/png, image/jpeg, image/bmp"
         placeholder="Pick an avatar"
         prepend-icon=""
@@ -50,7 +66,14 @@
   </v-row>
 </template>
 <script setup>
+import { useDoctorStore } from '~~/stores/DoctorStore';
+
+const doctorStore = useDoctorStore();
+
+
 const visible = ref(false);
+
+
 const countryCodes = ref([
   {
     title: 'السعودية',
