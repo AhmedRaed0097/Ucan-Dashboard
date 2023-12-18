@@ -31,6 +31,7 @@ export default defineNuxtPlugin((nuxtApp) => {
       },
       VCard: {
         rounded: 'lg',
+        elevation:10
       },
       VTextField: {
         color: 'primary',
