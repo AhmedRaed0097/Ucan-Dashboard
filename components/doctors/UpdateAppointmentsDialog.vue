@@ -67,13 +67,9 @@
                                     placeholder="من"
                                     :error="
                                       Object.keys(v$.appointments[day.id])
-                                        .length > 0 && !form.appointments[day.id][objectIndex]
-                                        .from 
-                                    "
-                                    @change="
-                                      v$.appointments[day.id]
-                                        ? v$.appointments[day.id].$touch
-                                        : ''
+                                        .length > 0 &&
+                                      !form.appointments[day.id][objectIndex]
+                                        .from
                                     "
                                   />
                                   <span
@@ -106,15 +102,16 @@
                                     v-model="
                                       form.appointments[day.id][objectIndex].to
                                     "
-                                     :error="
+                                    :error="
                                       Object.keys(v$.appointments[day.id])
-                                        .length > 0 && !form.appointments[day.id][objectIndex]
-                                        .to 
+                                        .length > 0 &&
+                                      !form.appointments[day.id][objectIndex].to
                                     "
                                     placeholder="إلى"
                                     @change="
                                       v$.appointments[day.id]
-                                        ? v$.appointments[day.id].$touch
+                                        ? v$.appointments[day.id][objectIndex]
+                                            .$touch
                                         : ''
                                     "
                                   />
@@ -202,8 +199,10 @@ const serverErrors = reactive({});
 const form = reactive({
   appointments: {
     day3: [
-      { hh: '12', mm: '00', a: 'pm' },
-      { hh: '11', mm: '00', a: 'pm' },
+      {
+        from: { hh: '12', mm: '00', a: 'pm' },
+        to: { hh: '12', mm: '00', a: 'pm' },
+      },
     ],
   },
 });
@@ -244,8 +243,11 @@ if (form.appointments && Object.keys(form.appointments).length > 0) {
   });
 }
 
-console.log('rules ', rules);
 const { v$ } = useCustomVulidate(rules, form, serverErrors);
+
+watchEffect(() => {
+  v$.value.$validate();
+});
 
 const addNewAppointment = (dayId) => {
   v$.value.$validate();
@@ -253,8 +255,6 @@ const addNewAppointment = (dayId) => {
     from: '',
     to: '',
   };
-  console.log('v$', v$);
-  console.log('v$.value.$error', v$.value.$error);
   if (!v$.value.$error) {
     if (form.appointments[dayId] && form.appointments[dayId].length) {
       form.appointments[dayId].push(object);
