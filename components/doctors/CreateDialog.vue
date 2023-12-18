@@ -63,7 +63,7 @@ const onSave = (c) => {
     doctorStore.responseData = null;
     loading.value = false;
     emit('close');
-    step.value = 1
+    step.value = 1;
     doctorStore.resetForm();
   }, 3000);
 };
@@ -80,7 +80,7 @@ const onSave = (c) => {
         icon
         @click="emit('close')"
       >
-        <img width="20" src="~/assets/icons/close.svg" alt="" />
+        <span class="mdi mdi-close"></span>
       </v-btn>
       <v-card-title>
         <span class="text-h5 mr-4">اضافة طبيب جديد</span>
