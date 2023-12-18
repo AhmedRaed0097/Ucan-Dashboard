@@ -21,7 +21,7 @@
 <script setup>
 import VueTimepicker from 'vue3-timepicker';
 import 'vue3-timepicker/dist/VueTimepicker.css';
-const emit = defineEmits(['update:modelValue', 'change']);
+const emit = defineEmits(['update:modelValue']);
 
 const props = defineProps({
   error: {
@@ -32,29 +32,50 @@ const props = defineProps({
     type: String,
     default: 'من',
   },
+  modelValue: {
+    type: Object,
+    default: null,
+  },
 });
 
 const invalidField = ref(false);
 const selectedTime = ref(null);
 
+if (props.modelValue) {
+  selectedTime.value = props.modelValue;
+}
+
 watch(
   () => selectedTime.value,
   (newValue) => {
     let emptyValuesCount = 0;
-    Object.values(selectedTime.value).forEach((value) => {
-      if (value.length === 0) {
-        emptyValuesCount++;
-      }
-    });
 
-    if (emptyValuesCount === Object.values(selectedTime.value).length) {
+    if (selectedTime.value) {
+      Object.values(selectedTime.value).forEach((value) => {
+        if (value.length === 0) {
+          emptyValuesCount++;
+        }
+      });
+    }
+
+    if (
+      !selectedTime.value ||
+      emptyValuesCount === Object.values(selectedTime.value).length
+    ) {
       invalidField.value = true;
       emit('update:modelValue', null);
     } else {
       invalidField.value = false;
-      emit('update:modelValue', format(newValue));
+      emit('update:modelValue', newValue);
     }
-    emit('change');
+  },
+  { deep: true }
+);
+
+watch(
+  () => props.modelValue,
+  (newValue) => {
+    selectedTime.value = newValue;
   },
   { deep: true }
 );
@@ -62,15 +83,10 @@ watch(
 watch(
   () => props.error,
   (newValue) => {
-    console.log('newValue' ,newValue);
-    invalidField.value = newValue
-
-   },
+    invalidField.value = newValue;
+  },
   { deep: true }
 );
-const format = (date) => {
-  return `${date.hh}:${date.mm} ${date.a}`;
-};
 </script>
 <style lang="scss">
 .error-field .vue__time-picker-input {
