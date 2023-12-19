@@ -102,9 +102,9 @@ ul:not(.v-pagination__list) {
   tr:nth-child(even) {
     background: #fafafa;
   }
-  .v-expansion-panels {
-    z-index: auto !important;
-  }
+}
+.v-expansion-panels {
+  z-index: auto !important;
 }
 
 .vue__time-picker {
