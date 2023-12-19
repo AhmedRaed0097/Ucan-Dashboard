@@ -6,10 +6,6 @@
         :items="duration"
         label="مدة الحجز"
         variant="outlined"
-        :error="v$.duration.$errors.length > 0"
-        @change="v$.duration.$touch"
-        @blur="v$.duration.$touch"
-        :error-messages="v$.duration.$errors.map((e) => e.$message)"
       ></v-select>
     </v-col>
     <v-col cols="12" sm="6">
@@ -18,10 +14,6 @@
         :items="bookType"
         label="نوع الحجز"
         variant="outlined"
-        :error="v$.bookType.$errors.length > 0"
-        @change="v$.bookType.$touch"
-        @blur="v$.bookType.$touch"
-        :error-messages="v$.bookType.$errors.map((e) => e.$message)"
       ></v-select>
     </v-col>
     <v-col cols="12" sm="6">
@@ -30,10 +22,6 @@
         :items="freeConsultation"
         label="استشارة مجانية"
         variant="outlined"
-        :error="v$.freeConsultation.$errors.length > 0"
-        @change="v$.freeConsultation.$touch"
-        @blur="v$.freeConsultation.$touch"
-        :error-messages="v$.freeConsultation.$errors.map((e) => e.$message)"
       ></v-select>
     </v-col>
     <v-col cols="12" sm="6">
@@ -42,10 +30,6 @@
         :items="maxDurations"
         label="اقصى مدة للحجز"
         variant="outlined"
-        :error="v$.maxDuration.$errors.length > 0"
-        @change="v$.maxDuration.$touch"
-        @blur="v$.maxDuration.$touch"
-        :error-messages="v$.maxDuration.$errors.map((e) => e.$message)"
       ></v-select>
     </v-col>
     <v-col cols="12" sm="6">
@@ -55,8 +39,7 @@
         required
         variant="outlined"
         :error="v$.sessionCost.$errors.length > 0"
-        @change="v$.sessionCost.$touch"
-        @blur="v$.sessionCost.$touch"
+        @blur="validate"
         :error-messages="v$.sessionCost.$errors.map((e) => e.$message)"
       ></v-text-field>
     </v-col>
@@ -66,10 +49,6 @@
         label="نسبة يوكان"
         required
         variant="outlined"
-        :error="v$.ucanPercentage.$errors.length > 0"
-        @change="v$.ucanPercentage.$touch"
-        @blur="v$.ucanPercentage.$touch"
-        :error-messages="v$.ucanPercentage.$errors.map((e) => e.$message)"
       ></v-text-field>
     </v-col>
   </v-row>
@@ -122,23 +101,7 @@ const serverErrors = ref({});
 const maxDurations = ref(['اسبوعان', 'شهر']);
 
 const rules = reactive({
-  duration: {
-    required$,
-  },
-  bookType: {
-    required$,
-  },
-  freeConsultation: {
-    required$,
-  },
   sessionCost: {
-    required$,
-    digit$,
-  },
-  maxDuration: {
-    required$,
-  },
-  ucanPercentage: {
     required$,
     digit$,
   },
@@ -150,24 +113,12 @@ const { v$ } = useCustomVulidate(
   serverErrors
 );
 
-watch(
-  () => doctorStore.form.consultantData,
-  (newValue) => {
-    itemsCount.value = 0;
-    Object.values(newValue).forEach((value) => {
-      if (!value || !value.length) {
-        itemsCount.value++;
-      }
-    });
-    if (itemsCount.value === 0) {
-      v$.value.$validate();
-      if (!v$.value.$error) {
-        emit('success');
-      }
-    } else {
-      emit('error');
-    }
-  },
-  { deep: true }
-);
+const validate = () => {
+  v$.sessionCost.$touch();
+  if (!v$.value.$error) {
+    emit('success');
+  } else {
+    emit('error');
+  }
+};
 </script>

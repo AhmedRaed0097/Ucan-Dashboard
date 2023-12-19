@@ -7,7 +7,6 @@
         required
         variant="outlined"
         :error="v$.name.$errors.length > 0"
-        @change="v$.name.$touch"
         @blur="v$.name.$touch"
         :error-messages="v$.name.$errors.map((e) => e.$message)"
       ></v-text-field>
@@ -16,10 +15,9 @@
       <v-text-field
         v-model="doctorStore.form.personalData.email"
         label="البريد الالكتروني"
-        required
+        type="email"
         variant="outlined"
         :error="v$.email.$errors.length > 0"
-        @change="v$.email.$touch"
         @blur="v$.email.$touch"
         :error-messages="v$.email.$errors.map((e) => e.$message)"
       ></v-text-field>
@@ -31,7 +29,6 @@
         label="رمز الدولة"
         variant="outlined"
         :error="v$.countryCode.$errors.length > 0"
-        @change="v$.countryCode.$touch"
         @blur="v$.countryCode.$touch"
         :error-messages="v$.countryCode.$errors.map((e) => e.$message)"
       ></v-select>
@@ -43,7 +40,6 @@
         variant="outlined"
         autocomplete="new-password"
         :error="v$.phone.$errors.length > 0"
-        @change="v$.phone.$touch"
         @blur="v$.phone.$touch"
         :error-messages="v$.phone.$errors.map((e) => e.$message)"
       ></v-text-field>
@@ -56,7 +52,6 @@
         variant="outlined"
         autocomplete="new-password"
         :error="v$.gender.$errors.length > 0"
-        @change="v$.gender.$touch"
         @blur="v$.gender.$touch"
         :error-messages="v$.gender.$errors.map((e) => e.$message)"
       ></v-select>
@@ -71,7 +66,6 @@
         autocomplete="new-password"
         @click:append-inner="visible = !visible"
         :error="v$.password.$errors.length > 0"
-        @change="v$.password.$touch"
         @blur="v$.password.$touch"
         :error-messages="v$.password.$errors.map((e) => e.$message)"
       ></v-text-field>
@@ -84,7 +78,6 @@
         variant="outlined"
         autocomplete="new-password"
         :error="v$.joinType.$errors.length > 0"
-        @change="v$.joinType.$touch"
         @blur="v$.joinType.$touch"
         :error-messages="v$.joinType.$errors.map((e) => e.$message)"
       ></v-select>
@@ -99,7 +92,6 @@
         label="الصورة"
         variant="outlined"
         :error="v$.photo.$errors.length > 0"
-        @change="v$.photo.$touch"
         @blur="v$.photo.$touch"
         :error-messages="v$.photo.$errors.map((e) => e.$message)"
       ></v-file-input>

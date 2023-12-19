@@ -36,7 +36,9 @@ const step = ref(1);
 watch(
   () => props.show,
   (newValue) => {
+    doctorStore.resetForm()
     dialog.value = newValue;
+
   },
   { deep: true }
 );

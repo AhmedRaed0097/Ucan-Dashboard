@@ -7,7 +7,6 @@
         label="المؤهل العلمي"
         variant="outlined"
         :error="v$.qualification.$errors.length > 0"
-        @change="v$.qualification.$touch"
         @blur="v$.qualification.$touch"
         :error-messages="v$.qualification.$errors.map((e) => e.$message)"
       ></v-select>
@@ -20,7 +19,6 @@
         required
         variant="outlined"
         :error="v$.yearExperience.$errors.length > 0"
-        @change="v$.yearExperience.$touch"
         @blur="v$.yearExperience.$touch"
         :error-messages="v$.yearExperience.$errors.map((e) => e.$message)"
       >
@@ -34,7 +32,6 @@
         label="الفئة"
         variant="outlined"
         :error="v$.class.$errors.length > 0"
-        @change="v$.class.$touch"
         @blur="v$.class.$touch"
         :error-messages="v$.class.$errors.map((e) => e.$message)"
       ></v-select>
@@ -46,7 +43,6 @@
         label="التصنيف"
         variant="outlined"
         :error="v$.category.$errors.length > 0"
-        @change="v$.category.$touch"
         @blur="v$.category.$touch"
         :error-messages="v$.category.$errors.map((e) => e.$message)"
       ></v-select>
