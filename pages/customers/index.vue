@@ -118,8 +118,20 @@ const dataTable = ref([
     العملاء
   </h3>
 
-  <v-row justify="center" justify-sm="end" class="ml-sm-2">
-    <v-col cols="12" sm="4" md="3">
+
+  <v-row justify="space-between" class="mt-4">
+    <v-col cols="12" sm="4" md="2" order="2" order-sm="1">
+      <v-combobox
+        label="حالة العميل"
+        :items="['مفعل', 'محظور']"
+        variant="outlined"
+        density="compact"
+        color="primary"
+        hide-details
+        class="tw-text-md"
+      ></v-combobox>
+    </v-col>
+    <v-col cols="12" sm="5" md="3" order="1" order-sm="2">
       <v-text-field
         v-model="search"
         prepend-inner-icon="mdi-magnify"
@@ -131,21 +143,8 @@ const dataTable = ref([
         variant="solo-filled"
         clearable
       ></v-text-field>
-    </v-col>
-  </v-row>
+  </v-col>
 
-  <v-row class="mt-4">
-    <v-col cols="6" sm="4" md="2">
-      <v-combobox
-        label="حالة العميل"
-        :items="['مفعل', 'محظور']"
-        variant="outlined"
-        density="compact"
-        color="primary"
-        hide-details
-        class="tw-text-md"
-      ></v-combobox>
-    </v-col>
   </v-row>
   <v-row>
     <v-col cols="12" md="12">
