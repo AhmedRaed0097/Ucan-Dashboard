@@ -52,8 +52,7 @@ function onError(index) {
   stepsText[index].isValid = false;
 }
 
-const onSave = (c) => {
-  console.log('SAVE', c);
+const onSave = () => {
   loading.value = true;
   doctorStore.responseData = {
     success: true,

@@ -14,14 +14,27 @@
       :hours="[]"
       close-on-complete
       :class="{ 'error-field': props.error }"
-    ></vue-timepicker>
+      @close="onClose"
+    >
+      <template v-slot:clearButton>
+        <v-btn
+          elevation="0"
+          variant="text"
+          size="x-small"
+          icon
+          @click="onClear"
+        >
+          <span class="tw-text-lg mdi mdi-close"></span>
+        </v-btn>
+      </template>
+    </vue-timepicker>
   </div>
 </template>
 
 <script setup>
 import VueTimepicker from 'vue3-timepicker';
 import 'vue3-timepicker/dist/VueTimepicker.css';
-const emit = defineEmits(['update:modelValue']);
+const emit = defineEmits(['update:modelValue', 'blur']);
 
 const props = defineProps({
   error: {
@@ -45,36 +58,39 @@ if (props.modelValue) {
   selectedTime.value = props.modelValue;
 }
 
-watch(
-  () => selectedTime.value,
-  (newValue) => {
-    let emptyValuesCount = 0;
+const onClear = () => {
+  selectedTime.value = null;
+  onClose();
+};
 
-    if (selectedTime.value) {
-      Object.values(selectedTime.value).forEach((value) => {
-        if (value.length === 0) {
-          emptyValuesCount++;
-        }
-      });
-    }
+const onClose = () => {
+  let emptyValuesCount = 0;
 
-    if (
-      !selectedTime.value ||
-      emptyValuesCount === Object.values(selectedTime.value).length
-    ) {
-      invalidField.value = true;
-      emit('update:modelValue', null);
-    } else {
-      invalidField.value = false;
-      emit('update:modelValue', newValue);
-    }
-  },
-  { deep: true }
-);
+  if (selectedTime.value) {
+    Object.values(selectedTime.value).forEach((value) => {
+      if (value.length === 0) {
+        emptyValuesCount++;
+      }
+    });
+  }
+
+  if (
+    !selectedTime.value ||
+    emptyValuesCount === Object.values(selectedTime.value).length
+  ) {
+    invalidField.value = true;
+    emit('update:modelValue', null);
+  } else {
+    invalidField.value = false;
+    emit('update:modelValue', selectedTime.value);
+  }
+  emit('blur');
+};
 
 watch(
   () => props.modelValue,
   (newValue) => {
+    emit('blur');
     selectedTime.value = newValue;
   },
   { deep: true }

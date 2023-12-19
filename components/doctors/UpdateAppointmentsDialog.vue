@@ -66,10 +66,18 @@
                                     "
                                     placeholder="من"
                                     :error="
-                                      Object.keys(v$.appointments[day.id])
-                                        .length > 0 &&
-                                      !form.appointments[day.id][objectIndex]
-                                        .from
+                                      checkError({
+                                        dayId: day.id,
+                                        objectIndex,
+                                        key: 'from',
+                                      })
+                                    "
+                                    @blur="
+                                      validate({
+                                        dayId: day.id,
+                                        objectIndex,
+                                        key: 'from',
+                                      })
                                     "
                                   />
                                   <span
@@ -80,7 +88,9 @@
                                       v$.appointments[day.id]
                                         ? v$.appointments[day.id][
                                             objectIndex
-                                          ].from.$errors.map((e) => e.$message)[0]
+                                          ].from.$errors.map(
+                                            (e) => e.$message
+                                          )[0]
                                         : ""
                                     }}
                                   </span>
@@ -91,12 +101,20 @@
                                       form.appointments[day.id][objectIndex].to
                                     "
                                     :error="
-                                      Object.keys(v$.appointments[day.id])
-                                        .length > 0 &&
-                                      !form.appointments[day.id][objectIndex].to
+                                      checkError({
+                                        dayId: day.id,
+                                        objectIndex,
+                                        key: 'to',
+                                      })
+                                    "
+                                    @blur="
+                                      validate({
+                                        dayId: day.id,
+                                        objectIndex,
+                                        key: 'to',
+                                      })
                                     "
                                     placeholder="إلى"
-                                   
                                   />
                                   <span
                                     v-if="v$.appointments[day.id]"
@@ -228,17 +246,19 @@ if (form.appointments && Object.keys(form.appointments).length > 0) {
 
 const { v$ } = useCustomVulidate(rules, form, serverErrors);
 
-watchEffect(() => {
-  v$.value.$validate();
-});
-
 const addNewAppointment = (dayId) => {
-  v$.value.$validate();
+  if (v$.value.appointments[dayId]) {
+    v$.value.appointments[dayId].$touch();
+  }
   const object = {
-    from: '',
-    to: '',
+    from: null,
+    to: null,
   };
-  if (!v$.value.$error) {
+  if (
+    (v$.value.appointments[dayId] &&
+      !v$.value.appointments[dayId].$errors.length) ||
+    !v$.value.appointments[dayId]
+  ) {
     if (form.appointments[dayId] && form.appointments[dayId].length) {
       form.appointments[dayId].push(object);
     } else {
@@ -254,6 +274,26 @@ const addNewAppointment = (dayId) => {
         required$,
       },
     };
+  }
+};
+
+const validate = async (payload) => {
+  await v$.value.appointments[payload.dayId][payload.objectIndex][
+    payload.key
+  ].$touch();
+  checkError(payload);
+};
+const checkError = (payload) => {
+  if (
+    v$.value.appointments[payload.dayId] &&
+    v$.value.appointments[payload.dayId][payload.objectIndex] &&
+    v$.value.appointments[payload.dayId][payload.objectIndex][payload.key]
+      .$error &&
+    !form.appointments[payload.dayId][payload.objectIndex][payload.key]
+  ) {
+    return true;
+  } else {
+    return false;
   }
 };
 </script>
