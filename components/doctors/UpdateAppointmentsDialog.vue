@@ -198,14 +198,7 @@ const weekDays = reactive([
 const serverErrors = reactive({});
 
 const form = reactive({
-  appointments: {
-    day3: [
-      {
-        from: { hh: '12', mm: '00', a: 'pm' },
-        to: { hh: '12', mm: '00', a: 'pm' },
-      },
-    ],
-  },
+  appointments: {},
 });
 
 const rules = reactive({
