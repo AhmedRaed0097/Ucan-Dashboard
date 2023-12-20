@@ -59,45 +59,45 @@ const recentTransaction: recentTrans[] = [
 ]
 
 /*Basic Table 1*/
-const productPerformance: productPerformanceType[] = [
+const productPerformance: productPerformanceType[] =
+[
     {
-        id: 1,
-        name: 'Sunil Joshi',
-        post: 'Web Designer',
-        pname: 'Elite Admin',
-        status: 'Low',
-        statuscolor: 'primary',
-        budget: '$3.9'
+      "id": 1,
+      "name": "سونيل جوشي",
+      "post": "مصمم مواقع إلكترونية",
+      "pname": "مدير النخبة",
+      "status": "منخفضة",
+      "statuscolor": "primary",
+      "budget": "3.9 دولار"
     },
     {
-        id: 2,
-        name: 'Andrew McDownland',
-        post: 'Project Manager',
-        pname: 'Real Homes WP Theme',
-        status: 'Medium',
-        statuscolor: 'secondary',
-        budget: '$24.5k'
+      "id": 2,
+      "name": "أندرو ماك داونلاند",
+      "post": "مدير مشروع",
+      "pname": "ثيم Real Homes WP",
+      "status": "متوسطة",
+      "statuscolor": "secondary",
+      "budget": "24.5 ألف دولار"
     },
     {
-        id: 3,
-        name: 'Christopher Jamil',
-        post: 'Project Manager',
-        pname: 'MedicalPro WP Theme',
-        status: 'High',
-        statuscolor: 'error',
-        budget: '$12.8k'
+      "id": 3,
+      "name": "كريستوفر جيميل",
+      "post": "مدير مشروع",
+      "pname": "ثيم MedicalPro WP",
+      "status": "مرتفعة",
+      "statuscolor": "error",
+      "budget": "12.8 ألف دولار"
     },
     {
-        id: 4,
-        name: 'Nirav Joshi',
-        post: 'Frontend Engineer',
-        pname: 'Hosting Press HTML',
-        status: 'Critical',
-        statuscolor: 'success',
-        budget: '$2.4k'
+      "id": 4,
+      "name": "نيراف جوشي",
+      "post": "مهندس واجهة أمامية",
+      "pname": "Hosting Press HTML",
+      "status": "حرجة",
+      "statuscolor": "success",
+      "budget": "2.4 ألف دولار"
     }
-
-];
+  ];
 
 /*--Products Cards--*/
 import proimg1 from '/images/products/s4.jpg';
