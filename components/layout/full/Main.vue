@@ -61,7 +61,7 @@ const toggleTheme = () => {
     <div class="d-flex align-center justify-space-between w-100">
       <div>
         <v-btn
-          class="hidden-lg-and-up ms-md-3 ms-sm-5 ms-3 text-muted"
+          class="ms-md-3 ms-sm-5 ms-3 text-muted"
           @click="sDrawer = !sDrawer"
           icon
           variant="flat"
@@ -70,7 +70,6 @@ const toggleTheme = () => {
           <Menu2Icon size="20" stroke-width="1.5" />
         </v-btn>
         <!-- Notification -->
-        <LayoutFullVerticalHeaderNotificationDD />
       </div>
       <div>
         <!-- Upgrade button -->
