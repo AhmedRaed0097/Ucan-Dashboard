@@ -367,7 +367,6 @@ const dataTable = ref([
                 :modelValue="item.rate"
                 color="warning"
                 size="15"
-                half-increments
                 readonly
               ></v-rating>
             </template>
