@@ -23,10 +23,5 @@ import MonthlyEarning from '@/components/dashboard/MonthlyEarnings.vue';
         </v-col>
       </v-row>
     </v-col>
-    <v-col class="text-center mt-2">
-      <p class="text-muted">
-        Design and Developed by <span class="text-primary">Ahmed Raed</span>
-      </p>
-    </v-col>
   </v-row>
 </template>
