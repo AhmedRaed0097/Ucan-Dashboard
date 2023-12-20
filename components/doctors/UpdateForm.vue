@@ -4,6 +4,7 @@
       <v-row>
         <v-col cols="12" sm="6" xl="4">
           <v-text-field
+            v-model="form.name"
             label="الاسم"
             required
             variant="outlined"
@@ -11,6 +12,7 @@
         </v-col>
         <v-col cols="12" sm="6" xl="4">
           <v-file-input
+            v-model="form.avatar"
             accept="image/png, image/jpeg, image/bmp"
             placeholder="Pick an avatar"
             prepend-icon=""
@@ -22,7 +24,8 @@
 
         <v-col cols="12" sm="6" xl="4">
           <v-select
-            :items="qualifications"
+            v-model="form.joinType"
+            :items="joinTypes"
             label="نوع الانضمام"
             variant="outlined"
           ></v-select>
@@ -38,48 +41,58 @@
 
         <v-col cols="12" sm="6" xl="4">
           <v-select
-            :items="qualifications"
+            v-model="form.reservationDuration"
+            :items="reservationDurations"
             label="مدة الحجز"
             variant="outlined"
           ></v-select>
         </v-col>
         <v-col cols="12" sm="6" xl="4">
           <v-select
-            :items="qualifications"
+            v-model="form.reservationType"
+            :items="receivingRequestsOptions"
+            label="استقبال الطلبات"
+            variant="outlined"
+          ></v-select>
+        </v-col>
+        <v-col cols="12" sm="6" xl="4">
+          <v-select
+            v-model="form.reservationType"
+            :items="reservationTypes"
             label="نوع الحجز"
             variant="outlined"
           ></v-select>
         </v-col>
         <v-col cols="12" sm="6" xl="4">
           <v-select
-            :items="qualifications"
-            label="نوع الحجز"
-            variant="outlined"
-          ></v-select>
-        </v-col>
-        <v-col cols="12" sm="6" xl="4">
-          <v-select
-            :items="qualifications"
+            v-model="form.freeConsultation"
+            :items="freeConsultationOptions"
             label="استشارة مجانية"
             variant="outlined"
           ></v-select>
         </v-col>
         <v-col cols="12" sm="6" xl="4">
           <v-select
-            :items="qualifications"
+            v-model="form.maxReservationDuration"
+            :items="maxReservationDurations"
             label="أقصى مدة للحجز"
             variant="outlined"
           ></v-select>
         </v-col>
         <v-col cols="12" sm="6" xl="4">
           <v-text-field
+            v-model="form.sessionCost"
             label="قيمة الجلسة"
             required
             variant="outlined"
+            :error="v$.sessionCost.$errors.length > 0"
+            @blur="v$.sessionCost.$touch"
+            :error-messages="v$.sessionCost.$errors.map((e) => e.$message)"
           ></v-text-field>
         </v-col>
         <v-col cols="12" sm="6" xl="4">
           <v-text-field
+            v-model="form.ucanPercentage"
             label="نسبة يوكان"
             required
             variant="outlined"
@@ -102,36 +115,63 @@
         </v-col>
         <v-col cols="12" sm="6" xl="4">
           <v-text-field
+            v-model="form.experienceYears"
             label="سنوات الخبرة"
             required
             variant="outlined"
+            :error="v$.experienceYears.$errors.length > 0"
+            @blur="v$.experienceYears.$touch"
+            :error-messages="v$.experienceYears.$errors.map((e) => e.$message)"
           ></v-text-field>
         </v-col>
         <v-col cols="12" sm="6" xl="4">
           <v-select
-            :items="qualifications"
+            v-model="form.class"
+            :items="classes"
             label="الفئة"
             variant="outlined"
+            :error="v$.class.$errors.length > 0"
+            @blur="v$.class.$touch"
+            :error-messages="v$.class.$errors.map((e) => e.$message)"
           ></v-select>
         </v-col>
         <v-col cols="12" sm="6" xl="4">
           <v-select
-            :items="qualifications"
+            v-model="form.category"
+            :items="categories"
             label="التصنيف"
             variant="outlined"
+            :error="v$.category.$errors.length > 0"
+            @blur="v$.category.$touch"
+            :error-messages="v$.category.$errors.map((e) => e.$message)"
           ></v-select>
         </v-col>
         <v-col cols="12" sm="6" xl="4">
           <v-select
+            v-model="form.professionalTitle"
             :items="qualifications"
             label="المسمى المهني"
             variant="outlined"
+            :error="v$.professionalTitle.$errors.length > 0"
+            @blur="v$.professionalTitle.$touch"
+            :error-messages="
+              v$.professionalTitle.$errors.map((e) => e.$message)
+            "
           ></v-select>
         </v-col>
         <v-col cols="12" sm="6" xl="4">
-          <v-textarea label="نبذة تعريفية" variant="outlined" />
+          <v-textarea
+            v-model="form.biography"
+            label="نبذة تعريفية"
+            variant="outlined"
+            :error="v$.biography.$errors.length > 0"
+            @blur="v$.biography.$touch"
+            :error-messages="v$.biography.$errors.map((e) => e.$message)"
+          />
         </v-col>
-        <v-col cols="12" sm="6" xl="4">
+      </v-row>
+      <v-row>
+        <v-col cols="12" sm="6">
           <v-card variant="tonal">
             <div class="d-flex justify-space-between align-center px-4 py-4">
               <span>دراسة وتدريب </span>
@@ -144,9 +184,9 @@
               </v-btn>
             </div>
 
-            <div v-if="studyTraining.length" class="form-wrapper">
+            <div v-if="form.studyTraining.length" class="form-wrapper">
               <div
-                v-for="(item, i) in studyTraining"
+                v-for="(item, i) in form.studyTraining"
                 :key="i"
                 class="form-inner"
               >
@@ -154,26 +194,47 @@
                   <v-row>
                     <v-col cols="12" sm="4">
                       <v-text-field
-                        v-model="studyTraining[i].donor"
+                        v-model="form.studyTraining[i].donor"
                         label="الجهة"
                         required
                         variant="outlined"
+                        :error="v$.studyTraining[i].donor.$errors.length > 0"
+                        @blur="v$.studyTraining[i].donor.$touch"
+                        :error-messages="
+                          v$.studyTraining[i].donor.$errors.map(
+                            (e) => e.$message
+                          )
+                        "
                       ></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="5">
                       <v-text-field
-                        v-model="studyTraining[i].major"
+                        v-model="form.studyTraining[i].major"
                         label="التخصص"
                         required
                         variant="outlined"
+                        :error="v$.studyTraining[i].major.$errors.length > 0"
+                        @blur="v$.studyTraining[i].major.$touch"
+                        :error-messages="
+                          v$.studyTraining[i].major.$errors.map(
+                            (e) => e.$message
+                          )
+                        "
                       ></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="3">
                       <v-text-field
-                        v-model="studyTraining[i].year"
+                        v-model="form.studyTraining[i].year"
                         label="السنة"
                         required
                         variant="outlined"
+                        :error="v$.studyTraining[i].year.$errors.length > 0"
+                        @blur="v$.studyTraining[i].year.$touch"
+                        :error-messages="
+                          v$.studyTraining[i].year.$errors.map(
+                            (e) => e.$message
+                          )
+                        "
                       ></v-text-field>
                     </v-col>
                   </v-row>
@@ -182,7 +243,7 @@
             </div>
           </v-card>
         </v-col>
-        <v-col cols="12" sm="6" xl="4">
+        <v-col cols="12" sm="6">
           <v-card variant="tonal">
             <div class="d-flex justify-space-between align-center px-4 py-4">
               <span>الرخصة الطبية </span>
@@ -194,9 +255,9 @@
                 عنصر جديد
               </v-btn>
             </div>
-            <div v-if="medicalLicense.length" class="form-wrapper">
+            <div v-if="form.medicalLicense.length" class="form-wrapper">
               <div
-                v-for="(item, i) in medicalLicense"
+                v-for="(item, i) in form.medicalLicense"
                 :key="i"
                 class="form-inner"
               >
@@ -204,27 +265,46 @@
                   <v-row>
                     <v-col cols="12" sm="4">
                       <v-text-field
-                        v-model="medicalLicense[i].donor"
-                        label="الجهة"
+                        v-model="form.medicalLicense[i].donor"
+                        label="جهة الرخصة الطبية"
                         required
                         variant="outlined"
+                        :error="v$.medicalLicense[i].donor.$errors.length > 0"
+                        @blur="v$.medicalLicense[i].donor.$touch"
+                        :error-messages="
+                          v$.medicalLicense[i].donor.$errors.map(
+                            (e) => e.$message
+                          )
+                        "
                       ></v-text-field>
                     </v-col>
-                    <v-col cols="12" sm="5">
+                    <v-col cols="12" sm="4">
                       <v-text-field
-                        v-model="medicalLicense[i].major"
-                        label="التخصص"
+                        v-model="form.medicalLicense[i].licenseNumber"
+                        label="رقم الرخصة الطبية"
                         required
                         variant="outlined"
+                        :error="
+                          v$.medicalLicense[i].licenseNumber.$errors.length > 0
+                        "
+                        @blur="v$.medicalLicense[i].licenseNumber.$touch"
+                        :error-messages="
+                          v$.medicalLicense[i].licenseNumber.$errors.map(
+                            (e) => e.$message
+                          )
+                        "
                       ></v-text-field>
                     </v-col>
-                    <v-col cols="12" sm="3">
-                      <v-text-field
-                        v-model="medicalLicense[i].year"
-                        label="السنة"
-                        required
-                        variant="outlined"
-                      ></v-text-field>
+                    <v-col cols="12" sm="4">
+                      <SharedDatePicker
+                        v-model="form.medicalLicense[i].expiryDate"
+                        placeholder="تاريخ الانتهاء"
+                        :error-messages="
+                          v$.medicalLicense[i].expiryDate.$errors.map(
+                            (e) => e.$message
+                          )
+                        "
+                      />
                     </v-col>
                   </v-row>
                 </v-container>
@@ -232,7 +312,7 @@
             </div>
           </v-card>
         </v-col>
-        <v-col cols="12" sm="6" xl="4">
+        <v-col cols="12" sm="6">
           <v-card variant="tonal">
             <div class="d-flex justify-space-between align-center px-4 py-4">
               <span>التخصص</span>
@@ -244,32 +324,44 @@
                 عنصر جديد
               </v-btn>
             </div>
-            <div v-if="specialties.length" class="form-wrapper">
-              <div v-for="(item, i) in specialties" :key="i" class="form-inner">
+            <div v-if="form.specialties.length" class="form-wrapper">
+              <div
+                v-for="(item, i) in form.specialties"
+                :key="i"
+                class="form-inner"
+              >
                 <v-container>
                   <v-row>
-                    <v-col cols="12" sm="4">
+                    <v-col cols="12" sm="6">
                       <v-text-field
-                        v-model="specialties[i].donor"
-                        label="الجهة"
-                        required
-                        variant="outlined"
-                      ></v-text-field>
-                    </v-col>
-                    <v-col cols="12" sm="5">
-                      <v-text-field
-                        v-model="specialties[i].major"
+                        v-model="form.specialties[i].specialty"
                         label="التخصص"
                         required
                         variant="outlined"
+                        :error="v$.specialties[i].specialty.$errors.length > 0"
+                        @blur="v$.specialties[i].specialty.$touch"
+                        :error-messages="
+                          v$.specialties[i].specialty.$errors.map(
+                            (e) => e.$message
+                          )
+                        "
                       ></v-text-field>
                     </v-col>
-                    <v-col cols="12" sm="3">
+                    <v-col cols="12" sm="6">
                       <v-text-field
-                        v-model="specialties[i].year"
-                        label="السنة"
+                        v-model="form.specialties[i].certificateNumber"
+                        label="رقم الشهادة"
                         required
                         variant="outlined"
+                        :error="
+                          v$.specialties[i].certificateNumber.$errors.length > 0
+                        "
+                        @blur="v$.specialties[i].certificateNumber.$touch"
+                        :error-messages="
+                          v$.specialties[i].certificateNumber.$errors.map(
+                            (e) => e.$message
+                          )
+                        "
                       ></v-text-field>
                     </v-col>
                   </v-row>
@@ -278,7 +370,7 @@
             </div>
           </v-card>
         </v-col>
-        <v-col cols="12" sm="6" xl="4">
+        <v-col cols="12" sm="6">
           <v-card variant="tonal">
             <div class="d-flex justify-space-between align-center px-4 py-4">
               <span>الشهادات</span>
@@ -290,36 +382,29 @@
                 عنصر جديد
               </v-btn>
             </div>
-            <div v-if="certificates.length" class="form-wrapper">
+            <div v-if="form.certificates.length" class="form-wrapper">
               <div
-                v-for="(item, i) in certificates"
+                v-for="(item, i) in form.certificates"
                 :key="i"
                 class="form-inner"
               >
                 <v-container>
                   <v-row>
-                    <v-col cols="12" sm="4">
+                    <v-col cols="12" sm="8">
                       <v-text-field
-                        v-model="certificates[i].donor"
-                        label="الجهة"
+                        v-model="form.certificates[i].certificateName"
+                        label="اسم الشهادة"
                         required
                         variant="outlined"
-                      ></v-text-field>
-                    </v-col>
-                    <v-col cols="12" sm="5">
-                      <v-text-field
-                        v-model="certificates[i].major"
-                        label="التخصص"
-                        required
-                        variant="outlined"
-                      ></v-text-field>
-                    </v-col>
-                    <v-col cols="12" sm="3">
-                      <v-text-field
-                        v-model="certificates[i].year"
-                        label="السنة"
-                        required
-                        variant="outlined"
+                        :error="
+                          v$.certificates[i].certificateName.$errors.length > 0
+                        "
+                        @blur="v$.certificates[i].certificateName.$touch"
+                        :error-messages="
+                          v$.certificates[i].certificateName.$errors.map(
+                            (e) => e.$message
+                          )
+                        "
                       ></v-text-field>
                     </v-col>
                   </v-row>
@@ -329,7 +414,9 @@
           </v-card>
         </v-col>
         <v-col cols="12" class="tw-mt-20">
-          <v-btn to="/customers" variant="flat" class="ml-2">حفظ ورجوع</v-btn>
+          <v-btn @click="onSave" :loading="loading" variant="flat" class="ml-2"
+            >حفظ ورجوع</v-btn
+          >
           <v-btn to="/customers" color="secondary" variant="flat">الغاء</v-btn>
         </v-col>
       </v-row>
@@ -337,111 +424,228 @@
   </form>
 </template>
 <script setup>
-const qualifications = ref(['بكلاريوس', 'ماجستير', 'دكتوراه']);
+import { required$, digit$ } from '@/helpers/validators';
 
-const studyTraining = reactive([]);
-const medicalLicense = reactive([]);
-const specialties = reactive([]);
-const certificates = reactive([]);
+const qualifications = ref(['بكلاريوس', 'ماجستير', 'دكتوراه']);
+const receivingRequestsOptions = ref(['متاح', 'مشغول']);
+const freeConsultationOptions = ref(['غير متاح', 'استقبال 5 دقائق']);
+const reservationDurations = ref(['30 دقيقة', '45 دقيقة', '60 دقيقة']);
+const maxReservationDurations = ref(['اسبوعان', 'شهر']);
+const reservationTypes = ref(['مجدول فقط', 'مجدول وفوري']);
+const classes = ref(['طبيب', 'مختص', 'اختبار']);
+const categories = ref(['نفسي', 'اجتماعي']);
+const serverErrors = ref({});
+const loading = ref(false);
+const joinTypes = ref([
+  {
+    title: 'خارج المركز',
+    value: 'outside',
+  },
+  {
+    title: 'داخل المركز',
+    value: 'inside',
+  },
+]);
+const form = reactive({
+  name: '',
+  avatar: [],
+  joinType: null,
+  reservationDuration: null,
+  maxReservationDuration: null,
+  reservationType: null,
+  sessionCost: '',
+  biography: '',
+  experienceYears: '',
+  class: null,
+  category: null,
+  professionalTitle: '',
+  freeConsultation: null,
+  receivingRequests: null,
+  ucanPercentage: '',
+  studyTraining: [],
+  medicalLicense: [],
+  specialties: [],
+  certificates: [],
+});
+
+const rules = reactive({
+  sessionCost: {
+    required$,
+  },
+  biography: {
+    required$,
+  },
+  experienceYears: {
+    required$,
+  },
+  class: {
+    required$,
+  },
+  category: {
+    required$,
+  },
+  professionalTitle: {
+    required$,
+  },
+
+  studyTraining: {},
+  specialties: {},
+  medicalLicense: {},
+  certificates: {},
+});
+
+const { v$ } = useCustomVulidate(rules, form, serverErrors);
 
 const addNewStudyTraining = () => {
-  let isThereEmptyValue = false;
-  if (studyTraining.length) {
-    studyTraining.forEach((element) => {
-      Object.values(element).forEach((value) => {
-        if (!value.length) {
-          isThereEmptyValue = true;
-        }
-      });
-    });
-    if (isThereEmptyValue) {
-      alert('يجب عليك ملئ الحقول السابقة اولاً!');
-
-      return;
-    }
-  }
   const object = {
     donor: '',
     major: '',
     year: '',
   };
+  if (form.studyTraining.length) {
+    v$.value.studyTraining.$touch();
 
-  studyTraining.push(object);
+    if (!v$.value.studyTraining.$error) {
+      form.studyTraining.push(object);
+      rules.studyTraining[form.studyTraining.length - 1] = {
+        donor: {
+          required$,
+        },
+        major: {
+          required$,
+        },
+        year: {
+          required$,
+          digit$,
+        },
+      };
+    }
+  } else {
+    form.studyTraining.push(object);
+    rules.studyTraining[0] = {
+      donor: {
+        required$,
+      },
+      major: {
+        required$,
+      },
+      year: {
+        required$,
+        digit$,
+      },
+    };
+  }
 };
 
 const addMedicalLicense = () => {
-  let isThereEmptyValue = false;
-  if (medicalLicense.length) {
-    medicalLicense.forEach((element) => {
-      Object.values(element).forEach((value) => {
-        if (!value.length) {
-          isThereEmptyValue = true;
-        }
-      });
-    });
-    if (isThereEmptyValue) {
-      alert('يجب عليك ملئ الحقول السابقة اولاً!');
-
-      return;
-    }
-  }
   const object = {
     donor: '',
-    major: '',
-    year: '',
+    licenseNumber: '',
+    expiryDate: '',
   };
+  if (form.medicalLicense.length) {
+    v$.value.medicalLicense.$touch();
 
-  medicalLicense.push(object);
+    if (!v$.value.medicalLicense.$error) {
+      form.medicalLicense.push(object);
+      rules.medicalLicense[form.medicalLicense.length - 1] = {
+        donor: {
+          required$,
+        },
+        licenseNumber: {
+          required$,
+          digit$,
+        },
+        expiryDate: {
+          required$,
+        },
+      };
+    }
+  } else {
+    form.medicalLicense.push(object);
+    rules.medicalLicense[0] = {
+      donor: {
+        required$,
+      },
+      licenseNumber: {
+        required$,
+        digit$,
+      },
+      expiryDate: {
+        required$,
+      },
+    };
+  }
 };
 
 const addNewSpecialty = () => {
-  let isThereEmptyValue = false;
-  if (specialties.length) {
-    specialties.forEach((element) => {
-      Object.values(element).forEach((value) => {
-        if (!value.length) {
-          isThereEmptyValue = true;
-        }
-      });
-    });
-    if (isThereEmptyValue) {
-      alert('يجب عليك ملئ الحقول السابقة اولاً!');
-
-      return;
-    }
-  }
   const object = {
-    donor: '',
-    major: '',
-    year: '',
+    specialty: '',
+    certificateNumber: '',
   };
+  if (form.specialties.length) {
+    v$.value.specialties.$touch();
 
-  specialties.push(object);
+    if (!v$.value.specialties.$error) {
+      form.specialties.push(object);
+      rules.specialties[form.specialties.length - 1] = {
+        specialty: {
+          required$,
+        },
+        certificateNumber: {
+          required$,
+          digit$,
+        },
+      };
+    }
+  } else {
+    form.specialties.push(object);
+    rules.specialties[0] = {
+      specialty: {
+        required$,
+      },
+      certificateNumber: {
+        required$,
+        digit$,
+      },
+    };
+  }
 };
 
 const addNewCertificate = () => {
-  let isThereEmptyValue = false;
-  if (certificates.length) {
-    certificates.forEach((element) => {
-      Object.values(element).forEach((value) => {
-        if (!value.length) {
-          isThereEmptyValue = true;
-        }
-      });
-    });
-    if (isThereEmptyValue) {
-      alert('يجب عليك ملئ الحقول السابقة اولاً!');
-
-      return;
-    }
-  }
   const object = {
-    donor: '',
-    major: '',
-    year: '',
+    certificateName: '',
   };
+  if (form.certificates.length) {
+    v$.value.certificates.$touch();
 
-  certificates.push(object);
+    if (!v$.value.certificates.$error) {
+      form.certificates.push(object);
+      rules.certificates[form.certificates.length - 1] = {
+        certificateName: {
+          required$,
+        },
+      };
+    }
+  } else {
+    form.certificates.push(object);
+    rules.certificates[0] = {
+      certificateName: {
+        required$,
+      },
+    };
+  }
+};
+
+const onSave = () => {
+  v$.value.$validate();
+  if (!v$.value.$error) {
+    loading.value = true;
+    setTimeout(() => {
+      loading.value = false;
+      navigateTo('/customers');
+    }, 2000);
+  }
 };
 </script>
 <style></style>
