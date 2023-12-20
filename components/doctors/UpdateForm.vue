@@ -310,11 +310,16 @@
                         variant="outlined"
                       ></v-text-field>
                     </v-col>
+                    
                   </v-row>
                 </v-container>
               </div>
             </div>
           </v-card>
+        </v-col>
+        <v-col cols="12" class="tw-mt-20">
+          <v-btn to="/customers" variant="flat" class="ml-2">حفظ ورجوع</v-btn>
+          <v-btn to="/customers" color="secondary" variant="flat">الغاء</v-btn>
         </v-col>
       </v-row>
     </v-container>
