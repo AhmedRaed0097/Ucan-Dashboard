@@ -8,6 +8,7 @@ const headers = ref([
   { key: 'status', title: 'الحالة' },
   { key: 'qualification', title: 'المؤهل العلمي' },
   { key: 'phone', title: 'الجوال' },
+  { key: 'rate', title: 'التقييم' },
   { key: 'sessions', title: 'عدد الجلسات' },
   { title: 'الاجراء', key: 'actions', sortable: false },
 ]);
@@ -16,6 +17,7 @@ const dataTable = ref([
     id: 1,
     name: 'علي أحمد',
     phone: 502645629,
+    rate: 4,
     status: 'active',
     sessions: 6,
     qualification: 'دكتوراه',
@@ -25,6 +27,7 @@ const dataTable = ref([
     id: 2,
     name: 'فاطمة محمد',
     phone: 501245654,
+    rate: 5,
     status: 'pending',
     sessions: 4,
     qualification: 'ماجستير',
@@ -34,6 +37,7 @@ const dataTable = ref([
     id: 3,
     name: 'محمد خالد',
     phone: 500985600,
+    rate: 3.5,
     status: 'active',
     sessions: 5,
     qualification: 'ماجستير',
@@ -43,6 +47,7 @@ const dataTable = ref([
     id: 4,
     name: 'ريم عبدالرحمن',
     phone: 506575678,
+    rate: 4.5,
     status: 'inactive',
     sessions: 6,
     qualification: 'دكتوراه',
@@ -52,6 +57,7 @@ const dataTable = ref([
     id: 5,
     name: 'يوسف حسين',
     phone: 501145644,
+    rate: 3,
     status: 'active',
     sessions: 2,
     qualification: 'دكتوراه',
@@ -61,6 +67,7 @@ const dataTable = ref([
     id: 6,
     name: 'ليلى مصطفى',
     phone: 504325611,
+    rate: 5,
     status: 'active',
     sessions: 3,
     qualification: 'ماجستير',
@@ -70,6 +77,7 @@ const dataTable = ref([
     id: 7,
     name: 'حسن علي',
     phone: 500005645,
+    rate: 3,
     status: 'inactive',
     sessions: 1,
     qualification: 'دكتوراه',
@@ -79,6 +87,7 @@ const dataTable = ref([
     id: 8,
     name: 'نورهان عبدالله',
     phone: 502245632,
+    rate: 4,
     status: 'active',
     sessions: 7,
     qualification: 'ماجستير',
@@ -88,6 +97,7 @@ const dataTable = ref([
     id: 9,
     name: 'أحمد مصطفى',
     phone: 503335678,
+    rate: 5,
     status: 'active',
     sessions: 0,
     qualification: 'دكتوراه',
@@ -97,6 +107,7 @@ const dataTable = ref([
     id: 10,
     name: 'فاطمة علي',
     phone: 503242221,
+    rate: 4,
     status: 'pending',
     sessions: 12,
     qualification: 'ماجستير',
@@ -106,6 +117,7 @@ const dataTable = ref([
     id: 11,
     name: 'سامي حسين',
     phone: 503245332,
+    rate: 3,
     status: 'inactive',
     sessions: 9,
     qualification: 'دكتوراه',
@@ -115,6 +127,7 @@ const dataTable = ref([
     id: 12,
     name: 'سلمى محمود',
     phone: 501235678,
+    rate: 2,
     status: 'pending',
     sessions: 3,
     qualification: 'ماجستير',
@@ -124,6 +137,7 @@ const dataTable = ref([
     id: 13,
     name: 'ياسر أحمد',
     phone: 509045678,
+    rate: 4,
     status: 'active',
     sessions: 0,
     qualification: 'ماجستير',
@@ -133,6 +147,7 @@ const dataTable = ref([
     id: 14,
     name: 'نور علي',
     phone: 503245998,
+    rate: 1,
     status: 'active',
     sessions: 2,
     qualification: 'ماجستير',
@@ -187,7 +202,13 @@ const dataTable = ref([
   </v-row>
   <v-row justify="space-between" class="mt-4 ml-sm-2">
     <v-col cols="12" sm="5" md="3">
-      <v-btn elevation="10"  @click="showDialog = true" height="39" color="primary" block>
+      <v-btn
+        elevation="10"
+        @click="showDialog = true"
+        height="39"
+        color="primary"
+        block
+      >
         <template v-slot:prepend>
           <v-icon> mdi-plus </v-icon>
         </template>
@@ -340,6 +361,15 @@ const dataTable = ref([
                 label
                 size="small"
               ></v-chip>
+            </template>
+            <template v-slot:[`item.rate`]="{ item }">
+              <v-rating
+                :modelValue="item.rate"
+                color="warning"
+                size="15"
+                half-increments
+                readonly
+              ></v-rating>
             </template>
 
             <template v-slot:[`item.actions`]="{ item }">
