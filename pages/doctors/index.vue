@@ -10,6 +10,7 @@ const headers = ref([
   { key: 'phone', title: 'الجوال' },
   { key: 'rate', title: 'التقييم' },
   { key: 'sessions', title: 'عدد الجلسات' },
+  { key: 'createdAt', title: 'تاريخ الانشاء' },
   { title: 'الاجراء', key: 'actions', sortable: false },
 ]);
 const dataTable = ref([
@@ -22,6 +23,8 @@ const dataTable = ref([
     sessions: 6,
     qualification: 'دكتوراه',
     email: 'ali.ahmad@email.com',
+    createdAt:'16 ديسمبر 2023, 17:50'
+
   },
   {
     id: 2,
@@ -32,6 +35,8 @@ const dataTable = ref([
     sessions: 4,
     qualification: 'ماجستير',
     email: 'fatma.mohamed@email.com',
+    createdAt:'16 ديسمبر 2023, 17:50'
+
   },
   {
     id: 3,
@@ -42,6 +47,8 @@ const dataTable = ref([
     sessions: 5,
     qualification: 'ماجستير',
     email: 'mohamed.khaled@email.com',
+    createdAt:'16 ديسمبر 2023, 17:50'
+
   },
   {
     id: 4,
@@ -52,6 +59,8 @@ const dataTable = ref([
     sessions: 6,
     qualification: 'دكتوراه',
     email: 'reem.abdulrahman@email.com',
+    createdAt:'16 ديسمبر 2023, 17:50'
+
   },
   {
     id: 5,
@@ -62,6 +71,8 @@ const dataTable = ref([
     sessions: 2,
     qualification: 'دكتوراه',
     email: 'youssef.hussein@email.com',
+    createdAt:'16 ديسمبر 2023, 17:50'
+
   },
   {
     id: 6,
@@ -72,6 +83,8 @@ const dataTable = ref([
     sessions: 3,
     qualification: 'ماجستير',
     email: 'leila.mustafa@email.com',
+    createdAt:'16 ديسمبر 2023, 17:50'
+
   },
   {
     id: 7,
@@ -82,6 +95,8 @@ const dataTable = ref([
     sessions: 1,
     qualification: 'دكتوراه',
     email: 'hasan.ali@email.com',
+    createdAt:'16 ديسمبر 2023, 17:50'
+
   },
   {
     id: 8,
@@ -92,6 +107,8 @@ const dataTable = ref([
     sessions: 7,
     qualification: 'ماجستير',
     email: 'norhan.abdullah@email.com',
+    createdAt:'16 ديسمبر 2023, 17:50'
+
   },
   {
     id: 9,
@@ -102,6 +119,8 @@ const dataTable = ref([
     sessions: 0,
     qualification: 'دكتوراه',
     email: 'ahmed.mustafa@email.com',
+    createdAt:'16 ديسمبر 2023, 17:50'
+
   },
   {
     id: 10,
@@ -112,6 +131,8 @@ const dataTable = ref([
     sessions: 12,
     qualification: 'ماجستير',
     email: 'fatma.ali@email.com',
+    createdAt:'16 ديسمبر 2023, 17:50'
+
   },
   {
     id: 11,
@@ -122,6 +143,8 @@ const dataTable = ref([
     sessions: 9,
     qualification: 'دكتوراه',
     email: 'sami.hussein@email.com',
+    createdAt:'16 ديسمبر 2023, 17:50'
+
   },
   {
     id: 12,
@@ -132,6 +155,8 @@ const dataTable = ref([
     sessions: 3,
     qualification: 'ماجستير',
     email: 'salma.mahmoud@email.com',
+    createdAt:'16 ديسمبر 2023, 17:50'
+
   },
   {
     id: 13,
@@ -142,6 +167,8 @@ const dataTable = ref([
     sessions: 0,
     qualification: 'ماجستير',
     email: 'yaser.ahmad@email.com',
+    createdAt:'16 ديسمبر 2023, 17:50'
+
   },
   {
     id: 14,
@@ -152,6 +179,8 @@ const dataTable = ref([
     sessions: 2,
     qualification: 'ماجستير',
     email: 'nour.ali@email.com',
+    createdAt:'16 ديسمبر 2023, 17:50'
+
   },
 ]);
 </script>

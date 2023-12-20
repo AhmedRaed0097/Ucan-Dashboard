@@ -8,6 +8,7 @@ const headers = ref([
   { key: 'phone', title: 'الجوال' },
   { key: 'sessions', title: 'عدد الجلسات' },
   { key: 'wallet', title: 'رصيد المحفظة' },
+  { key: 'createdAt', title: 'تاريخ الانشاء' },
   { title: 'الاجراء', key: 'actions', sortable: false, width: '150' },
 ]);
 const dataTable = ref([
@@ -19,6 +20,7 @@ const dataTable = ref([
     wallet:200,
     status: true,
     email: 'ali.ahmad@email.com',
+    createdAt:'16 ديسمبر 2023, 17:50'
   },
   {
     id: 2,
@@ -28,6 +30,7 @@ const dataTable = ref([
     wallet:150,
     status: true,
     email: 'fatma.mohamed@email.com',
+    createdAt:'16 ديسمبر 2023, 17:50'
   },
   {
     id: 3,
@@ -37,6 +40,7 @@ const dataTable = ref([
     wallet:400,
     status: true,
     email: 'mohamed.khaled@email.com',
+    createdAt:'16 ديسمبر 2023, 17:50'
   },
   {
     id: 4,
@@ -46,6 +50,7 @@ const dataTable = ref([
     wallet:120,
     status: false,
     email: 'reem.abdulrahman@email.com',
+    createdAt:'16 ديسمبر 2023, 17:50'
   },
   {
     id: 5,
@@ -57,6 +62,7 @@ const dataTable = ref([
     city: 'الخرطوم',
     country: 'السودان',
     email: 'youssef.hussein@email.com',
+    createdAt:'16 ديسمبر 2023, 17:50'
   },
   {
     id: 6,
@@ -66,6 +72,7 @@ const dataTable = ref([
     wallet:300,
     status: true,
     email: 'leila.mustafa@email.com',
+    createdAt:'16 ديسمبر 2023, 17:50'
   },
   {
     id: 7,
@@ -75,6 +82,7 @@ const dataTable = ref([
     wallet:80,
     status: false,
     email: 'hasan.ali@email.com',
+    createdAt:'16 ديسمبر 2023, 17:50'
   },
   {
     id: 8,
@@ -84,6 +92,7 @@ const dataTable = ref([
     wallet:900,
     status: true,
     email: 'norhan.abdullah@email.com',
+    createdAt:'16 ديسمبر 2023, 17:50'
   },
   {
     id: 9,
@@ -93,6 +102,7 @@ const dataTable = ref([
     wallet:400,
     status: true,
     email: 'ahmed.mustafa@email.com',
+    createdAt:'16 ديسمبر 2023, 17:50'
   },
   {
     id: 10,
@@ -102,6 +112,7 @@ const dataTable = ref([
     wallet:74,
     status: true,
     email: 'fatma.ali@email.com',
+    createdAt:'16 ديسمبر 2023, 17:50'
   },
   {
     id: 11,
@@ -111,6 +122,7 @@ const dataTable = ref([
     wallet:42,
     status: false,
     email: 'sami.hussein@email.com',
+    createdAt:'16 ديسمبر 2023, 17:50'
   },
   {
     id: 12,
@@ -120,6 +132,7 @@ const dataTable = ref([
     wallet:500,
     status: true,
     email: 'salma.mahmoud@email.com',
+    createdAt:'16 ديسمبر 2023, 17:50'
   },
   {
     id: 13,
@@ -129,6 +142,7 @@ const dataTable = ref([
     wallet:300,
     status: true,
     email: 'yaser.ahmad@email.com',
+    createdAt:'16 ديسمبر 2023, 17:50'
   },
   {
     id: 14,
@@ -138,6 +152,7 @@ const dataTable = ref([
     wallet:85,
     status: true,
     email: 'nour.ali@email.com',
+    createdAt:'16 ديسمبر 2023, 17:50'
   },
 ]);
 </script>
