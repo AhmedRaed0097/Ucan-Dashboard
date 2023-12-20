@@ -154,6 +154,7 @@
                   <v-row>
                     <v-col cols="12" sm="4">
                       <v-text-field
+                        v-model="studyTraining[i].donor"
                         label="الجهة"
                         required
                         variant="outlined"
@@ -161,6 +162,7 @@
                     </v-col>
                     <v-col cols="12" sm="5">
                       <v-text-field
+                        v-model="studyTraining[i].major"
                         label="التخصص"
                         required
                         variant="outlined"
@@ -168,6 +170,7 @@
                     </v-col>
                     <v-col cols="12" sm="3">
                       <v-text-field
+                        v-model="studyTraining[i].year"
                         label="السنة"
                         required
                         variant="outlined"
@@ -201,6 +204,7 @@
                   <v-row>
                     <v-col cols="12" sm="4">
                       <v-text-field
+                        v-model="medicalLicense[i].donor"
                         label="الجهة"
                         required
                         variant="outlined"
@@ -208,6 +212,7 @@
                     </v-col>
                     <v-col cols="12" sm="5">
                       <v-text-field
+                        v-model="medicalLicense[i].major"
                         label="التخصص"
                         required
                         variant="outlined"
@@ -215,6 +220,7 @@
                     </v-col>
                     <v-col cols="12" sm="3">
                       <v-text-field
+                        v-model="medicalLicense[i].year"
                         label="السنة"
                         required
                         variant="outlined"
@@ -244,6 +250,7 @@
                   <v-row>
                     <v-col cols="12" sm="4">
                       <v-text-field
+                        v-model="specialties[i].donor"
                         label="الجهة"
                         required
                         variant="outlined"
@@ -251,6 +258,7 @@
                     </v-col>
                     <v-col cols="12" sm="5">
                       <v-text-field
+                        v-model="specialties[i].major"
                         label="التخصص"
                         required
                         variant="outlined"
@@ -258,6 +266,7 @@
                     </v-col>
                     <v-col cols="12" sm="3">
                       <v-text-field
+                        v-model="specialties[i].year"
                         label="السنة"
                         required
                         variant="outlined"
@@ -291,6 +300,7 @@
                   <v-row>
                     <v-col cols="12" sm="4">
                       <v-text-field
+                        v-model="certificates[i].donor"
                         label="الجهة"
                         required
                         variant="outlined"
@@ -298,6 +308,7 @@
                     </v-col>
                     <v-col cols="12" sm="5">
                       <v-text-field
+                        v-model="certificates[i].major"
                         label="التخصص"
                         required
                         variant="outlined"
@@ -305,12 +316,12 @@
                     </v-col>
                     <v-col cols="12" sm="3">
                       <v-text-field
+                        v-model="certificates[i].year"
                         label="السنة"
                         required
                         variant="outlined"
                       ></v-text-field>
                     </v-col>
-                    
                   </v-row>
                 </v-container>
               </div>
