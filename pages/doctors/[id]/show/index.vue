@@ -34,8 +34,14 @@
         </v-col>
       </v-row>
     </v-col>
+   
     <v-col cols="12" sm="9">
-      <DoctorsShowTabs />
+      <v-btn to="edit" variant="text" class="float-left">
+      <span class="mdi mdi-square-edit-outline"></span>
+
+      الانتقال الى صفحة التعديل
+    </v-btn>
+      <DoctorsShowTabs class="mt-10" />
     </v-col>
   </v-row>
 </template>
@@ -80,5 +86,6 @@ const info = ref([
 const response = computed(() => {
   return doctorStore.responseData;
 });
+
 </script>
 <style></style>
