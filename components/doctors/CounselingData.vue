@@ -39,7 +39,7 @@
         required
         variant="outlined"
         :error="v$.sessionCost.$errors.length > 0"
-        @blur="validate"
+        @input="validate"
         :error-messages="v$.sessionCost.$errors.map((e) => e.$message)"
       ></v-text-field>
     </v-col>
@@ -114,7 +114,8 @@ const { v$ } = useCustomVulidate(
 );
 
 const validate = () => {
-  v$.sessionCost.$touch();
+  console.log('from change');
+  v$.value.sessionCost.$touch();
   if (!v$.value.$error) {
     emit('success');
   } else {
