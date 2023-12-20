@@ -157,3 +157,16 @@ ul:not(.v-pagination__list) {
   bottom: initial !important;
   top: 0 !important;
 }
+
+.dp__input{
+  padding-right: 16px !important;
+  height: 40px !important;
+  margin-bottom: 0 !important;
+
+}
+.dp__input_wrap .dp__clear_icon{
+  left: 0 !important;
+}
+.dp__input_icon{
+  display: none !important; 
+}
