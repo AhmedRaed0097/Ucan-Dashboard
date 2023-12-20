@@ -67,11 +67,11 @@ const areaChart = {
           <div class="mt-2">
             <h3 class="tw-text-xl sm:tw-text-2xl md:tw-text-3xl lg:tw-text-4xl">$6,820</h3>
             <div class="mt-1">
-              <v-avatar class="bg-lighterror text-accent" size="25">
-                <ArrowDownRightIcon size="20" />
+              <v-avatar class="bg-lightsuccess text-success" size="25">
+                <ArrowUpLeftIcon size="20" />
               </v-avatar>
               <span class="text-subtitle-1 ml-2 font-weight-bold">+9%</span>
-              <span class="text-subtitle-1 text-muted ml-2">last year</span>
+              <span class="text-subtitle-1 text-muted ml-2">الشهر السابق</span>
             </div>
           </div>
         </v-col>

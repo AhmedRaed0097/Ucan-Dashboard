@@ -5,14 +5,13 @@ import { useTheme } from 'vuetify';
 const theme = useTheme();
 const primary = theme.current.value.colors.primary;
 const secondary = theme.current.value.colors.secondary;
-const select = ref('مارس 2023');
-const items = ref(['مارس 2023', 'ابريل 2023', 'مايو 2023']);
+const select = ref('الاسبوغ الاول');
+const items = ref(['الاسبوغ الاول','الاسبوغ الثاني', 'الاسبوع الثالث', 'الاسبوع الرابع']);
 const chartOptions = computed(() => {
     return {
 
         series: [
-            { name: 'Earnings this month:', data: [355, 390, 300, 350, 390, 180, 355, 390] },
-            { name: 'Expense this month:', data: [280, 250, 325, 215, 250, 310, 280, 250] },
+            { name: 'Earnings this month:', data: [390, 300, 350, 390, 180, 355, 390] },
         ],
         chartOptions: {
             grid: {
@@ -25,7 +24,7 @@ const chartOptions = computed(() => {
                 },
             },
             plotOptions: {
-                bar: { horizontal: false, columnWidth: '35%', borderRadius: [8] },
+                bar: { horizontal: false, columnWidth: '15%', borderRadius: [8] },
             },
             colors: [primary, secondary],
             chart: {
@@ -42,7 +41,7 @@ const chartOptions = computed(() => {
             legend: { show: false },
             xaxis: {
                 type: 'category',
-                categories: ['16/08', '17/08', '18/08', '19/08', '20/08', '21/08', '22/08', '23/08'],
+                categories: ['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'],
                 labels: {
                     style: { cssClass: 'grey--text lighten-2--text fill-color' },
                 },
@@ -87,7 +86,7 @@ const chartOptions = computed(() => {
     <v-card elevation="10" class="withbg">
         <v-card-item>
             <div class="d-sm-flex align-center justify-space-between pt-sm-2">
-                <div><v-card-title class="text-h5">نظرة عامة على المبيعات</v-card-title></div>
+                <div><v-card-title class="text-h5">دخل الاسبوع</v-card-title></div>
                 <div class="my-sm-0 my-2">
                     <v-select v-model="select" :items="items" variant="outlined" 
                         hide-details></v-select>
