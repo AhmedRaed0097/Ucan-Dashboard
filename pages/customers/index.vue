@@ -4,43 +4,55 @@ const search = ref('');
 const headers = ref([
   { key: 'name', title: 'الاسم' },
   { key: 'email', title: 'البريد الالتكروني' },
-  { key: 'age', title: 'الجوال' },
   { key: 'status', title: 'الحالة' },
+  { key: 'phone', title: 'الجوال' },
+  { key: 'sessions', title: 'عدد الجلسات' },
+  { key: 'wallet', title: 'رصيد المحفظة' },
   { title: 'الاجراء', key: 'actions', sortable: false, width: '150' },
 ]);
 const dataTable = ref([
   {
     id: 1,
     name: 'علي أحمد',
-    age: 502645629,
+    phone: 502645629,
+    sessions: 3,
+    wallet:200,
     status: true,
     email: 'ali.ahmad@email.com',
   },
   {
     id: 2,
     name: 'فاطمة محمد',
-    age: 501245654,
+    phone: 501245654,
+    sessions: 2,
+    wallet:150,
     status: true,
     email: 'fatma.mohamed@email.com',
   },
   {
     id: 3,
     name: 'محمد خالد',
-    age: 500985600,
+    phone: 500985600,
+    sessions: 6,
+    wallet:400,
     status: true,
     email: 'mohamed.khaled@email.com',
   },
   {
     id: 4,
     name: 'ريم عبدالرحمن',
-    age: 506575678,
+    phone: 506575678,
+    sessions: 1,
+    wallet:120,
     status: false,
     email: 'reem.abdulrahman@email.com',
   },
   {
     id: 5,
     name: 'يوسف حسين',
-    age: 501145644,
+    phone: 501145644,
+    sessions: 4,
+    wallet:200,
     status: true,
     city: 'الخرطوم',
     country: 'السودان',
@@ -49,63 +61,81 @@ const dataTable = ref([
   {
     id: 6,
     name: 'ليلى مصطفى',
-    age: 504325611,
+    phone: 504325611,
+    sessions: 3,
+    wallet:300,
     status: true,
     email: 'leila.mustafa@email.com',
   },
   {
     id: 7,
     name: 'حسن علي',
-    age: 500005645,
+    phone: 500005645,
+    sessions: 2,
+    wallet:80,
     status: false,
     email: 'hasan.ali@email.com',
   },
   {
     id: 8,
     name: 'نورهان عبدالله',
-    age: 502245632,
+    phone: 502245632,
+    sessions: 5,
+    wallet:900,
     status: true,
     email: 'norhan.abdullah@email.com',
   },
   {
     id: 9,
     name: 'أحمد مصطفى',
-    age: 503335678,
+    phone: 503335678,
+    sessions: 7,
+    wallet:400,
     status: true,
     email: 'ahmed.mustafa@email.com',
   },
   {
     id: 10,
     name: 'فاطمة علي',
-    age: 503242221,
+    phone: 503242221,
+    sessions: 8,
+    wallet:74,
     status: true,
     email: 'fatma.ali@email.com',
   },
   {
     id: 11,
     name: 'سامي حسين',
-    age: 503245332,
+    phone: 503245332,
+    sessions: 6,
+    wallet:42,
     status: false,
     email: 'sami.hussein@email.com',
   },
   {
     id: 12,
     name: 'سلمى محمود',
-    age: 501235678,
+    phone: 501235678,
+    sessions: 4,
+    wallet:500,
     status: true,
     email: 'salma.mahmoud@email.com',
   },
   {
     id: 13,
     name: 'ياسر أحمد',
-    age: 509045678,
+    phone: 509045678,
+    sessions: 6,
+    wallet:300,
     status: true,
     email: 'yaser.ahmad@email.com',
   },
   {
     id: 14,
     name: 'نور علي',
-    age: 503245998,
+    phone: 503245998,
+    sessions: 2,
+    wallet:85,
     status: true,
     email: 'nour.ali@email.com',
   },
@@ -117,7 +147,6 @@ const dataTable = ref([
   >
     العملاء
   </h3>
-
 
   <v-row justify="space-between" class="mt-4">
     <v-col cols="12" sm="4" md="2" order="2" order-sm="1">
@@ -143,8 +172,7 @@ const dataTable = ref([
         variant="solo-filled"
         clearable
       ></v-text-field>
-  </v-col>
-
+    </v-col>
   </v-row>
   <v-row>
     <v-col cols="12" md="12">
