@@ -43,7 +43,6 @@ const toggleTheme = () => {
           <!---Menu Loop -->
           <template v-for="(item, i) in sidebarMenu" :key="i">
             <!---Item Sub Header -->
-           xx {{ item.inProduction }}
             <div v-if="(item.inProduction && appEnv === 'production') || appEnv !== 'production'">
 
             <LayoutFullVerticalSidebarCollapsedNavItem
