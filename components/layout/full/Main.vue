@@ -10,16 +10,16 @@ const sDrawer = ref(true);
 const darkMode = ref(false);
 const theme = useTheme();
 const isDarkMode = localStorage.getItem('isDarkMode');
+
 if (isDarkMode === 'true') {
   darkMode.value = isDarkMode;
   theme.global.name.value = 'dark';
 }
 
-const appEnv = computed(()=>{
-  return config.public.appEnv
-})
+const appEnv = computed(() => {
+  return config.public.appEnv;
+});
 
-console.log('appEnv ',appEnv.value);
 const toggleTheme = () => {
   darkMode.value = !darkMode.value;
   localStorage.setItem('isDarkMode', darkMode.value);
@@ -43,23 +43,26 @@ const toggleTheme = () => {
           <!---Menu Loop -->
           <template v-for="(item, i) in sidebarMenu" :key="i">
             <!---Item Sub Header -->
-            <div v-if="(item.inProduction && appEnv === 'production') || appEnv !== 'production'">
+            <div
+              v-if="
+                (item.inProduction && appEnv === 'production') ||
+                appEnv !== 'production'
+              "
+            >
+              <LayoutFullVerticalSidebarCollapsedNavItem
+                v-if="item.groupTitle"
+                :item="item"
+                class="leftPadding"
+              />
 
-            <LayoutFullVerticalSidebarCollapsedNavItem
-              v-if="item.groupTitle"
-              :item="item"
-              class="leftPadding"
-            />
-
-            <!---Single Item-->
-            <LayoutFullVerticalSidebarNavItem
-              :item="item"
-              v-else
-              class="leftPadding"
-            />
-            <!---End Single Item-->
-          </div>
-
+              <!---Single Item-->
+              <LayoutFullVerticalSidebarNavItem
+                :item="item"
+                v-else
+                class="leftPadding"
+              />
+              <!---End Single Item-->
+            </div>
           </template>
         </v-list>
       </perfect-scrollbar>
