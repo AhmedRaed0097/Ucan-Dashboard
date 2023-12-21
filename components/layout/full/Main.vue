@@ -3,6 +3,7 @@ import { ref, shallowRef } from 'vue';
 import sidebarItems from '@/components/layout/full/vertical-sidebar/sidebarItem';
 import { Menu2Icon } from 'vue-tabler-icons';
 import { useTheme } from 'vuetify';
+const config = useRuntimeConfig();
 
 const sidebarMenu = shallowRef(sidebarItems);
 const sDrawer = ref(true);
@@ -14,6 +15,8 @@ if (isDarkMode === 'true') {
   theme.global.name.value = 'dark';
 }
 
+
+console.log('appEnv ', config.public.appEnv);
 const toggleTheme = () => {
   darkMode.value = !darkMode.value;
   localStorage.setItem('isDarkMode', darkMode.value);
