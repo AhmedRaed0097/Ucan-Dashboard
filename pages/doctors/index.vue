@@ -407,7 +407,7 @@ const dataTable = ref([
                   variant="text"
                   size="small"
                 >
-                  <v-icon size="x-small" color="primary" class="mr-1">
+                  <v-icon size="x-small" color="primary" class="ml-1">
                     mdi-eye
                   </v-icon>
                   عرض
@@ -417,7 +417,7 @@ const dataTable = ref([
                   variant="text"
                   size="small"
                 >
-                  <span class="mdi mdi-square-edit-outline"></span>
+                  <span class="mdi mdi-square-edit-outline ml-1"></span>
 
                   تعديل
                 </v-btn>

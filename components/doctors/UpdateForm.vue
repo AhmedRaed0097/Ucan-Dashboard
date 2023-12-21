@@ -81,13 +81,13 @@
         </v-col>
         <v-col cols="12" sm="6" xl="4">
           <v-text-field
-            v-model="form.sessionCost"
+            v-model="form.sessionPrice"
             label="قيمة الجلسة"
             required
             variant="outlined"
-            :error="v$.sessionCost.$errors.length > 0"
-            @blur="v$.sessionCost.$touch"
-            :error-messages="v$.sessionCost.$errors.map((e) => e.$message)"
+            :error="v$.sessionPrice.$errors.length > 0"
+            @blur="v$.sessionPrice.$touch"
+            :error-messages="v$.sessionPrice.$errors.map((e) => e.$message)"
           ></v-text-field>
         </v-col>
         <v-col cols="12" sm="6" xl="4">
@@ -453,7 +453,7 @@ const form = reactive({
   reservationDuration: null,
   maxReservationDuration: null,
   reservationType: null,
-  sessionCost: '',
+  sessionPrice: '',
   biography: '',
   experienceYears: '',
   class: null,
@@ -469,7 +469,7 @@ const form = reactive({
 });
 
 const rules = reactive({
-  sessionCost: {
+  sessionPrice: {
     required$,
   },
   biography: {

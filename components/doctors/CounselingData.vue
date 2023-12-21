@@ -34,13 +34,13 @@
     </v-col>
     <v-col cols="12" sm="6">
       <v-text-field
-        v-model="doctorStore.form.consultantData.sessionCost"
+        v-model="doctorStore.form.consultantData.sessionPrice"
         label="قيمة الجلسة"
         required
         variant="outlined"
-        :error="v$.sessionCost.$errors.length > 0"
+        :error="v$.sessionPrice.$errors.length > 0"
         @input="validate"
-        :error-messages="v$.sessionCost.$errors.map((e) => e.$message)"
+        :error-messages="v$.sessionPrice.$errors.map((e) => e.$message)"
       ></v-text-field>
     </v-col>
     <v-col cols="12" sm="6">
@@ -101,7 +101,7 @@ const serverErrors = ref({});
 const maxDurations = ref(['اسبوعان', 'شهر']);
 
 const rules = reactive({
-  sessionCost: {
+  sessionPrice: {
     required$,
     digit$,
   },
@@ -115,7 +115,7 @@ const { v$ } = useCustomVulidate(
 
 const validate = () => {
   console.log('from change');
-  v$.value.sessionCost.$touch();
+  v$.value.sessionPrice.$touch();
   if (!v$.value.$error) {
     emit('success');
   } else {
