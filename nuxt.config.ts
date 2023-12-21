@@ -18,7 +18,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       baseUrl: process.env.BASE_URL,
-      appEnv: process.env.ENV,
+      appEnv: process.env.TEST,
     },
   },
   typescript: {

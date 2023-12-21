@@ -15,8 +15,11 @@ if (isDarkMode === 'true') {
   theme.global.name.value = 'dark';
 }
 
+const appEnv = computed(()=>{
+  return config.public.appEnv
+})
 
-console.log('appEnv ', config.public.appEnv);
+console.log('appEnv ',appEnv.value);
 const toggleTheme = () => {
   darkMode.value = !darkMode.value;
   localStorage.setItem('isDarkMode', darkMode.value);
@@ -40,6 +43,8 @@ const toggleTheme = () => {
           <!---Menu Loop -->
           <template v-for="(item, i) in sidebarMenu" :key="i">
             <!---Item Sub Header -->
+           xx {{ item.inProduction }}
+            <div v-if="(item.inProduction && appEnv === 'production') || appEnv !== 'production'">
 
             <LayoutFullVerticalSidebarCollapsedNavItem
               v-if="item.groupTitle"
@@ -54,6 +59,8 @@ const toggleTheme = () => {
               class="leftPadding"
             />
             <!---End Single Item-->
+          </div>
+
           </template>
         </v-list>
       </perfect-scrollbar>
