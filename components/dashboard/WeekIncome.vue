@@ -5,8 +5,8 @@ import { useTheme } from 'vuetify';
 const theme = useTheme();
 const primary = theme.current.value.colors.primary;
 const secondary = theme.current.value.colors.secondary;
-const select = ref('الاسبوغ الاول');
-const items = ref(['الاسبوغ الاول','الاسبوغ الثاني', 'الاسبوع الثالث', 'الاسبوع الرابع']);
+const select = ref('الاسبوع الاول');
+const items = ref(['الاسبوع الاول','الاسبوع الثاني', 'الاسبوع الثالث', 'الاسبوع الرابع']);
 const chartOptions = computed(() => {
     return {
 
