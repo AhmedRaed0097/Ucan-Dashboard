@@ -1,5 +1,6 @@
 <script setup>
 const search = ref('');
+const showDialog = ref(false);
 
 const headers = ref([
   { key: 'sessionDate', title: 'تاريخ الجلسة' },
@@ -107,6 +108,7 @@ const dataTable = ref([
 ]);
 </script>
 <template>
+  <SessionsCreateDialog :show="showDialog" @close="showDialog = false" />
   <h3
     class="tw-text-xl sm:tw-text-2xl md:tw-text-3xl 2xl:tw-text-4xl pl-7 mt-2 mb-8 mb-sm-0"
   >
@@ -130,7 +132,21 @@ const dataTable = ref([
   </v-row>
 
   <v-row class="mt-4">
-    <v-col v-for="i in 6" :key="i" cols="6" sm="4" md="2">
+    <v-col cols="6" sm="4" md="2">
+      <v-btn
+        elevation="10"
+        @click="showDialog = true"
+        height="39"
+        color="primary"
+        block
+      >
+        <template v-slot:prepend>
+          <v-icon> mdi-plus </v-icon>
+        </template>
+        إنشاء جلسة جديدة
+      </v-btn>
+    </v-col>
+    <v-col v-for="i in 5" :key="i" cols="6" sm="4" md="2">
       <v-combobox
         label="فلترة"
         :items="[
