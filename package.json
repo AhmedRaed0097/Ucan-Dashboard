@@ -30,7 +30,13 @@
     "vue3-steppy": "^1.3.0",
     "vue3-timepicker": "^1.0.0-beta.2",
     "vuetify": "^3.4.7",
-    "yup": "^0.32.11"
+    "yup": "^0.32.11",
+    "@fullcalendar/core": "^5.11.3",
+    "@fullcalendar/daygrid": "^5.11.3",
+    "@fullcalendar/interaction": "^5.11.3",
+    "@fullcalendar/list": "^5.11.3",
+    "@fullcalendar/timegrid": "^5.11.3",
+    "@fullcalendar/vue3": "^5.11.2"
   },
   "devDependencies": {
     "@pinia/nuxt": "^0.4.11",

@@ -134,8 +134,8 @@ const dataTable = ref([
   <v-row class="mt-4">
     <v-col cols="6" sm="4" md="2">
       <v-btn
+        to="consulting-sessions/add"
         elevation="10"
-        @click="showDialog = true"
         height="39"
         color="primary"
         block
