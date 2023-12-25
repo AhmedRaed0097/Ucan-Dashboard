@@ -1,8 +1,12 @@
 <template>
   <SessionsAppointmentBooking
     :show="showDialog"
-    @close="showDialog = false"
+    :appointmentData="appointmentData"
     :formType="formType"
+    @close="
+      appointmentData = null;
+      showDialog = false;
+    "
   />
   <v-card height="80vh" class="widget-calendar mt-12">
     <div class="p-3 card-body">
@@ -34,6 +38,7 @@ import { appointments } from '~/helpers/appointments';
 const today = new Date();
 
 const oneMonthLater = new Date();
+const appointmentData = ref(null);
 const showDialog = ref(false);
 const formType = ref('add');
 
@@ -81,10 +86,17 @@ const calendarOptions = reactive({
   },
   eventClick: async (arg) => {
     if (!arg.event.classNames.length) {
+      formType.value = 'add';
+
       showDialog.value = true;
-    }else{
-      formType.value = 'edit'
+    } else {
+      const selectedEvent = appointments.find(
+        (appointment) => appointment.id === arg.event.id
+      );
+
+      formType.value = 'edit';
       showDialog.value = true;
+      appointmentData.value = selectedEvent;
     }
     console.log('eventClick ', arg.event);
   },
