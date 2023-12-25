@@ -14,7 +14,7 @@ const props = defineProps({
   },
   appointmentData: {
     type: Object,
-    default: () => {},
+    default: () => null,
   },
 });
 
@@ -23,10 +23,24 @@ const sessionStore = useSessionStore();
 const serverErrors = ref({});
 const dialog = ref(false);
 const loading = ref(false);
+const approvedStatus = ref(['مؤكد', 'غير مؤكد']);
+const status = ref(['جاري', 'قادم', 'منتهي']);
 const sessionDurations = ref(['30 دقيقة', '45 دقيقة', '60 دقيقة']);
 
+const form = ref({
+  patientName: '',
+  doctorName: '',
+  status: null,
+  confirmationStatus: null,
+  patientProfileNumber: 654654,
+  date: '',
+  from: null,
+  to: null,
+  note: '',
+});
+
 const rules = reactive({
-  customerName: {
+  patientName: {
     required$,
     minLength$: minLength$(3),
   },
@@ -47,18 +61,9 @@ const rules = reactive({
   },
 });
 
-const customerNumber = ref(null);
+const patientProfileNumber = ref(null);
 
-const form = reactive({
-  customerName: '',
-  status: null,
-  confirmationStatus: null,
-  sessionDate: '',
-  from: null,
-  to: null,
-  note: '',
-});
-const { v$ } = useCustomVulidate(rules, form, serverErrors);
+const { v$ } = useCustomVulidate(rules, form.value, serverErrors);
 
 const response = computed(() => {
   return sessionStore.responseData;
@@ -68,6 +73,32 @@ watch(
   () => props.show,
   (newValue) => {
     dialog.value = newValue;
+    if (!props.show) {
+      form.value = {
+        patientName: '',
+        doctorName: '',
+        status: null,
+        confirmationStatus: null,
+        patientProfileNumber: 654654,
+        date: '',
+        from: null,
+        to: null,
+        note: '',
+      };
+    }
+  },
+  { deep: true }
+);
+
+watch(
+  () => props.appointmentData,
+
+  (newValue) => {
+    if (newValue) {
+      for (const key in form.value) {
+        form.value[key] = newValue[key];
+      }
+    }
   },
   { deep: true }
 );
@@ -110,7 +141,7 @@ const onSave = () => {
         <v-row>
           <v-col cols="12" sm="6">
             <v-select
-              v-model="customerNumber"
+              v-model="patientProfileNumber"
               :items="sessionDurations"
               label="اختيار عميل"
               variant="outlined"
@@ -120,7 +151,7 @@ const onSave = () => {
           </v-col>
           <v-col cols="12" sm="6">
             <v-text-field
-              v-model="form.sessionDate"
+              v-model="form.date"
               label="تاريخ الحجز"
               required
               variant="outlined"
@@ -130,18 +161,18 @@ const onSave = () => {
 
           <v-col cols="12" sm="6">
             <v-text-field
-              v-model="form.customerName"
+              v-model="form.patientName"
               label="اسم المريض"
               required
               variant="outlined"
-              :error="v$.customerName.$errors.length > 0"
-              @blur="v$.customerName.$touch"
-              :error-messages="v$.customerName.$errors.map((e) => e.$message)"
+              :error="v$.patientName.$errors.length > 0"
+              @blur="v$.patientName.$touch"
+              :error-messages="v$.patientName.$errors.map((e) => e.$message)"
             ></v-text-field>
           </v-col>
           <v-col cols="12" sm="6">
             <v-text-field
-              v-model="customerNumber"
+              v-model="form.patientProfileNumber"
               label="رقم ملف المريض"
               required
               variant="outlined"
@@ -149,13 +180,23 @@ const onSave = () => {
             ></v-text-field>
           </v-col>
           <v-col cols="12" sm="6">
-            <SharedTimePicker v-model="form.from" placeholder="من" />
+            <SharedTimePicker
+              v-model="form.from"
+              placeholder="من"
+              :error="v$.from.$error"
+              @blur="v$.from.$touch"
+            />
             <span v-if="v$.from" class="tw-text-xs text-error">
               {{ v$.from ? v$.from.$errors.map((e) => e.$message)[0] : "" }}
             </span>
           </v-col>
           <v-col cols="12" sm="6">
-            <SharedTimePicker v-model="form.to" placeholder="إلى" />
+            <SharedTimePicker
+              v-model="form.to"
+              placeholder="إلى"
+              :error="v$.to.$error"
+              @blur="v$.to.$touch"
+            />
             <span v-if="v$.to" class="tw-text-xs text-error">
               {{ v$.to ? v$.to.$errors.map((e) => e.$message)[0] : "" }}
             </span>
@@ -164,7 +205,7 @@ const onSave = () => {
           <v-col cols="12" sm="6">
             <v-select
               v-model="form.confirmationStatus"
-              :items="sessionDurations"
+              :items="approvedStatus"
               label="حالة التاكيد"
               variant="outlined"
               autocomplete="new-password"
@@ -178,7 +219,7 @@ const onSave = () => {
           <v-col cols="12" sm="6">
             <v-select
               v-model="form.status"
-              :items="sessionDurations"
+              :items="status"
               label="الحالة "
               variant="outlined"
               autocomplete="new-password"
@@ -210,14 +251,7 @@ const onSave = () => {
               class="ml-4"
               >جديد</v-btn
             >
-            <v-btn
-              v-else
-              color="primary"
-              elevation="10"
-              @click="onSave"
-              class="ml-4"
-              >تعديل</v-btn
-            >
+
             <v-btn color="primary" elevation="10" @click="onSave" class="ml-4"
               >حفظ</v-btn
             >
