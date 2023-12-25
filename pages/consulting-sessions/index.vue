@@ -133,8 +133,13 @@ const dataTable = ref([
 
   <v-row class="mt-4">
     <v-col cols="6" sm="4" md="2">
-      <!-- @click="showDialog = true" -->
-      <v-btn to="/add" elevation="10" height="39" color="primary" block>
+      <v-btn
+        to="consulting-sessions/add"
+        elevation="10"
+        height="39"
+        color="primary"
+        block
+      >
         <template v-slot:prepend>
           <v-icon> mdi-plus </v-icon>
         </template>
