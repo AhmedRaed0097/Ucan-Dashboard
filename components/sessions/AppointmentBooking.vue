@@ -122,8 +122,8 @@ const onSave = () => {
 <template>
   <SharedResponseAlert :response="response" />
 
-  <v-dialog v-model="dialog" persistent width="800" height="650">
-    <v-card height="100%" class="rounded-lg pt-4">
+  <v-dialog v-model="dialog" persistent width="800" height="max-content">
+    <v-card height="100%" class="rounded-lg py-4">
       <v-btn
         elevation="0"
         class="close-dialog-btn"
@@ -159,6 +159,17 @@ const onSave = () => {
             ></v-text-field>
           </v-col>
 
+          <v-col cols="12" sm="6">
+            <v-text-field
+              v-model="form.doctorName"
+              label="اسم الطبيب"
+              required
+              variant="outlined"
+              :error="v$.patientName.$errors.length > 0"
+              @blur="v$.patientName.$touch"
+              :error-messages="v$.patientName.$errors.map((e) => e.$message)"
+            ></v-text-field>
+          </v-col>
           <v-col cols="12" sm="6">
             <v-text-field
               v-model="form.patientName"

@@ -4,25 +4,49 @@
     :appointmentData="appointmentData"
     :formType="formType"
     @close="
-      appointmentData = null;
+      appointmentData = {};
       showDialog = false;
     "
   />
   <v-card height="80vh" class="widget-calendar mt-12">
     <div class="p-3 card-body">
-      <FullCalendar :options="calendarOptions">
-        <template v-slot:eventContent="{ event }">
-          <div
-            v-if="getTime(event)"
-            class="custom-event h-100 text-white text-xs d-flex justify-content-between align-items-center ltr px-2"
+      <v-row>
+        <v-col cols="12" sm="3" class="tw-relative tw-top-40 pr-6 pl-0">
+          <v-select
+            item-title="name"
+            :items="doctorsList"
+            label="اختر الطبيب"
+            variant="outlined"
           >
-            <i class="fa fa-close me-2"></i>
-            <span class="text-white rtl">
-              {{ getTime(event) }}
-            </span>
-          </div>
-        </template>
-      </FullCalendar>
+            <template v-slot:item="{ props, item }">
+              <div class="d-flex pr-2">
+                <v-avatar>
+                  <v-img src="/images/users/avatar-1.jpg" alt="John"></v-img>
+                </v-avatar>
+                <v-list-item
+                  v-bind="props"
+                  :subtitle="item.raw.department"
+                ></v-list-item>
+              </div>
+            </template>
+          </v-select>
+        </v-col>
+        <v-col cols="12" sm="12">
+          <FullCalendar :options="calendarOptions">
+            <template v-slot:eventContent="{ event }">
+              <div
+                v-if="getTime(event)"
+                class="custom-event h-100 text-white text-xs d-flex justify-content-between align-items-center ltr px-2"
+              >
+                <i class="fa fa-close me-2"></i>
+                <span class="text-white rtl">
+                  {{ getTime(event) }}
+                </span>
+              </div>
+            </template>
+          </FullCalendar>
+        </v-col>
+      </v-row>
     </div>
   </v-card>
 </template>
@@ -39,6 +63,44 @@ const today = new Date();
 
 const oneMonthLater = new Date();
 const appointmentData = ref(null);
+const doctorsList = ref([
+  {
+    name: 'محمد على',
+    department: 'اخصائي نفسي',
+  },
+  {
+    name: 'محمد على',
+    department: 'اخصائي نفسي',
+  },
+  {
+    name: 'محمد على',
+    department: 'اخصائي نفسي نفسي',
+  },
+  {
+    name: 'محمد على',
+    department: 'اخصائي نفسي',
+  },
+  {
+    name: 'محمد على',
+    department: 'اخصائي نفسي',
+  },
+  {
+    name: 'محمد على',
+    department: 'اخصائي نفسي',
+  },
+  {
+    name: 'محمد على',
+    department: 'اخصائي نفسي',
+  },
+  {
+    name: 'محمد على',
+    department: 'اخصائي نفسي',
+  },
+  {
+    name: 'محمد على',
+    department: 'اخصائي نفسي',
+  },
+]);
 const showDialog = ref(false);
 const formType = ref('add');
 
@@ -64,6 +126,8 @@ const calendarOptions = reactive({
   dayMaxEvents: true,
   weekends: true,
   locale: arLocale,
+  slotDuration: '00:15:00', // 2 hours
+
   allDaySlot: false,
   events: appointments,
   dateClick: async (arg) => {
@@ -100,7 +164,6 @@ const calendarOptions = reactive({
     }
     console.log('eventClick ', arg.event);
   },
-
   eventChange: async (arg) => {
     const id = arg.event.id;
     console.log('eventChange ', arg.event);
@@ -149,6 +212,11 @@ function getTime(event) {
 </script>
 
 <style lang="scss">
+.fc .fc-toolbar {
+  @media (max-width: 500px) {
+    flex-direction: column !important;
+  }
+}
 .fc-event {
   background-color: #81b199 !important;
   border-color: transparent !important;
@@ -216,8 +284,26 @@ function getTime(event) {
   border-color: #81b199 !important;
   font-size: 15px !important;
 }
+.fc-toolbar-title {
+  @media (max-width: 400px) {
+    margin: 10px 0 !important;
+  }
+}
 
+.fc-col-header-cell {
+  @media (max-width: 400px) {
+    text-align: right !important;
+    font-size: 10px !important;
+  }
+}
 .dp__time_input {
   flex-direction: row-reverse !important;
+}
+.fc-day-fri,
+.fc-day-disabled {
+  display: none !important;
+}
+.fc-direction-rtl .fc-timegrid-slot-label-frame {
+  text-align: right;
 }
 </style>
