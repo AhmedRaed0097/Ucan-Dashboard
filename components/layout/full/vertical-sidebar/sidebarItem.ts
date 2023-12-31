@@ -52,8 +52,7 @@ const sidebarItem: menu[] = [
     title: "الملفات الطبية",
     icon: UsersIcon,
     to: "/medical-files",
-
-    inProduction:false
+    inProduction:false 
   },
   {
     groupTitle: "ادارة الصلاحيات",
