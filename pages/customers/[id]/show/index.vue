@@ -13,7 +13,7 @@
           :key="index"
           class="tw-px-8"
           :class="{
-            '	 tw-bg-stone-100 tw-border-y tw-border-zinc-300 ':
+            'tw-bg-stone-100 tw-border-y tw-border-zinc-300':
               (index + 1) % 2 === 0 && index !== 0,
           }"
         >

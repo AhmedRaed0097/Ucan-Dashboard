@@ -46,6 +46,13 @@ const sidebarItem: menu[] = [
     title: "العملاء",
     icon: UsersIcon,
     to: "/customers",
+    inProduction:false
+  },
+  {
+    title: "الملفات الطبية",
+    icon: UsersIcon,
+    to: "/medical-files",
+
     inProduction:true
   },
   {

@@ -57,43 +57,8 @@ export const useAuthStore = defineStore('auth', {
       this.loading = false;
     },
     async signIn(payload) {
-      const sessionStore = useSessionStore();
       const formData = new FormData();
       this.loading = true;
-      const messaging = getMessaging();
-      await Notification.requestPermission(async (permission) => {
-        if (permission === 'granted') {
-          this.isGranted = true;
-        } else {
-          this.isGranted = false;
-        }
-      });
-      if (this.isGranted) {
-        const serviceWorkerRegistration = await navigator.serviceWorker
-          .register('/firebase-messaging-sw.js', { scope: '/' })
-          .catch((err) => {
-          });
-        await navigator.serviceWorker.ready; // Here's the waiting
-
-        // eslint-disable-next-line no-unused-vars
-        const subscription = await serviceWorkerRegistration.pushManager
-          .subscribe({
-            userVisibleOnly: true,
-            applicationServerKey: useRuntimeConfig().public.fcmPublicVapIdKey,
-          })
-          .catch((err) => {
-          });
-        await getToken(messaging, {
-          vapidKey: useRuntimeConfig().public.fcmPublicVapIdKey,
-          serviceWorkerRegistration: serviceWorkerRegistration,
-        }).then((token) => {
-          if (token) {
-            formData.append('fcmToken', token);
-          }
-        });
-      }
-      const generateRandomId = Math.floor(Math.random() * 899999 + 100000);
-      formData.append('deviceId', generateRandomId);
 
       for (const key in payload) {
         formData.append(key, payload[key]);
@@ -108,7 +73,6 @@ export const useAuthStore = defineStore('auth', {
       );
       this.loading = false;
       this.responseData = response.value || error.value.data;
-      this.statuses = response.value;
       setTimeout(() => {
         this.responseData = null;
       }, 3000);
@@ -121,9 +85,6 @@ export const useAuthStore = defineStore('auth', {
 
           setValue('token', response.value.data.token); // Store Token in LocalStorage
           this.setHeaders(response.value.data.token);
-          if (!sessionStore.currentSessionId) {
-            await sessionStore.getCurrentSessionId();
-          }
           await this.getProfile();
           navigateTo('/');
         }

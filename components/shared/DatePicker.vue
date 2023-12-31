@@ -9,6 +9,7 @@
       :flow="flow"
       :is-24="!withTime"
       locale="ar"
+      :max-date="maxDate"
       :min-date="currentYear"
       :day-names="['اث', 'ث', 'ار', 'خ', 'ج', 'س', 'اح']"
       :range="range"
@@ -17,7 +18,7 @@
       auto-apply
       :close-on-auto-apply="true"
       position="center"
-      hideNavigation="time"
+      :hideNavigation="['time']"
     />
     <div v-if="errorMessage.length" class="error-message">
       {{ errorMessage }}
