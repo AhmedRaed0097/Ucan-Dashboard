@@ -1,5 +1,4 @@
 <template>
-  <DoctorsCreateDialog :show="showDialog" @close="showDialog = false" />
   <h3
     class="tw-text-xl sm:tw-text-2xl md:tw-text-3xl 2xl:tw-text-4xl pl-7 mt-2 mb-8 mb-sm-0"
   >
@@ -45,13 +44,7 @@
   </v-row>
   <v-row justify="space-between" class="mt-4 ml-sm-2">
     <v-col cols="12" sm="4" md="3">
-      <v-btn
-        elevation="10"
-        @click="showDialog = true"
-        height="39"
-        color="primary"
-        block
-      >
+      <v-btn elevation="10" height="39" color="primary" block>
         <template v-slot:prepend>
           <v-icon> mdi-plus </v-icon>
         </template>
@@ -126,7 +119,6 @@
 <script setup>
 import { exportedData } from '~/helpers/exportedData';
 const search = ref('');
-const showDialog = ref(false);
 
 const headers = ref([
   { key: 'name', title: 'الباقة' },

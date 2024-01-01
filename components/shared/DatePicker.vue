@@ -1,5 +1,5 @@
 <template>
-  <div :class="customClass">
+  <div :class="props.errorMessage.length ? 'invalid' : 'valid'">
     <label :for="id" class="custom-control-label float-end">
       {{ label }}
     </label>
@@ -14,14 +14,15 @@
       :day-names="['اث', 'ث', 'ار', 'خ', 'ج', 'س', 'اح']"
       :range="range"
       :placeholder="placeholder"
-      :class="customClass"
       auto-apply
       :close-on-auto-apply="true"
       position="center"
       :hideNavigation="['time']"
     />
     <div v-if="errorMessage.length" class="error-message">
-      {{ errorMessage }}
+      <span class="text-error">
+        {{ errorMessage }}
+      </span>
     </div>
   </div>
 </template>
@@ -67,18 +68,13 @@ const props = defineProps({
     type: String,
     default: '',
   },
-  customClass: {
-    type: String,
-    default: '',
-  },
 });
 
 const emit = defineEmits(['update:modelValue']);
 
 const date = ref(props.modelValue);
 
-const flow = ref(['year','month', 'calendar']);
-
+const flow = ref(['year', 'month', 'calendar']);
 
 const format = (date) => {
   if (date) {
@@ -132,7 +128,7 @@ watch(
 );
 
 const currentYear = computed(() => {
-  if(!props.maxDateToday) {
+  if (!props.maxDateToday) {
     const currentDate = new Date();
 
     // Get the current year
@@ -141,7 +137,6 @@ const currentYear = computed(() => {
     return currentYear;
   }
 });
-
 </script>
 <style lang="scss">
 .dp__calendar_header .dp__calendar_header_item {
@@ -164,6 +159,7 @@ const currentYear = computed(() => {
 }
 
 .dp__input {
+  font-family: "Tajawal" !important;
   align-items: center;
   box-sizing: border-box;
   cursor: pointer;
@@ -181,33 +177,39 @@ const currentYear = computed(() => {
 }
 
 // custom style
-.custom {
+.valid {
   display: flex;
   align-items: flex-start;
 }
-.custom .dp__input {
-  border: solid 1px #a8a8a8 !important;
+.valid .dp__input {
+  border: solid 1px #d3d3d3 !important;
   border-radius: 6px;
   font-size: 14px;
-  font-weight: bolder;
   color: #67748e;
   height: 40%;
   padding: 3px 20px;
 }
 
-.custom .dp__clear_icon {
+.invalid .dp__input {
+  border: solid 1px #fa896b !important;
+  color: #fa896b !important;
+}
+
+.valid .dp__clear_icon {
   top: 50% !important;
   color: #67748e;
 }
-.custom ::placeholder {
-  color: #444c5c;
-  font-size: 16px;
+.valid ::placeholder {
+  color: #444c5c !important;
+  font-size: 13px;
+}
+.invalid ::placeholder {
+  color: #fa896b !important;
+  font-size: 13px;
   font-weight: bold;
 }
-
 .error-message {
   font-size: 12px;
-  color: rgb(176, 0, 32);
   margin-inline-start: 18px;
   padding-top: 5px;
   position: absolute;
