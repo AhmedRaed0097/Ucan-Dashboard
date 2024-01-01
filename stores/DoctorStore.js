@@ -5,6 +5,7 @@ import { useAuthStore } from '~~/stores/AuthStore';
 export const useDoctorStore = defineStore('doctor', {
   state: () => ({
     doctorData: {},
+    doctors: {},
     form: {
       personalData: {
         name: '',
@@ -38,13 +39,11 @@ export const useDoctorStore = defineStore('doctor', {
     responseData: null,
   }),
   actions: {
-    async fetch(payload) {
+    async fetch() {
       const authStore = useAuthStore();
       this.loading = true;
       const { data: response, error } = await useFetch(
-        `${
-          useRuntimeConfig().public.baseUrl
-        }/doctors/index?page=${payload}&per_page=5`,
+        `${useRuntimeConfig().public.baseUrl}/doctors`,
         {
           method: 'GET',
           headers: authStore.auth.headers,
@@ -52,7 +51,7 @@ export const useDoctorStore = defineStore('doctor', {
       );
       this.loading = false;
       if (!error.value) {
-        this.doctorData = response.value.data;
+        this.doctors = response.value.data;
       } else {
         this.serverErrors = error.value.data;
       }

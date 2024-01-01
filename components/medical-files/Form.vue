@@ -223,27 +223,27 @@ watch(
 );
 
 watch(
-  () => form.birthDay,
+  () => form.value.birthDay,
   (newValue) => {
-    console.log('newValue', newValue);
-    countAge(newValue);
+    if (newValue) {
+      countAge(newValue);
+    } else {
+      form.value.age = null;
+    }
   },
   { deep: true }
 );
 
 function countAge(selectedDate) {
-  console.log('selectedDate1', selectedDate);
   selectedDate = new Date(selectedDate);
-  console.log('selectedDate2', selectedDate);
   const ageDifferenceInMilliseconds = Date.now() - selectedDate.getTime();
   const ageInYears = Math.floor(
     ageDifferenceInMilliseconds / (1000 * 3600 * 24 * 365.2425)
   );
-  return ageInYears;
+  form.value.age = ageInYears;
 }
 
 function validate() {
   v$.value.$validate();
-  console.log('v$.birthDay ',v$.value.birthDay);
 }
 </script>

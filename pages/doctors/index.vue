@@ -1,188 +1,24 @@
 <script setup>
+import { useDoctorStore } from '~/stores/DoctorStore';
+
+const doctorStore = useDoctorStore();
+
 const search = ref('');
 const showDialog = ref(false);
 
 const headers = ref([
   { key: 'name', title: 'الاسم' },
   { key: 'email', title: 'البريد الالتكروني' },
-  { key: 'status', title: 'الحالة' },
+  { key: 'status', title: 'حالةالمستخدم' },
   { key: 'qualification', title: 'المؤهل العلمي' },
-  { key: 'phone', title: 'الجوال' },
-  { key: 'rate', title: 'التقييم' },
-  { key: 'sessions', title: 'عدد الجلسات' },
-  { key: 'createdAt', title: 'تاريخ الانشاء' },
+  { key: 'mobile', title: 'الجوال' },
   { title: 'الاجراء', key: 'actions', sortable: false },
 ]);
-const dataTable = ref([
-  {
-    id: 1,
-    name: 'علي أحمد',
-    phone: 502645629,
-    rate: 4,
-    status: 'active',
-    sessions: 6,
-    qualification: 'دكتوراه',
-    email: 'ali.ahmad@email.com',
-    createdAt:'16 ديسمبر 2023, 17:50'
+const dataTable = computed(() => {
+  return doctorStore.doctors.doctors;
+});
 
-  },
-  {
-    id: 2,
-    name: 'فاطمة محمد',
-    phone: 501245654,
-    rate: 5,
-    status: 'pending',
-    sessions: 4,
-    qualification: 'ماجستير',
-    email: 'fatma.mohamed@email.com',
-    createdAt:'16 ديسمبر 2023, 17:50'
-
-  },
-  {
-    id: 3,
-    name: 'محمد خالد',
-    phone: 500985600,
-    rate: 3.5,
-    status: 'active',
-    sessions: 5,
-    qualification: 'ماجستير',
-    email: 'mohamed.khaled@email.com',
-    createdAt:'16 ديسمبر 2023, 17:50'
-
-  },
-  {
-    id: 4,
-    name: 'ريم عبدالرحمن',
-    phone: 506575678,
-    rate: 4.5,
-    status: 'inactive',
-    sessions: 6,
-    qualification: 'دكتوراه',
-    email: 'reem.abdulrahman@email.com',
-    createdAt:'16 ديسمبر 2023, 17:50'
-
-  },
-  {
-    id: 5,
-    name: 'يوسف حسين',
-    phone: 501145644,
-    rate: 3,
-    status: 'active',
-    sessions: 2,
-    qualification: 'دكتوراه',
-    email: 'youssef.hussein@email.com',
-    createdAt:'16 ديسمبر 2023, 17:50'
-
-  },
-  {
-    id: 6,
-    name: 'ليلى مصطفى',
-    phone: 504325611,
-    rate: 5,
-    status: 'active',
-    sessions: 3,
-    qualification: 'ماجستير',
-    email: 'leila.mustafa@email.com',
-    createdAt:'16 ديسمبر 2023, 17:50'
-
-  },
-  {
-    id: 7,
-    name: 'حسن علي',
-    phone: 500005645,
-    rate: 3,
-    status: 'inactive',
-    sessions: 1,
-    qualification: 'دكتوراه',
-    email: 'hasan.ali@email.com',
-    createdAt:'16 ديسمبر 2023, 17:50'
-
-  },
-  {
-    id: 8,
-    name: 'نورهان عبدالله',
-    phone: 502245632,
-    rate: 4,
-    status: 'active',
-    sessions: 7,
-    qualification: 'ماجستير',
-    email: 'norhan.abdullah@email.com',
-    createdAt:'16 ديسمبر 2023, 17:50'
-
-  },
-  {
-    id: 9,
-    name: 'أحمد مصطفى',
-    phone: 503335678,
-    rate: 5,
-    status: 'active',
-    sessions: 0,
-    qualification: 'دكتوراه',
-    email: 'ahmed.mustafa@email.com',
-    createdAt:'16 ديسمبر 2023, 17:50'
-
-  },
-  {
-    id: 10,
-    name: 'فاطمة علي',
-    phone: 503242221,
-    rate: 4,
-    status: 'pending',
-    sessions: 12,
-    qualification: 'ماجستير',
-    email: 'fatma.ali@email.com',
-    createdAt:'16 ديسمبر 2023, 17:50'
-
-  },
-  {
-    id: 11,
-    name: 'سامي حسين',
-    phone: 503245332,
-    rate: 3,
-    status: 'inactive',
-    sessions: 9,
-    qualification: 'دكتوراه',
-    email: 'sami.hussein@email.com',
-    createdAt:'16 ديسمبر 2023, 17:50'
-
-  },
-  {
-    id: 12,
-    name: 'سلمى محمود',
-    phone: 501235678,
-    rate: 2,
-    status: 'pending',
-    sessions: 3,
-    qualification: 'ماجستير',
-    email: 'salma.mahmoud@email.com',
-    createdAt:'16 ديسمبر 2023, 17:50'
-
-  },
-  {
-    id: 13,
-    name: 'ياسر أحمد',
-    phone: 509045678,
-    rate: 4,
-    status: 'active',
-    sessions: 0,
-    qualification: 'ماجستير',
-    email: 'yaser.ahmad@email.com',
-    createdAt:'16 ديسمبر 2023, 17:50'
-
-  },
-  {
-    id: 14,
-    name: 'نور علي',
-    phone: 503245998,
-    rate: 1,
-    status: 'active',
-    sessions: 2,
-    qualification: 'ماجستير',
-    email: 'nour.ali@email.com',
-    createdAt:'16 ديسمبر 2023, 17:50'
-
-  },
-]);
+doctorStore.fetch();
 </script>
 <template>
   <DoctorsCreateDialog :show="showDialog" @close="showDialog = false" />
@@ -368,6 +204,7 @@ const dataTable = ref([
       <v-card elevation="10" class="withbg">
         <v-card-item class="pa-0">
           <v-data-table
+            v-if="dataTable"
             :headers="headers"
             :items="dataTable"
             :search="search"
