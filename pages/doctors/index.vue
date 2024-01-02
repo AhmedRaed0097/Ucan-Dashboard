@@ -10,8 +10,8 @@ const headers = ref([
   { key: 'name', title: 'الاسم' },
   { key: 'email', title: 'البريد الالتكروني' },
   { key: 'status', title: 'حالةالمستخدم' },
-  { key: 'qualification', title: 'المؤهل العلمي' },
-  { key: 'mobile', title: 'الجوال' },
+  { key: 'qualificationNameAr', title: 'المؤهل العلمي' },
+  { key: 'phone', title: 'الجوال' },
   { title: 'الاجراء', key: 'actions', sortable: false },
 ]);
 const dataTable = computed(() => {
