@@ -61,6 +61,19 @@
       </v-text-field>
     </v-col>
     <v-col cols="12" sm="6">
+      <v-text-field
+        v-model="doctorStore.form.professionalData.priority"
+        label="الاولوية"
+        required
+        variant="outlined"
+        :error="v$.priority.$errors.length > 0"
+        @blur="v$.priority.$touch"
+        :error-messages="v$.priority.$errors.map((e) => e.$message)"
+      >
+        <!--  -->
+      </v-text-field>
+    </v-col>
+    <v-col cols="12" sm="6">
       <v-textarea
         v-model="doctorStore.form.professionalData.biography"
         label="نبذة تعريفية"
@@ -78,6 +91,7 @@ import {
   digit$,
   maxLength$,
   minLength$,
+  between$,
 } from '@/helpers/validators';
 
 import { useDoctorStore } from '~~/stores/DoctorStore';
@@ -109,6 +123,11 @@ const rules = reactive({
   },
   professionalTitle: {
     required$,
+  },
+  priority: {
+    required$,
+    digit$,
+    between$: between$(1, 100),
   },
   biography: {
     required$,

@@ -36,9 +36,8 @@ const step = ref(1);
 watch(
   () => props.show,
   (newValue) => {
-    doctorStore.resetForm()
+    doctorStore.resetForm();
     dialog.value = newValue;
-
   },
   { deep: true }
 );
@@ -63,10 +62,20 @@ const onSave = () => {
   setTimeout(() => {
     doctorStore.responseData = null;
     loading.value = false;
-    emit('close');
+    close();
     step.value = 1;
     doctorStore.resetForm();
   }, 3000);
+};
+
+const close = () => {
+  emit('close');
+  stepsText.forEach((step) => {
+    step.isValid = false;
+  });
+  setTimeout(() => {
+    step.value = 1;
+  }, 500);
 };
 </script>
 <template>
@@ -79,7 +88,7 @@ const onSave = () => {
         class="close-dialog-btn"
         variant="text"
         icon
-        @click="emit('close')"
+        @click="close"
       >
         <span class="mdi mdi-close"></span>
       </v-btn>

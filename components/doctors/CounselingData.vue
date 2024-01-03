@@ -4,7 +4,7 @@
       <v-select
         v-model="doctorStore.form.consultantData.duration"
         :items="duration"
-        label="مدة الحجز"
+        label="مدة الحجز (اختياري)"
         variant="outlined"
       ></v-select>
     </v-col>
@@ -12,7 +12,7 @@
       <v-select
         v-model="doctorStore.form.consultantData.bookType"
         :items="bookType"
-        label="نوع الحجز"
+        label="نوع الحجز (اختياري)"
         variant="outlined"
       ></v-select>
     </v-col>
@@ -20,7 +20,7 @@
       <v-select
         v-model="doctorStore.form.consultantData.freeConsultation"
         :items="freeConsultation"
-        label="استشارة مجانية"
+        label="استشارة مجانية (اختياري)"
         variant="outlined"
       ></v-select>
     </v-col>
@@ -28,7 +28,7 @@
       <v-select
         v-model="doctorStore.form.consultantData.maxDuration"
         :items="maxDurations"
-        label="اقصى مدة للحجز"
+        label="اقصى مدة للحجز (اختياري)"
         variant="outlined"
       ></v-select>
     </v-col>
@@ -46,7 +46,7 @@
     <v-col cols="12" sm="6">
       <v-text-field
         v-model="doctorStore.form.consultantData.ucanPercentage"
-        label="نسبة يوكان"
+        label="نسبة يوكان (اختياري)"
         required
         variant="outlined"
       ></v-text-field>

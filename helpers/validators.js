@@ -6,6 +6,7 @@ import {
   email,
   sameAs,
   requiredIf,
+  between,
 } from '@vuelidate/validators';
 
 export const required$ = helpers.withMessage('هذا الحقل مطلوب', required);
@@ -51,7 +52,7 @@ export const requiredIf$ = (value) =>
   helpers.withMessage('هذا الحقل مطلوب', requiredIf(value));
 
 export const maxLength$ = (max) =>
-  helpers.withMessage(({ $params })=>{
+  helpers.withMessage(({ $params }) => {
     if ($params.max == 1 || $params.max == 2) {
       return $params.max == 1
         ? 'يجب أن لا يتجاوز طول النص حرف واحد.'
@@ -63,20 +64,17 @@ export const maxLength$ = (max) =>
     }
   }, maxLength(max));
 export const minLength$ = (min) =>
-  helpers.withMessage(
-    ({ $params }) => {
-      if ($params.min == 1 || $params.min == 2) {
-        return $params.min == 1
-          ? 'يجب أن يكون طول النص على الأقل حرف واحد.'
-          : 'يجب أن يكون طول النص على الأقل حرفين.';
-      } else if ($params.min >= 3 && $params.min <= 10) {
-        return `يجب أن يكون طول النص على الأقل ${$params.min} أحرف.`;
-      } else {
-        return `يجب أن يكون طول النص على الأقل ${$params.min} حرفاً.`;
-      }
-    },
-    minLength(min)
-  );
+  helpers.withMessage(({ $params }) => {
+    if ($params.min == 1 || $params.min == 2) {
+      return $params.min == 1
+        ? 'يجب أن يكون طول النص على الأقل حرف واحد.'
+        : 'يجب أن يكون طول النص على الأقل حرفين.';
+    } else if ($params.min >= 3 && $params.min <= 10) {
+      return `يجب أن يكون طول النص على الأقل ${$params.min} أحرف.`;
+    } else {
+      return `يجب أن يكون طول النص على الأقل ${$params.min} حرفاً.`;
+    }
+  }, minLength(min));
 
 export const maxPhoneLength$ = (max) =>
   helpers.withMessage(
@@ -158,3 +156,7 @@ const mustBeCool = (value) => !helpers.req(value) || value.includes('cool');
 
 export const phoneNumberCheck$ = (phoneNumber) =>
   helpers.withMessage('كلمة المرور غير متطابقة', mustBeCool(phoneNumber));
+
+
+export const between$ = (start,limit) =>
+  helpers.withMessage('يجب ان تكون القيمة بين 1 - 100', between(start,limit));

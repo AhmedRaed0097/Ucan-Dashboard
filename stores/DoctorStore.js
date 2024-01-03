@@ -23,6 +23,7 @@ export const useDoctorStore = defineStore('doctor', {
         class: null,
         category: null,
         professionalTitle: null,
+        priority: null,
         biography: '',
       },
       consultantData: {
