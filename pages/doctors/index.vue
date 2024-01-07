@@ -15,7 +15,7 @@ const headers = ref([
   { title: 'الاجراء', key: 'actions', sortable: false },
 ]);
 const dataTable = computed(() => {
-  return doctorStore.doctors.doctors;
+  if (doctorStore.doctors) return doctorStore.doctors.doctors;
 });
 
 doctorStore.fetch();

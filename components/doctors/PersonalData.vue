@@ -71,6 +71,20 @@
       ></v-text-field>
     </v-col>
     <v-col cols="12" sm="6">
+      <v-text-field
+        v-model="doctorStore.form.personalData.passwordConfirmation"
+        :append-inner-icon="visibleConfirmation ? 'mdi-eye-off' : 'mdi-eye'"
+        :type="visibleConfirmation ? 'text' : 'password'"
+        label="تأكيد كلمة المرور"
+        variant="outlined"
+        autocomplete="new-password"
+        @click:append-inner="visibleConfirmation = !visibleConfirmation"
+        :error="v$.passwordConfirmation.$errors.length > 0"
+        @blur="v$.passwordConfirmation.$touch"
+        :error-messages="v$.passwordConfirmation.$errors.map((e) => e.$message)"
+      ></v-text-field>
+    </v-col>
+    <v-col cols="12" sm="6">
       <v-select
         v-model="doctorStore.form.personalData.joinType"
         :items="joinTypes"
@@ -84,16 +98,16 @@
     </v-col>
     <v-col cols="12" sm="6">
       <v-file-input
-        v-model="doctorStore.form.personalData.photo"
+        v-model="doctorStore.form.personalData.avatar"
         accept="image/png, image/jpeg, image/bmp"
         placeholder="Pick an avatar"
         prepend-icon=""
         append-inner-icon="mdi-camera"
         label="الصورة"
         variant="outlined"
-        :error="v$.photo.$errors.length > 0"
-        @blur="v$.photo.$touch"
-        :error-messages="v$.photo.$errors.map((e) => e.$message)"
+        :error="v$.avatar.$errors.length > 0"
+        @blur="v$.avatar.$touch"
+        :error-messages="v$.avatar.$errors.map((e) => e.$message)"
       ></v-file-input>
     </v-col>
   </v-row>
@@ -106,6 +120,7 @@ import {
   email$,
   minPhoneLength$,
   digit$,
+  sameAs$
 } from '@/helpers/validators';
 
 import { useDoctorStore } from '~~/stores/DoctorStore';
@@ -115,6 +130,7 @@ const doctorStore = useDoctorStore();
 
 const serverErrors = ref({});
 const visible = ref(false);
+const visibleConfirmation = ref(false);
 const itemsCount = ref(0);
 
 const rules = reactive({
@@ -142,10 +158,14 @@ const rules = reactive({
     minLength$: minLength$(8),
     maxLength$: maxLength$(32),
   },
+  passwordConfirmation: {
+      required$,
+      sameAs$: sameAs$(doctorStore.form.personalData.password),
+    },
   joinType: {
     required$,
   },
-  photo: {
+  avatar: {
     required$,
   },
 });
@@ -159,15 +179,15 @@ const { v$ } = useCustomVulidate(
 const countryCodes = ref([
   {
     title: 'السعودية',
-    value: '+966',
-  },
-  {
-    title: 'مصر',
-    value: '+20',
+    value: '1',
   },
   {
     title: 'الاردن',
-    value: '+962',
+    value: '2',
+  },
+  {
+    title: 'مصر',
+    value: '3',
   },
 ]);
 const gender = ref([
@@ -200,6 +220,7 @@ watch(
         itemsCount.value++;
       }
     });
+    console.log('cc ',itemsCount.value);
     if (itemsCount.value === 0) {
       v$.value.$validate();
       if (!v$.value.$error) {

@@ -14,25 +14,25 @@ export const useDoctorStore = defineStore('doctor', {
         phone: '',
         gender: null,
         password: '',
-        joinType: null,
-        photo: null,
+        passwordConfirmation: '',
+        joinType: null, //x
+        avatar: null,
       },
       professionalData: {
-        qualification: null,
-        yearExperience: '',
-        class: null,
-        category: null,
-        professionalTitle: null,
-        priority: null,
-        biography: '',
+        qualificationId: null,
+        expYears: '',
+        subcategoryId: null,
+        categoryId: null,
+        jobTitleId: null,
+        bio: '',
       },
       consultantData: {
-        duration: null,
-        bookType: null,
+        bookingPeriod: null,
+        bookingType: null,
         freeConsultation: null,
-        sessionPrice: '',
-        ucanPercentage: '',
-        maxDuration: null,
+        periodPrice: '',
+        ucanPercentage: '', //x
+        maximumBookingPeriod: null,
       },
     },
     loading: false,
@@ -57,6 +57,29 @@ export const useDoctorStore = defineStore('doctor', {
         this.serverErrors = error.value.data;
       }
     },
+    async create() {
+      const authStore = useAuthStore();
+      this.loading = true;
+      const formData = new FormData();
+      for (const key in this.form) {
+        formData.append(key, this.form[key]);
+      }
+
+      const { data: response, error } = await useFetch(
+        `${useRuntimeConfig().public.baseUrl}/doctors`,
+        {
+          method: 'POST',
+          headers: authStore.auth.headers,
+          body: formData,
+        }
+      );
+      this.loading = false;
+      if (!error.value) {
+        this.doctors = response.value.data;
+      } else {
+        this.serverErrors = error.value.data;
+      }
+    },
 
     resetForm() {
       this.form = {
@@ -67,24 +90,25 @@ export const useDoctorStore = defineStore('doctor', {
           phone: '',
           gender: null,
           password: '',
-          joinType: null,
-          photo: null,
+          passwordConfirmation: '',
+          joinType: null, //x
+          avatar: null,
         },
         professionalData: {
-          qualification: null,
-          yearExperience: '',
-          class: null,
-          category: null,
-          professionalTitle: null,
-          biography: '',
+          qualificationId: null,
+          expYears: '',
+          subcategoryId: null,
+          categoryId: null,
+          jobTitleId: null,
+          bio: '',
         },
         consultantData: {
-          duration: null,
-          bookType: null,
+          bookingPeriod: null,
+          bookingType: null,
           freeConsultation: null,
-          sessionPrice: '',
-          ucanPercentage: '',
-          maxDuration: null,
+          periodPrice: '',
+          ucanPercentage: '', //x
+          maximumBookingPeriod: null,
         },
       };
     },

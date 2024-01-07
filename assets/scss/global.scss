@@ -171,3 +171,7 @@ ul:not(.v-pagination__list) {
 .dp__input_icon{
   display: none !important; 
 }
+
+.v-file-input .v-field__input{
+  overflow-x: auto !important;
+}
