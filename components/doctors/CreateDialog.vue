@@ -1,9 +1,21 @@
 <script setup>
+import { useQualificationStore } from '~/stores/QualificationStore';
+import { useCategoryStore } from '~/stores/CategoryStore';
+import { useDurationStore } from '~/stores/DurationStore';
+import {useJobTitleStore} from '~~/stores/JobTitleStore'
 import { useDoctorStore } from '~~/stores/DoctorStore';
+import { useFreeConsultationStore } from '~/stores/FreeConsultationStore';
 
 import { Steppy } from 'vue3-steppy';
 
 const doctorStore = useDoctorStore();
+
+const qualificationStore = useQualificationStore();
+const categoryStore = useCategoryStore();
+const jobTitleStore = useJobTitleStore();
+const durationStore = useDurationStore();
+const freeConsultationStore = useFreeConsultationStore();
+
 const emit = defineEmits(['close']);
 const stepsText = reactive([
   {
@@ -55,13 +67,8 @@ function onError(index) {
 
 const onSave = () => {
   loading.value = true;
-  doctorStore.responseData = {
-    success: true,
-    message: 'تم حفظ البيانات بنجاح',
-  };
+  doctorStore.store();
   setTimeout(() => {
-    doctorStore.responseData = null;
-    loading.value = false;
     close();
     step.value = 1;
     doctorStore.resetForm();
@@ -77,6 +84,15 @@ const close = () => {
     step.value = 1;
   }, 500);
 };
+
+qualificationStore.fetch();
+jobTitleStore.fetch();
+categoryStore.getCategories()
+categoryStore.getSubCategories()
+durationStore.getBookingPeriod()
+durationStore.getMaxBookingPeriod()
+durationStore.getBookingType()
+freeConsultationStore.getFreeConsultation()
 </script>
 <template>
   <SharedResponseAlert :response="response" />

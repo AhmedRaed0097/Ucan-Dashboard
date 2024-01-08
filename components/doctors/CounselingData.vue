@@ -2,8 +2,10 @@
   <v-row>
     <v-col cols="12" sm="6">
       <v-select
-        v-model="doctorStore.form.consultantData.duration"
-        :items="duration"
+        v-model="doctorStore.form.consultantData.bookingPeriod"
+        :items="durationStore.bookingPeriod"
+        item-title="key"
+        item-value="value"
         label="مدة الحجز (اختياري)"
         variant="outlined"
       ></v-select>
@@ -11,44 +13,44 @@
     <v-col cols="12" sm="6">
       <v-select
         v-model="doctorStore.form.consultantData.bookType"
-        :items="bookType"
+        :items="durationStore.bookingType"
+        item-title="key"
+        item-value="value"
         label="نوع الحجز (اختياري)"
         variant="outlined"
       ></v-select>
     </v-col>
     <v-col cols="12" sm="6">
       <v-select
+      v-if="freeConsultationStore.freeConsultations"
         v-model="doctorStore.form.consultantData.freeConsultation"
-        :items="freeConsultation"
+        :items="freeConsultationStore.freeConsultations"
+        item-title="key"
+        item-value="value"
         label="استشارة مجانية (اختياري)"
         variant="outlined"
       ></v-select>
     </v-col>
     <v-col cols="12" sm="6">
       <v-select
-        v-model="doctorStore.form.consultantData.maxDuration"
-        :items="maxDurations"
+      v-if="durationStore.maxBookingPeriod"
+        v-model="doctorStore.form.consultantData.maximumBookingPeriod"
+        :items="durationStore.maxBookingPeriod"
+        item-title="key"
+        item-value="value"
         label="اقصى مدة للحجز (اختياري)"
         variant="outlined"
       ></v-select>
     </v-col>
     <v-col cols="12" sm="6">
       <v-text-field
-        v-model="doctorStore.form.consultantData.sessionPrice"
+        v-model="doctorStore.form.consultantData.periodPrice"
         label="قيمة الجلسة"
         required
         variant="outlined"
-        :error="v$.sessionPrice.$errors.length > 0"
+        :error="v$.periodPrice.$errors.length > 0"
         @input="validate"
-        :error-messages="v$.sessionPrice.$errors.map((e) => e.$message)"
-      ></v-text-field>
-    </v-col>
-    <v-col cols="12" sm="6">
-      <v-text-field
-        v-model="doctorStore.form.consultantData.ucanPercentage"
-        label="نسبة يوكان (اختياري)"
-        required
-        variant="outlined"
+        :error-messages="v$.periodPrice.$errors.map((e) => e.$message)"
       ></v-text-field>
     </v-col>
   </v-row>
@@ -56,9 +58,14 @@
 <script setup>
 import { required$, digit$ } from '@/helpers/validators';
 import { useDoctorStore } from '~~/stores/DoctorStore';
+
+import { useDurationStore } from '~/stores/DurationStore';
+import { useFreeConsultationStore } from '~/stores/FreeConsultationStore';
 const emit = defineEmits(['success', 'error']);
 
 const doctorStore = useDoctorStore();
+const durationStore = useDurationStore();
+const freeConsultationStore = useFreeConsultationStore();
 
 const itemsCount = ref(0);
 
@@ -101,7 +108,7 @@ const serverErrors = ref({});
 const maxDurations = ref(['اسبوعان', 'شهر']);
 
 const rules = reactive({
-  sessionPrice: {
+  periodPrice: {
     required$,
     digit$,
   },
@@ -115,7 +122,7 @@ const { v$ } = useCustomVulidate(
 
 const validate = () => {
   console.log('from change');
-  v$.value.sessionPrice.$touch();
+  v$.value.periodPrice.$touch();
   if (!v$.value.$error) {
     emit('success');
   } else {

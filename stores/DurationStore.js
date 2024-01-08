@@ -2,22 +2,24 @@ import { defineStore } from 'pinia';
 import { useRuntimeConfig } from '#app';
 import { useAuthStore } from '~~/stores/AuthStore';
 
-export const useCategoryStore = defineStore('category', {
+export const useDurationStore = defineStore('duration', {
   state: () => ({
-    categories: [],
-    subCategories: [],
+    bookingPeriod: [],
+    maxBookingPeriod: [],
+    bookingType: [],
+
     loading: false,
     serverErrors: {},
     responseData: null,
   }),
   actions: {
-    async getCategories() {
+    async getBookingPeriod() {
       const authStore = useAuthStore();
       this.loading = true;
       const { data: response, error } = await useFetch(
         `${
           useRuntimeConfig().public.baseUrl
-        }/categories`,
+        }/booking-period  `,
         {
           method: 'GET',
           headers: authStore.auth.headers,
@@ -25,16 +27,18 @@ export const useCategoryStore = defineStore('category', {
       );
       this.loading = false;
       if (!error.value) {
-        this.categories = response.value.data;
+        this.bookingPeriod = response.value.data;
       } else {
         this.serverErrors = error.value.data;
       }
     },
-    async getSubCategories() {
+    async getMaxBookingPeriod() {
       const authStore = useAuthStore();
       this.loading = true;
       const { data: response, error } = await useFetch(
-        `${useRuntimeConfig().public.baseUrl}/sub-categories`,
+        `${
+          useRuntimeConfig().public.baseUrl
+        }/maximum-booking-period`,
         {
           method: 'GET',
           headers: authStore.auth.headers,
@@ -42,7 +46,26 @@ export const useCategoryStore = defineStore('category', {
       );
       this.loading = false;
       if (!error.value) {
-        this.subCategories = response.value.data;
+        this.maxBookingPeriod = response.value.data;
+      } else {
+        this.serverErrors = error.value.data;
+      }
+    },
+    async getBookingType() {
+      const authStore = useAuthStore();
+      this.loading = true;
+      const { data: response, error } = await useFetch(
+        `${
+          useRuntimeConfig().public.baseUrl
+        }/booking-type`,
+        {
+          method: 'GET',
+          headers: authStore.auth.headers,
+        }
+      );
+      this.loading = false;
+      if (!error.value) {
+        this.bookingType = response.value.data;
       } else {
         this.serverErrors = error.value.data;
       }

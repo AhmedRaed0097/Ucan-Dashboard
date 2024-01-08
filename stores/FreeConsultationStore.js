@@ -2,22 +2,22 @@ import { defineStore } from 'pinia';
 import { useRuntimeConfig } from '#app';
 import { useAuthStore } from '~~/stores/AuthStore';
 
-export const useSubCategoryStore = defineStore('subCategory', {
+export const useFreeConsultationStore = defineStore('freeConsultation', {
   state: () => ({
-    subCategoryData: {},
+    freeConsultations: [],
 
     loading: false,
     serverErrors: {},
     responseData: null,
   }),
   actions: {
-    async fetch(payload) {
+    async getFreeConsultation() {
       const authStore = useAuthStore();
       this.loading = true;
       const { data: response, error } = await useFetch(
         `${
           useRuntimeConfig().public.baseUrl
-        }/sub-categories/index?page=${payload}&per_page=5`,
+        }/free-consultation  `,
         {
           method: 'GET',
           headers: authStore.auth.headers,
@@ -25,10 +25,11 @@ export const useSubCategoryStore = defineStore('subCategory', {
       );
       this.loading = false;
       if (!error.value) {
-        this.subCategoryData = response.value.data;
+        this.freeConsultations = response.value.data;
       } else {
         this.serverErrors = error.value.data;
       }
     },
+   
   },
 });

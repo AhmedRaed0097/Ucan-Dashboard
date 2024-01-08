@@ -15,23 +15,22 @@ export const useDoctorStore = defineStore('doctor', {
         gender: null,
         password: '',
         passwordConfirmation: '',
-        joinType: null, //x
+        doctorType: null,
         avatar: null,
       },
       professionalData: {
         qualificationId: null,
-        expYears: '',
-        subcategoryId: null,
+        expYears: null,
+        subCategoryId: null,
         categoryId: null,
         jobTitleId: null,
-        bio: '',
+        bio: null,
       },
       consultantData: {
         bookingPeriod: null,
         bookingType: null,
         freeConsultation: null,
         periodPrice: '',
-        ucanPercentage: '', //x
         maximumBookingPeriod: null,
       },
     },
@@ -52,17 +51,27 @@ export const useDoctorStore = defineStore('doctor', {
       );
       this.loading = false;
       if (!error.value) {
+        this.responseData = response.value;
         this.doctors = response.value.data;
       } else {
+        this.responseData = {
+          success: error.value.data.success,
+          message: error.value.data.message,
+        };
         this.serverErrors = error.value.data;
       }
+      setTimeout(() => {
+        this.responseData = null;
+      }, 3000);
     },
-    async create() {
+    async store() {
       const authStore = useAuthStore();
       this.loading = true;
       const formData = new FormData();
       for (const key in this.form) {
-        formData.append(key, this.form[key]);
+        for (const nestedKey in this.form[key]) {
+          formData.append(nestedKey, this.form[key][nestedKey]);
+        }
       }
 
       const { data: response, error } = await useFetch(
@@ -91,13 +100,13 @@ export const useDoctorStore = defineStore('doctor', {
           gender: null,
           password: '',
           passwordConfirmation: '',
-          joinType: null, //x
+          doctorType: null, //x
           avatar: null,
         },
         professionalData: {
           qualificationId: null,
           expYears: '',
-          subcategoryId: null,
+          subCategoryId: null,
           categoryId: null,
           jobTitleId: null,
           bio: '',
@@ -107,7 +116,6 @@ export const useDoctorStore = defineStore('doctor', {
           bookingType: null,
           freeConsultation: null,
           periodPrice: '',
-          ucanPercentage: '', //x
           maximumBookingPeriod: null,
         },
       };

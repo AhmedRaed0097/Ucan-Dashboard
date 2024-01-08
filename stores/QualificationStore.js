@@ -4,28 +4,26 @@ import { useAuthStore } from '~~/stores/AuthStore';
 
 export const useQualificationStore = defineStore('qualification', {
   state: () => ({
-    qualificationData: {},
+    qualifications: [],
 
     loading: false,
     serverErrors: {},
     responseData: null,
   }),
   actions: {
-    async fetch(payload) {
+    async fetch() {
       const authStore = useAuthStore();
-      this.loading = true;
       const { data: response, error } = await useFetch(
         `${
           useRuntimeConfig().public.baseUrl
-        }/qualifications/index?page=${payload}&per_page=5`,
+        }/qualifications`,
         {
           method: 'GET',
           headers: authStore.auth.headers,
         }
       );
-      this.loading = false;
       if (!error.value) {
-        this.qualificationData = response.value.data;
+        this.qualifications = response.value.data;
       } else {
         this.serverErrors = error.value.data;
       }

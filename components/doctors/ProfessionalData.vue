@@ -2,63 +2,73 @@
   <v-row>
     <v-col cols="12" sm="6">
       <v-select
-        v-model="doctorStore.form.professionalData.qualification"
-        :items="qualifications"
+        v-if="qualificationStore.qualifications"
+        v-model="doctorStore.form.professionalData.qualificationId"
+        :items="qualificationStore.qualifications"
+        item-title="nameAr"
+        item-value="id"
         label="المؤهل العلمي"
         variant="outlined"
-        :error="v$.qualification.$errors.length > 0"
-        @blur="v$.qualification.$touch"
-        :error-messages="v$.qualification.$errors.map((e) => e.$message)"
+        :error="v$.qualificationId.$errors.length > 0"
+        @blur="v$.qualificationId.$touch"
+        :error-messages="v$.qualificationId.$errors.map((e) => e.$message)"
       ></v-select>
     </v-col>
 
     <v-col cols="12" sm="6">
       <v-text-field
-        v-model="doctorStore.form.professionalData.yearExperience"
+        v-model="doctorStore.form.professionalData.expYears"
         label="سنوات الخبرة"
         required
         variant="outlined"
-        :error="v$.yearExperience.$errors.length > 0"
-        @blur="v$.yearExperience.$touch"
-        :error-messages="v$.yearExperience.$errors.map((e) => e.$message)"
+        :error="v$.expYears.$errors.length > 0"
+        @blur="v$.expYears.$touch"
+        :error-messages="v$.expYears.$errors.map((e) => e.$message)"
       >
         <!--  -->
       </v-text-field>
     </v-col>
     <v-col cols="12" sm="6">
       <v-select
-        v-model="doctorStore.form.professionalData.class"
-        :items="classes"
+        v-if="categoryStore.subCategories"
+        v-model="doctorStore.form.professionalData.subCategoryId"
+        :items="categoryStore.subCategories"
+        item-title="nameAr"
+        item-value="id"
         label="الفئة"
         variant="outlined"
-        :error="v$.class.$errors.length > 0"
-        @blur="v$.class.$touch"
-        :error-messages="v$.class.$errors.map((e) => e.$message)"
+        :error="v$.subCategoryId.$errors.length > 0"
+        @blur="v$.subCategoryId.$touch"
+        :error-messages="v$.subCategoryId.$errors.map((e) => e.$message)"
       ></v-select>
     </v-col>
     <v-col cols="12" sm="6">
       <v-select
-        v-model="doctorStore.form.professionalData.category"
-        :items="categories"
+        v-if="categoryStore.categories"
+        v-model="doctorStore.form.professionalData.categoryId"
+        :items="categoryStore.categories"
+        item-title="nameAr"
+        item-value="id"
         label="التصنيف"
         variant="outlined"
-        :error="v$.category.$errors.length > 0"
-        @blur="v$.category.$touch"
-        :error-messages="v$.category.$errors.map((e) => e.$message)"
+        :error="v$.categoryId.$errors.length > 0"
+        @blur="v$.categoryId.$touch"
+        :error-messages="v$.categoryId.$errors.map((e) => e.$message)"
       ></v-select>
     </v-col>
     <v-col cols="12" sm="6">
-      <v-text-field
-        v-model="doctorStore.form.professionalData.professionalTitle"
+      <v-select
+        v-if="jobTitleStore.jobTitles"
+        v-model="doctorStore.form.professionalData.jobTitleId"
+        :items="jobTitleStore.jobTitles"
+        item-title="nameAr"
+        item-value="id"
         label="المسمى المهني"
-        required
         variant="outlined"
-        :error="v$.professionalTitle.$errors.length > 0"
-        @blur="v$.professionalTitle.$touch"
-        :error-messages="v$.professionalTitle.$errors.map((e) => e.$message)"
-      >
-        <!--  -->
-      </v-text-field>
+        :error="v$.jobTitleId.$errors.length > 0"
+        @blur="v$.jobTitleId.$touch"
+        :error-messages="v$.jobTitleId.$errors.map((e) => e.$message)"
+      ></v-select>
     </v-col>
     <v-col cols="12" sm="6">
       <v-text-field
@@ -75,12 +85,12 @@
     </v-col>
     <v-col cols="12" sm="6">
       <v-textarea
-        v-model="doctorStore.form.professionalData.biography"
+        v-model="doctorStore.form.professionalData.bio"
         label="نبذة تعريفية"
         variant="outlined"
-        :error="v$.biography.$errors.length > 0"
-        @blur="v$.biography.$touch"
-        :error-messages="v$.biography.$errors.map((e) => e.$message)"
+        :error="v$.bio.$errors.length > 0"
+        @blur="v$.bio.$touch"
+        :error-messages="v$.bio.$errors.map((e) => e.$message)"
       />
     </v-col>
   </v-row>
@@ -95,33 +105,35 @@ import {
 } from '@/helpers/validators';
 
 import { useDoctorStore } from '~~/stores/DoctorStore';
+import { useQualificationStore } from '~/stores/QualificationStore';
+import { useCategoryStore } from '~/stores/CategoryStore';
+import { useJobTitleStore } from '~~/stores/JobTitleStore';
 const emit = defineEmits(['success', 'error']);
 
 const doctorStore = useDoctorStore();
+const qualificationStore = useQualificationStore();
+const categoryStore = useCategoryStore();
+const jobTitleStore = useJobTitleStore();
 
 const serverErrors = ref({});
 
 const itemsCount = ref(0);
 
-const qualifications = ref(['بكلاريوس', 'ماجستير', 'دكتوراه']);
-const classes = ref(['طبيب', 'مختص', 'اختبار']);
-const categories = ref(['باطني', 'نفسي']);
-
 const rules = reactive({
-  qualification: {
+  qualificationId: {
     required$,
   },
-  yearExperience: {
+  expYears: {
     required$,
     digit$,
   },
-  class: {
+  subCategoryId: {
     required$,
   },
-  category: {
+  categoryId: {
     required$,
   },
-  professionalTitle: {
+  jobTitleId: {
     required$,
   },
   priority: {
@@ -129,7 +141,7 @@ const rules = reactive({
     digit$,
     between$: between$(1, 100),
   },
-  biography: {
+  bio: {
     required$,
     minLength$: minLength$(3),
     maxLength$: maxLength$(255),
@@ -147,7 +159,7 @@ watch(
   (newValue) => {
     itemsCount.value = 0;
     Object.values(newValue).forEach((value) => {
-      if (!value || !value.length) {
+      if (!value) {
         itemsCount.value++;
       }
     });

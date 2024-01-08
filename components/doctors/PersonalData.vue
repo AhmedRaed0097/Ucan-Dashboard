@@ -86,14 +86,14 @@
     </v-col>
     <v-col cols="12" sm="6">
       <v-select
-        v-model="doctorStore.form.personalData.joinType"
+        v-model="doctorStore.form.personalData.doctorType"
         :items="joinTypes"
         label="نوع الانضمام"
         variant="outlined"
         autocomplete="new-password"
-        :error="v$.joinType.$errors.length > 0"
-        @blur="v$.joinType.$touch"
-        :error-messages="v$.joinType.$errors.map((e) => e.$message)"
+        :error="v$.doctorType.$errors.length > 0"
+        @blur="v$.doctorType.$touch"
+        :error-messages="v$.doctorType.$errors.map((e) => e.$message)"
       ></v-select>
     </v-col>
     <v-col cols="12" sm="6">
@@ -160,9 +160,9 @@ const rules = reactive({
   },
   passwordConfirmation: {
       required$,
-      sameAs$: sameAs$(doctorStore.form.personalData.password),
+      // sameAs$: sameAs$(doctorStore.form.personalData.password),
     },
-  joinType: {
+  doctorType: {
     required$,
   },
   avatar: {
